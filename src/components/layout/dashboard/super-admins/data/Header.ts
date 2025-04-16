@@ -1,6 +1,6 @@
 import { FiHome, FiSettings } from "react-icons/fi";
 
-import { RiAdminFill } from "react-icons/ri";
+import { RiAdminFill, RiPagesFill } from "react-icons/ri";
 
 import { GrArticle, GrTransaction } from "react-icons/gr";
 
@@ -31,6 +31,20 @@ export const menuItems = [
   },
 
   {
+    icon: RiPagesFill,
+    label: "Pages",
+    href: "/dashboard/super-admins/pages",
+    subItems: [
+      { label: "About", href: "/dashboard/super-admins/pages/about" },
+      { label: "Contact", href: "/dashboard/super-admins/pages/contact" },
+      {
+        label: "Testimonials",
+        href: "/dashboard/super-admins/pages/testimonials",
+      },
+    ],
+  },
+
+  {
     icon: GrArticle,
     label: "Blog",
     href: "/dashboard/super-admins/blog",
@@ -42,7 +56,7 @@ export const menuItems = [
 
       {
         label: "Belum Dibayar",
-        href: "/dashboard/super-admins/transaction/unpaid",
+        href: "/dashboard/super-admins/blog/category",
       },
     ],
   },

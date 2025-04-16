@@ -1,11 +1,17 @@
 import React from 'react'
 
+import Home from "@/components/ui/home/Home"
+
+import Services from "@/components/ui/services/Services"
+
+import Faqs from "@/components/ui/faqs/Faqs"
+
 export default function page() {
   return (
-    <section className='min-h-screen'>
-      <div className='container'>
-        <h1>Nizam Cellular Leuwiliang</h1>
-      </div>
-    </section>
+    <main className='overflow-hidden'>
+      <Home />
+      <Services />
+      <Faqs />
+    </main>
   )
 }

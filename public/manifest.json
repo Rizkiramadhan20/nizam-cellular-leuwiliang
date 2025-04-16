@@ -1,6 +1,6 @@
 {
-  "short_name": "Space Digitalia",
-  "name": "Space Digitalia",
+  "short_name": "Nizam Cellular Leuwiliang",
+  "name": "Nizam Cellular Leuwiliang",
   "icons": [
     {
       "src": "/favicon.ico",
@@ -9,12 +9,12 @@
     },
     {
       "src": "/favicon.ico",
-      "type": "image/x-icon",
+      "type": "image/png",
       "sizes": "192x192"
     },
     {
       "src": "/favicon.ico",
-      "type": "image/x-icon",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
@@ -24,13 +24,12 @@
   "background_color": "#ffffff",
   "prefer_related_applications": false,
   "categories": [
-    "space",
-    "digitalia",
-    "web design",
-    "web development",
-    "web agency",
-    "web studio",
-    "web company"
+    "nizamcellular",
+    "nizamcell",
+    "software",
+    "hardware",
+    "handphone",
+    "laptop"
   ],
   "screenshots": [
     {

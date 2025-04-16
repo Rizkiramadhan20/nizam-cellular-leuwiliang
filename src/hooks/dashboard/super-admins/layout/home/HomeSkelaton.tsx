@@ -1,11 +1,22 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 
 export default function HomeSkelaton() {
   return (
-    <section className='min-h-screen'>
-      {/* Header Section Skeleton */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8 bg-white p-6 rounded-2xl shadow-sm">
-        <div className="space-y-2">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className='min-h-screen'
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 bg-background border border-[var(--border-color)] p-6 sm:p-8 rounded-2xl shadow-sm"
+      >
+        <div className="space-y-3">
           <div className="h-8 w-32 bg-gray-200 rounded relative overflow-hidden">
             <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
           </div>
@@ -16,28 +27,43 @@ export default function HomeSkelaton() {
         <div className="h-12 w-full sm:w-40 bg-gray-200 rounded-xl relative overflow-hidden">
           <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Hero Content Skeleton */}
-      <div className='w-full bg-white rounded-2xl shadow-sm overflow-hidden'>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -30 }}
+        transition={{
+          duration: 0.5,
+          ease: [0.4, 0, 0.2, 1],
+          staggerChildren: 0.1
+        }}
+        className='w-full bg-background rounded-2xl shadow-sm overflow-hidden border border-gray-200'
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
           {/* Content Section */}
-          <div className="p-8 lg:p-12 flex flex-col justify-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="p-6 sm:p-8 lg:p-12 flex flex-col justify-center order-2 sm:order-1"
+          >
             <div className="space-y-8 max-w-xl">
               <div className="space-y-6">
-                <div className="h-10 w-3/4 bg-gray-200 rounded relative overflow-hidden">
+                <div className="h-4 w-3/4 bg-gray-200 rounded relative overflow-hidden">
                   <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
                 </div>
-                <div className="space-y-2">
-                  <div className="h-4 w-full bg-gray-200 rounded relative overflow-hidden">
-                    <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
-                  </div>
-                  <div className="h-4 w-5/6 bg-gray-200 rounded relative overflow-hidden">
-                    <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
-                  </div>
-                  <div className="h-4 w-4/6 bg-gray-200 rounded relative overflow-hidden">
-                    <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
-                  </div>
+
+                <div className="h-8 w-full bg-gray-200 rounded relative overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
+                </div>
+
+                <div className="h-4 w-5/6 bg-gray-200 rounded relative overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
+                </div>
+
+                <div className="h-10 w-3/4 bg-gray-200 rounded relative overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
                 </div>
               </div>
 
@@ -59,14 +85,19 @@ export default function HomeSkelaton() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Image Section */}
-          <div className="relative h-[400px] lg:h-full min-h-[500px] bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="relative aspect-[4/3] lg:aspect-square w-full order-1 sm:order-2 bg-gradient-to-br from-gray-100 to-gray-200 overflow-hidden"
+          >
             <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }

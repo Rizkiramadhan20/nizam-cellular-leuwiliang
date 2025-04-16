@@ -19,16 +19,16 @@ import imagekitInstance from "@/utils/imagekit/imagekit";
 
 import { compressImage } from "@/base/helper/ImageCompression";
 
-import { HomeContent } from "@/hooks/dashboard/super-admins/layout/faqs/types/Faqs";
+import { FaqsContent } from "@/hooks/dashboard/super-admins/layout/faqs/types/Faqs";
 
 // Cache untuk menyimpan hasil fetch
-let contentCache: HomeContent[] | null = null;
+let contentCache: FaqsContent[] | null = null;
 let lastFetchTime: number | null = null;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 menit
 
 export const useHomeData = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [contents, setContents] = useState<HomeContent[]>([]);
+  const [contents, setContents] = useState<FaqsContent[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchContents = useCallback(async (force = false) => {
@@ -56,7 +56,7 @@ export const useHomeData = () => {
       const contentArray = querySnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
-      })) as HomeContent[];
+      })) as FaqsContent[];
 
       // Update cache
       contentCache = contentArray;
@@ -96,7 +96,7 @@ export const useHomeData = () => {
     }
   };
 
-  const createContent = async (data: HomeContent, imageUrl: string) => {
+  const createContent = async (data: FaqsContent, imageUrl: string) => {
     try {
       const docRef = await addDoc(
         collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_FAQS as string),
@@ -122,7 +122,7 @@ export const useHomeData = () => {
     }
   };
 
-  const handleUpdate = async (id: string, updatedData: HomeContent) => {
+  const handleUpdate = async (id: string, updatedData: FaqsContent) => {
     try {
       const docRef = doc(
         db,

@@ -3,7 +3,7 @@ export interface faqsText {
   description: string;
 }
 
-export interface HomeContent {
+export interface FaqsContent {
   id?: string;
   title: string;
   faqs: faqsText[];
@@ -13,8 +13,8 @@ export interface HomeContent {
 }
 
 export interface ContentModalProps {
-  formData: HomeContent;
-  setFormData: (data: HomeContent) => void;
+  formData: FaqsContent;
+  setFormData: (data: FaqsContent) => void;
   selectedImage: File | null;
   setSelectedImage: (file: File | null) => void;
   handleSubmit: () => void;

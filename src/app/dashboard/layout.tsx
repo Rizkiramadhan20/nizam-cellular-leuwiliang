@@ -243,7 +243,7 @@ export default function DashboardLayout({
             </div>
           </div>
 
-          <main className="py-6 px-4 lg:px-6">
+          <main className="px-4 py-2 min-h-screen">
             {children}
           </main>
         </div>

@@ -1,6 +1,7 @@
 export interface ServiceContent {
   id?: string;
   title: string;
+  text: string;
   description: string;
   imageUrl: string;
   createdAt?: Date;
@@ -14,6 +15,7 @@ export type ServiceFormData = Omit<
 
 export const initialFormData: ServiceFormData = {
   title: "",
+  text: "",
   description: "",
   imageUrl: "",
 };

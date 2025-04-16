@@ -202,6 +202,10 @@ export default function ServiceLayout() {
               >
                 {content.title}
               </motion.h2>
+
+              <motion.span>
+                {content.text}
+              </motion.span>
               <motion.p
                 className="text-xs sm:text-sm text-gray-600 line-clamp-2"
                 initial={{ opacity: 0 }}
@@ -224,6 +228,7 @@ export default function ServiceLayout() {
                     setEditingId(content.id || null);
                     setFormData({
                       title: content.title,
+                      text: content.text,
                       description: content.description,
                       imageUrl: content.imageUrl
                     });
