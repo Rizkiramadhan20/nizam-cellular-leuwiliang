@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from 'react'
 
-import { ServicesType } from './types/Services';
+import { ServicesType } from '@/components/ui/services/types/Services';
 
-import { FetchServices } from './lib/FetchServices';
+import { FetchServices } from '@/components/ui/services/lib/FetchServices';
 
-import ServicesSkelaton from './ServicesSkelaton';
+import ServicesSkelaton from '@/components/ui/services/ServicesSkelaton';
 
 import Image from 'next/image';
 
