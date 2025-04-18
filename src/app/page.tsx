@@ -8,13 +8,16 @@ import Konsultasi from "@/components/ui/konsultasi/Konsultasi"
 
 import Faqs from "@/components/ui/faqs/Faqs"
 
+import Gallery from "@/components/ui/gallery/Gallery"
+
 export default function page() {
   return (
     <main className='overflow-hidden'>
       <Home />
       <Services />
-      <Konsultasi/>
+      <Konsultasi />
       <Faqs />
+      <Gallery />
     </main>
   )
 }

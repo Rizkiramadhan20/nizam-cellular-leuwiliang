@@ -48,7 +48,6 @@ export default function Faqs() {
       <div className='container px-4 sm:px-6 lg:px-8 relative z-10'>
         {/* Container blur effect */}
         <div className="absolute inset-0 bg-white/60 backdrop-blur-xl rounded-3xl -z-10" />
-
         <Header />
 
         <div className="space-y-6 sm:space-y-8">
