@@ -11,8 +11,6 @@ import {
   query,
   orderBy,
   limit,
-  startAfter,
-  DocumentSnapshot,
 } from "firebase/firestore";
 
 import { toast } from "react-hot-toast";
@@ -32,7 +30,6 @@ export const useGalleryData = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
-  const [lastDoc, setLastDoc] = useState<DocumentSnapshot | null>(null);
   const itemsPerPage = 6;
 
   // Real-time listener implementation
@@ -48,32 +45,17 @@ export const useGalleryData = () => {
       setTotalItems(totalCount);
 
       // Set up real-time listener with pagination
-      let q = query(
+      const q = query(
         galleryRef,
         orderBy('createdAt', 'desc'),
         limit(itemsPerPage)
       );
-
-      // If we're not on the first page and we have a last document, use startAfter
-      if (page > 0 && lastDoc) {
-        q = query(
-          galleryRef,
-          orderBy('createdAt', 'desc'),
-          startAfter(lastDoc),
-          limit(itemsPerPage)
-        );
-      }
 
       const unsubscribe = onSnapshot(q, (snapshot) => {
         const contentArray = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         })) as GalleryContent[];
-
-        // Store the last document for pagination
-        if (snapshot.docs.length > 0) {
-          setLastDoc(snapshot.docs[snapshot.docs.length - 1]);
-        }
 
         setContents(contentArray);
         setCurrentPage(page);
@@ -91,7 +73,7 @@ export const useGalleryData = () => {
       toast.error("Failed to fetch contents");
       setIsLoading(false);
     }
-  }, [itemsPerPage, lastDoc]);
+  }, [itemsPerPage]);
 
   const createContent = async (
     formData: GalleryFormData,
@@ -201,4 +183,3 @@ export const useGalleryData = () => {
     itemsPerPage,
   };
 };
-
