@@ -27,6 +27,10 @@ export const menuItems = [
         label: "Konsultasi",
         href: "/dashboard/super-admins/layout/konsultasi",
       },
+      {
+        label: "Gallery",
+        href: "/dashboard/super-admins/layout/gallery",
+      },
     ],
   },
 
