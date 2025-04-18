@@ -133,7 +133,7 @@ export default function HomeLayout() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 bg-white border border-[var(--border-color) p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
+          className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 bg-white border border-[var(--border-color)] p-6 sm:p-8 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300"
         >
           <div className="space-y-2">
             <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent'>

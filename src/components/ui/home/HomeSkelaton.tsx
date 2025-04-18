@@ -10,7 +10,15 @@ export default function HomeSkelaton() {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50/20 via-indigo-50/20 to-purple-50/20"></div>
       </div>
 
-      <div className="container mx-auto px-4 py-24">
+      {/* Floating Elements Skeleton */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-gray-200 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-20 h-20 bg-gray-200 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute top-3/4 left-3/4 w-12 h-12 bg-gray-200 rounded-full opacity-20 animate-pulse"></div>
+      </div>
+
+      <div className="container px-4 sm:px-6 lg:px-8 py-24">
+        {/* Hero Content Skeleton */}
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Content Section */}
           <div className="flex-1 space-y-8 text-center lg:text-left relative z-10">
@@ -64,6 +72,27 @@ export default function HomeSkelaton() {
                 <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Feature Cards Skeleton */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <div className="container px-4 sm:px-6 lg:px-8 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[...Array(3)].map((_, index) => (
+              <div key={index} className="bg-white/90 backdrop-blur-md rounded-xl p-6 shadow-sm border border-blue-100/50">
+                <div className="h-8 w-8 bg-gray-200 rounded-lg mb-4 relative overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
+                </div>
+                <div className="h-6 w-3/4 bg-gray-200 rounded mb-2 relative overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
+                </div>
+                <div className="h-4 w-full bg-gray-200 rounded relative overflow-hidden">
+                  <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200"></div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

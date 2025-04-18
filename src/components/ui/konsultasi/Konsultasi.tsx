@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 
+import { motion } from 'framer-motion'
+
 import { KonsultasiType } from "@/components/ui/konsultasi/types/Konsultasi"
 
 import { FetchKonsultasi } from "@/components/ui/konsultasi/lib/FetchKonsultasi"
@@ -83,36 +85,63 @@ export default function Konsultasi() {
                 <div key={index} className="relative w-full flex flex-col items-center justify-center text-center">
                   <div className="flex flex-col items-center justify-center space-y-4 sm:space-y-6 md:space-y-8 max-w-2xl mx-auto">
                     <div className="flex flex-col items-center gap-4 sm:gap-6">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-[rgba(255,255,255,0.1)] flex items-center justify-center transform hover:scale-110 transition-transform duration-300">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-[rgba(255,255,255,0.1)] flex items-center justify-center transform hover:scale-110 transition-transform duration-300"
+                      >
                         <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                      </div>
+                      </motion.div>
 
-                      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
+                      <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight"
+                      >
                         {item.title}
-                      </h1>
+                      </motion.h1>
                     </div>
 
-                    <div className="w-full">
-                      <p className="text-[rgba(255,255,255,0.9)] text-base sm:text-lg leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                      className="text-[rgba(255,255,255,0.9)] text-base sm:text-lg leading-relaxed"
+                    >
+                      {item.description}
+                    </motion.p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 w-full">
                       <div className="flex flex-col items-center gap-3 sm:gap-4 w-full sm:w-auto">
-                        <button className="group relative inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3 sm:py-4 bg-[rgba(var(--primary-color-rgb),0.9)] hover:bg-[rgba(var(--primary-color-rgb),1)] text-white font-semibold rounded-2xl transition-all duration-300 shadow-lg hover:shadow-[rgba(var(--primary-color-rgb),0.3)] overflow-hidden w-full sm:w-auto">
+                        <motion.button
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+                          className="group relative inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3 sm:py-4 bg-[rgba(var(--primary-color-rgb),0.9)] hover:bg-[rgba(var(--primary-color-rgb),1)] text-white font-semibold rounded-2xl transition-all duration-300 shadow-lg hover:shadow-[rgba(var(--primary-color-rgb),0.3)] overflow-hidden w-full sm:w-auto"
+                        >
                           <div className="flex items-center gap-2 sm:gap-3 text-[rgba(255,255,255,0.8)] text-xs sm:text-sm bg-[rgba(255,255,255,0.05)] px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl">
                             <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             <span>{item.text}</span>
                           </div>
-                        </button>
-                        <button
+                        </motion.button>
+                        <motion.button
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
                           onClick={handleFormOpen}
-                          className="group relative inline-flex items-center gap-2 w-full sm:w-auto justify-center px-4 sm:px-6 py-2 sm:py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all duration-300">
+                          className="group relative inline-flex items-center gap-2 w-full sm:w-auto justify-center px-4 sm:px-6 py-2 sm:py-3 bg-white/10 hover:bg-white/20 text-white font-medium rounded-xl transition-all duration-300"
+                        >
                           <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
@@ -120,7 +149,7 @@ export default function Konsultasi() {
                           <svg className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
-                        </button>
+                        </motion.button>
                       </div>
                     </div>
                   </div>
@@ -131,15 +160,35 @@ export default function Konsultasi() {
             {/* Right Column - Calendar */}
             <div className="bg-[rgba(0,0,0,0.6)] backdrop-blur-xl rounded-3xl p-4 sm:p-6 md:p-8 border border-[rgba(255,255,255,0.2)] shadow-xl hover:shadow-primary/20 transition-all duration-300">
               <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[rgba(255,255,255,0.1)] flex items-center justify-center">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-[rgba(255,255,255,0.1)] flex items-center justify-center"
+                >
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
-                </div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white">Pilih Tanggal Konsultasi</h2>
+                </motion.div>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                  className="text-xl sm:text-2xl md:text-3xl font-bold text-white"
+                >
+                  Pilih Tanggal Konsultasi
+                </motion.h2>
               </div>
 
-              <div className="w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+                className="w-full"
+              >
                 <style jsx global>{`
                   .react-datepicker {
                     width: 100%;
@@ -280,7 +329,7 @@ export default function Konsultasi() {
                     </div>
                   )}
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

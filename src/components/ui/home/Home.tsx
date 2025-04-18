@@ -8,15 +8,17 @@ import { FetchHome } from "@/components/ui/home/lib/FetchHome"
 
 import HomeSkelaton from "@/components/ui/home/HomeSkelaton"
 
-import { BackgroundElements } from '@/components/ui/home/components/BackgroundElements'
+import dynamic from 'next/dynamic'
 
-import { FloatingElements } from '@/components/ui/home/components/FloatingElements'
+const BackgroundElements = dynamic(() => import('@/components/ui/home/components/BackgroundElements').then(mod => mod.BackgroundElements), { ssr: false })
 
-import { FeatureCards } from '@/components/ui/home/components/FeatureCards'
+const FloatingElements = dynamic(() => import('@/components/ui/home/components/FloatingElements').then(mod => mod.FloatingElements), { ssr: false })
 
-import { BackgroundBlobs } from '@/components/ui/home/components/BackgroundBlobs'
+const FeatureCards = dynamic(() => import('@/components/ui/home/components/FeatureCards').then(mod => mod.FeatureCards), { ssr: false })
 
-import { HeroContent } from '@/components/ui/home/components/HeroContent'
+const BackgroundBlobs = dynamic(() => import('@/components/ui/home/components/BackgroundBlobs').then(mod => mod.BackgroundBlobs), { ssr: false })
+
+const HeroContent = dynamic(() => import('@/components/ui/home/components/HeroContent').then(mod => mod.HeroContent), { ssr: false })
 
 export default function Home() {
   const [home, setHome] = useState<HomeType[]>([]);

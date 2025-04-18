@@ -52,8 +52,8 @@ export default function Faqs() {
         <Header />
 
         <div className="space-y-6 sm:space-y-8">
-          {faqs.map((faq, index) => (
-            <FAQItem key={faq.id} faq={faq} index={index} />
+          {faqs.map((faq) => (
+            <FAQItem key={faq.id} faq={faq} />
           ))}
         </div>
       </div>

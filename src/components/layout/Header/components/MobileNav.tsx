@@ -24,7 +24,7 @@ export default function MobileNav({ isMobileMenuOpen, toggleMobileMenu, isActive
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="md:hidden fixed inset-0 bg-background backdrop-blur-lg z-40"
+      className="md:hidden fixed w-full top-0 left-0 h-full bg-background backdrop-blur-lg z-50"
     >
       <div className="container h-full flex flex-col">
         <div className="flex justify-end pt-6 px-6">
