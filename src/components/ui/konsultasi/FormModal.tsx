@@ -319,15 +319,32 @@ export default function FormModal({ isOpen, onClose, selectedDate }: FormModalPr
                                             <label className="label">
                                                 <span className="label-text">Pelanggan menyetujui proses perbaikan?</span>
                                             </label>
-                                            <select
-                                                className="select select-bordered w-full border border-[var(--border-color)] bg-transparent"
-                                                value={formData.setujuPerbaikan}
-                                                onChange={(e) => setFormData({ ...formData, setujuPerbaikan: e.target.value })}
-                                            >
-                                                <option value="">Pilih</option>
-                                                <option value="ya">Ya</option>
-                                                <option value="tidak">Tidak</option>
-                                            </select>
+                                            <div className="flex gap-4">
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="setujuPerbaikan"
+                                                        value="ya"
+                                                        checked={formData.setujuPerbaikan === "ya"}
+                                                        onChange={(e) => setFormData({ ...formData, setujuPerbaikan: e.target.value })}
+                                                        className="radio radio-primary"
+                                                        aria-label="Ya"
+                                                    />
+                                                    <span>Ya</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="setujuPerbaikan"
+                                                        value="tidak"
+                                                        checked={formData.setujuPerbaikan === "tidak"}
+                                                        onChange={(e) => setFormData({ ...formData, setujuPerbaikan: e.target.value })}
+                                                        className="radio radio-primary"
+                                                        aria-label="Tidak"
+                                                    />
+                                                    <span>Tidak</span>
+                                                </label>
+                                            </div>
                                         </div>
                                         <div className="form-control flex flex-col gap-2">
                                             <label className="label">
@@ -351,43 +368,94 @@ export default function FormModal({ isOpen, onClose, selectedDate }: FormModalPr
                                             <label className="label">
                                                 <span className="label-text">Backup data (jika memungkinkan)</span>
                                             </label>
-                                            <select
-                                                className="select select-bordered w-full border border-[var(--border-color)] bg-transparent"
-                                                value={formData.backupData}
-                                                onChange={(e) => setFormData({ ...formData, backupData: e.target.value })}
-                                            >
-                                                <option value="">Pilih</option>
-                                                <option value="ya">Ya</option>
-                                                <option value="tidak">Tidak</option>
-                                            </select>
+                                            <div className="flex gap-4">
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="backupData"
+                                                        value="ya"
+                                                        checked={formData.backupData === "ya"}
+                                                        onChange={(e) => setFormData({ ...formData, backupData: e.target.value })}
+                                                        className="radio radio-primary"
+                                                        aria-label="Ya"
+                                                    />
+                                                    <span>Ya</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="backupData"
+                                                        value="tidak"
+                                                        checked={formData.backupData === "tidak"}
+                                                        onChange={(e) => setFormData({ ...formData, backupData: e.target.value })}
+                                                        className="radio radio-primary"
+                                                        aria-label="Tidak"
+                                                    />
+                                                    <span>Tidak</span>
+                                                </label>
+                                            </div>
                                         </div>
                                         <div className="form-control flex flex-col gap-2">
                                             <label className="label">
                                                 <span className="label-text">Resiko kehilangan data dijelaskan</span>
                                             </label>
-                                            <select
-                                                className="select select-bordered w-full border border-[var(--border-color)] bg-transparent"
-                                                value={formData.resikoDataDijelaskan}
-                                                onChange={(e) => setFormData({ ...formData, resikoDataDijelaskan: e.target.value })}
-                                            >
-                                                <option value="">Pilih</option>
-                                                <option value="ya">Ya</option>
-                                                <option value="tidak">Tidak</option>
-                                            </select>
+                                            <div className="flex gap-4">
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="resikoDataDijelaskan"
+                                                        value="ya"
+                                                        checked={formData.resikoDataDijelaskan === "ya"}
+                                                        onChange={(e) => setFormData({ ...formData, resikoDataDijelaskan: e.target.value })}
+                                                        className="radio radio-primary"
+                                                        aria-label="Ya"
+                                                    />
+                                                    <span>Ya</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="resikoDataDijelaskan"
+                                                        value="tidak"
+                                                        checked={formData.resikoDataDijelaskan === "tidak"}
+                                                        onChange={(e) => setFormData({ ...formData, resikoDataDijelaskan: e.target.value })}
+                                                        className="radio radio-primary"
+                                                        aria-label="Tidak"
+                                                    />
+                                                    <span>Tidak</span>
+                                                </label>
+                                            </div>
                                         </div>
                                         <div className="form-control flex flex-col gap-2">
                                             <label className="label">
                                                 <span className="label-text">HP akan di-reset pabrik?</span>
                                             </label>
-                                            <select
-                                                className="select select-bordered w-full border border-[var(--border-color)] bg-transparent"
-                                                value={formData.resetPabrik}
-                                                onChange={(e) => setFormData({ ...formData, resetPabrik: e.target.value })}
-                                            >
-                                                <option value="">Pilih</option>
-                                                <option value="ya">Ya</option>
-                                                <option value="tidak">Tidak</option>
-                                            </select>
+                                            <div className="flex gap-4">
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="resetPabrik"
+                                                        value="ya"
+                                                        checked={formData.resetPabrik === "ya"}
+                                                        onChange={(e) => setFormData({ ...formData, resetPabrik: e.target.value })}
+                                                        className="radio radio-primary"
+                                                        aria-label="Ya"
+                                                    />
+                                                    <span>Ya</span>
+                                                </label>
+                                                <label className="flex items-center gap-2">
+                                                    <input
+                                                        type="radio"
+                                                        name="resetPabrik"
+                                                        value="tidak"
+                                                        checked={formData.resetPabrik === "tidak"}
+                                                        onChange={(e) => setFormData({ ...formData, resetPabrik: e.target.value })}
+                                                        className="radio radio-primary"
+                                                        aria-label="Tidak"
+                                                    />
+                                                    <span>Tidak</span>
+                                                </label>
+                                            </div>
                                         </div>
                                         <div className="form-control flex flex-col gap-2">
                                             <label className="label">

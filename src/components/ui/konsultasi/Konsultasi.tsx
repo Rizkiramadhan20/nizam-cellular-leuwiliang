@@ -309,6 +309,7 @@ export default function Konsultasi() {
                         onClick={decreaseMonth}
                         disabled={prevMonthButtonDisabled}
                         className="p-1.5 sm:p-2 rounded-xl hover:bg-[rgba(255,255,255,0.1)] transition-colors duration-300 disabled:opacity-40"
+                        aria-label="Previous month"
                       >
                         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -321,6 +322,7 @@ export default function Konsultasi() {
                         onClick={increaseMonth}
                         disabled={nextMonthButtonDisabled}
                         className="p-1.5 sm:p-2 rounded-xl hover:bg-[rgba(255,255,255,0.1)] transition-colors duration-300 disabled:opacity-40"
+                        aria-label="Next month"
                       >
                         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

@@ -65,7 +65,7 @@ export default function TopBlog({ blog }: TopBlogProps) {
                         </time>
                     </motion.div>
 
-                    <motion.h3
+                    <motion.h2
                         className="text-2xl lg:text-3xl font-bold mb-4 text-white leading-tight group-hover:text-orange-500/90 transition-colors duration-300 line-clamp-2 sm:line-clamp-3"
                         initial="hidden"
                         whileInView="visible"
@@ -73,7 +73,7 @@ export default function TopBlog({ blog }: TopBlogProps) {
                         variants={contentVariants}
                     >
                         {blog?.title}
-                    </motion.h3>
+                    </motion.h2>
 
                     <motion.p
                         className="text-zinc-400 text-lg mb-8 line-clamp-2 sm:line-clamp-3 group-hover:text-zinc-300 transition-colors duration-300"

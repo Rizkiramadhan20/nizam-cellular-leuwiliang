@@ -31,13 +31,30 @@ export default function Footer() {
               Konter HP terpercaya di Leuwiliang dengan pelayanan terbaik dan harga kompetitif.
             </p>
             <div className="flex items-center gap-4">
-              <a href="#" className="p-3 bg-[#2a2a2a] rounded-full hover:bg-blue-600 transition-all duration-300">
+              <a
+                href="#"
+                className="p-3 bg-[#2a2a2a] rounded-full hover:bg-blue-600 transition-all duration-300"
+                aria-label="Facebook"
+              >
+                <span className="sr-only">Facebook</span>
                 <FaFacebook className="w-5 h-5" />
               </a>
-              <a href="https://www.instagram.com/nizamcellular" target='_blank' className="p-3 bg-[#2a2a2a] rounded-full hover:bg-pink-600 transition-all duration-300">
+              <a
+                href="https://www.instagram.com/nizamcellular"
+                target='_blank'
+                className="p-3 bg-[#2a2a2a] rounded-full hover:bg-pink-600 transition-all duration-300"
+                aria-label="Instagram"
+              >
+                <span className="sr-only">Instagram</span>
                 <FaInstagram className="w-5 h-5" />
               </a>
-              <a href="https://wa.me/6285718184399" target='_blank' className="p-3 bg-[#2a2a2a] rounded-full hover:bg-green-600 transition-all duration-300">
+              <a
+                href="https://wa.me/6285718184399"
+                target='_blank'
+                className="p-3 bg-[#2a2a2a] rounded-full hover:bg-green-600 transition-all duration-300"
+                aria-label="WhatsApp"
+              >
+                <span className="sr-only">WhatsApp</span>
                 <FaWhatsapp className="w-5 h-5" />
               </a>
             </div>
