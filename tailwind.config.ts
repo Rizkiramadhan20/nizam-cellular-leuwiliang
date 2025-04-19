@@ -69,6 +69,10 @@ const config = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-20px)" },
         },
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-6deg) translateX(0)" },
+          "50%": { transform: "rotate(-6deg) translateX(10px)" },
+        },
       },
       animation: {
         "fade-in": "fadeIn 0.3s ease-in-out",
@@ -77,6 +81,7 @@ const config = {
         fadeIn: "fadeIn 1s ease-in forwards",
         blob: "blob 7s infinite",
         shimmer: "shimmer 2s infinite",
+        wiggle: "wiggle 1s ease-in-out infinite",
       },
       screens: {
         "2xl": "1366px",
