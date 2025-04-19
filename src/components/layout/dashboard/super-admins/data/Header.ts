@@ -54,12 +54,12 @@ export const menuItems = [
     href: "/dashboard/super-admins/blog",
     subItems: [
       {
-        label: "Daftar Transaksi",
+        label: "Daftar Blog",
         href: "/dashboard/super-admins/blog",
       },
 
       {
-        label: "Belum Dibayar",
+        label: "Kategori",
         href: "/dashboard/super-admins/blog/category",
       },
     ],
