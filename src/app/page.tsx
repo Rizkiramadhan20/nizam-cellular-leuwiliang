@@ -10,6 +10,8 @@ import Faqs from "@/components/ui/faqs/Faqs"
 
 import Gallery from "@/components/ui/gallery/Gallery"
 
+import Blog from "@/components/ui/blog/Blog"
+
 export default function page() {
   return (
     <main className='overflow-hidden'>
@@ -18,6 +20,7 @@ export default function page() {
       <Konsultasi />
       <Faqs />
       <Gallery />
+      <Blog />
     </main>
   )
 }
