@@ -208,38 +208,50 @@ export default function ProductGenreLayout() {
                 initial="hidden"
                 animate="show"
             >
-                <div className="overflow-x-auto">
-                    <table className="table w-full">
+                <div className="overflow-x-auto relative">
+                    <table className="min-w-full divide-y divide-gray-200">
                         <thead>
-                            <tr className='bg-gray-50 text-gray-600'>
-                                <th className="px-4 py-3 text-left">No</th>
-                                <th className="px-4 py-3 text-left">Title</th>
-                                <th className="px-4 py-3 text-left">Category</th>
-                                <th className="px-4 py-3 text-left">Created At</th>
-                                <th className="px-4 py-3 text-left">Actions</th>
+                            <tr>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                    No
+                                </th>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                    Title
+                                </th>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                    Category
+                                </th>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                    Created At
+                                </th>
+                                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                    Actions
+                                </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="bg-white divide-y divide-gray-200">
                             {contents.map((content, index) => (
                                 <motion.tr
                                     key={content.id}
                                     variants={itemVariants}
-                                    className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+                                    className="hover:bg-gray-50 transition-colors duration-200"
                                     whileHover={{ backgroundColor: "#f8fafc" }}
                                 >
-                                    <td className="px-4 py-3 text-gray-600">{(currentPage * itemsPerPage) + index + 1}</td>
-                                    <td className="px-4 py-3 text-gray-700 font-medium capitalize">
-                                        {content.title}
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        {(currentPage * itemsPerPage) + index + 1}
                                     </td>
-                                    <td className="px-4 py-3 text-gray-600">
-                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 capitalize">
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm font-medium text-gray-900 capitalize">{content.title}</div>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 capitalize">
                                             {content.categoryTitle}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-3 text-gray-600">
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                         {formatDate(content.createdAt)}
                                     </td>
-                                    <td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm">
                                         <div className="flex items-center gap-3">
                                             <button
                                                 onClick={() => {
@@ -251,7 +263,7 @@ export default function ProductGenreLayout() {
                                                     });
                                                     openModal();
                                                 }}
-                                                className="p-1.5 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-full transition-colors"
+                                                className="p-2 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-full transition-all duration-200"
                                                 title="Edit"
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -264,7 +276,7 @@ export default function ProductGenreLayout() {
                                                     const deleteModal = document.getElementById('delete_modal') as HTMLDialogElement | null;
                                                     deleteModal?.showModal();
                                                 }}
-                                                className="p-1.5 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-full transition-colors"
+                                                className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-full transition-all duration-200"
                                                 title="Delete"
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">

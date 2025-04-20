@@ -26,4 +26,5 @@ export interface ContentModalProps {
 export interface DeleteModalProps {
   onConfirm: () => void;
   onClose: () => void;
+  isDeleting?: boolean;
 }
