@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 export default function BlogCard({ blog }: BlogCardProps) {
     return (
         <div className='block bg-zinc-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-zinc-800/50 hover:border-zinc-700/50 transition-all duration-300 hover:shadow-lg'>
-            <Link href={`/articles/${FormatSlug(blog.slug)}`} className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
+            <Link href={`/blog/${FormatSlug(blog.slug)}`} className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300">
                 <div className="relative h-64 overflow-hidden">
                     <motion.div
                         className="w-full h-full"

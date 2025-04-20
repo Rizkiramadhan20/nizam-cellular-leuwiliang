@@ -118,7 +118,7 @@ export default function TestimonialsLayout() {
   }
 
   return (
-    <section className='min-h-full px-0 sm:px-4'>
+    <section className='min-h-full'>
       <div className="bg-background rounded-2xl shadow-sm border border-[var(--border-color)] p-6 mb-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-1">

@@ -1,4 +1,4 @@
-import { FiHome, FiSettings } from "react-icons/fi";
+import { FiHome, FiSettings, FiPackage } from "react-icons/fi";
 
 import { RiAdminFill, RiPagesFill } from "react-icons/ri";
 
@@ -62,6 +62,18 @@ export const menuItems = [
         label: "Kategori",
         href: "/dashboard/super-admins/blog/category",
       },
+    ],
+  },
+
+  {
+    icon: FiPackage,
+    label: "Product",
+    href: "/dashboard/super-admins/product",
+    subItems: [
+      { label: "Daftar Product", href: "/dashboard/super-admins/product" },
+      { label: "Category", href: "/dashboard/super-admins/product/category" },
+      { label: "Genre", href: "/dashboard/super-admins/product/genre" },
+      { label: "Type", href: "/dashboard/super-admins/product/type" },
     ],
   },
 
