@@ -65,7 +65,13 @@ export const FAQItem = ({ faq }: FAQItemProps) => {
                             transition={{ duration: 0.3, delay: 0.5 + faqIndex * 0.1 }}
                             className="collapse collapse-plus bg-white/50 backdrop-blur-sm border border-[var(--border-color)] rounded-lg hover:border-[var(--border-color)] transition-all duration-200 hover:shadow-md"
                         >
-                            <input type="radio" name={`my-accordion-${faq.id}`} defaultChecked={faqIndex === 0} />
+                            <input
+                                type="radio"
+                                name={`my-accordion-${faq.id}`}
+                                defaultChecked={faqIndex === 0}
+                                id={`faq-${faq.id}-${faqIndex}`}
+                                aria-label={`Toggle ${item.title} FAQ section`}
+                            />
                             <div className="collapse-title text-base sm:text-lg font-semibold text-gray-800 hover:text-gray-900 flex items-center">
                                 <span className="hidden sm:flex mr-2 sm:mr-3 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary-100 text-primary-600 items-center justify-center text-xs sm:text-sm font-bold">
                                     {faqIndex + 1}
