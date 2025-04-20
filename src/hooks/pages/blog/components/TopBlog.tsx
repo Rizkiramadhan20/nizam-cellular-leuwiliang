@@ -10,8 +10,6 @@ import { id } from 'date-fns/locale';
 
 import { TopBlogProps } from '@/hooks/pages/blog/types/Blog';
 
-import { FormatSlug } from '@/base/helper/FormatSlug';
-
 export function TopBlog({ blog }: TopBlogProps) {
     return (
         <motion.div
@@ -20,7 +18,7 @@ export function TopBlog({ blog }: TopBlogProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
         >
-            <Link href={`/blog/${FormatSlug(blog.category)}/${blog.slug}`}
+            <Link href={`/blog/${blog.slug}`}
                 className="group block mb-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 place-items-center bg-white rounded-3xl p-6 border border-[var(--border-color)] shadow-sm transition-all duration-300">
                     <motion.div

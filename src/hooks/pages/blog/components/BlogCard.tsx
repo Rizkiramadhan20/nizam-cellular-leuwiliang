@@ -10,8 +10,6 @@ import { id } from 'date-fns/locale';
 
 import { BlogCardProps } from '@/hooks/pages/blog/types/Blog';
 
-import { FormatSlug } from '@/base/helper/FormatSlug';
-
 export function BlogCard({ blog }: BlogCardProps) {
     return (
         <motion.div
@@ -22,7 +20,7 @@ export function BlogCard({ blog }: BlogCardProps) {
             className='group bg-background rounded-2xl overflow-hidden border border-[var(--border-color)]'
         >
             <Link
-                href={`/blog/${FormatSlug(blog.category)}/${blog.slug}`}
+                href={`/blog/${blog.slug}`}
             >
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}

@@ -35,3 +35,20 @@ export interface CategoryFilterProps {
   selectedCategory: string
   onCategorySelect: (category: string) => void
 }
+
+export interface BlogBreadcrumbsProps {
+  blog: BlogType
+}
+
+export interface RelatedArticlesProps {
+  relatedArticles: BlogType[]
+  currentSlug: string
+}
+
+export interface BlogHeroProps {
+  blog: BlogType
+}
+
+export interface BlogFeaturedImageProps {
+  blog: BlogType
+}

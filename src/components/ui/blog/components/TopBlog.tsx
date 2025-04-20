@@ -25,7 +25,7 @@ export default function TopBlog({ blog }: TopBlogProps) {
     };
 
     return (
-        <Link href={`/articles/${FormatSlug(blog.category)}/${FormatSlug(blog.slug)}`}
+        <Link href={`/articles/${FormatSlug(blog.slug)}`}
             className="group relative block bg-zinc-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-zinc-800/50 hover:border-zinc-700/50 transition-all duration-300 hover:shadow-lg">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 <motion.div
