@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ProductGenreSkelaton() {
+export default function ProductTypeSkelaton() {
   return (
     <section className='min-h-screen'>
       {/* Header Section Skeleton */}

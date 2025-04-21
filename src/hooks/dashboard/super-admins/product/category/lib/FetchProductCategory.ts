@@ -1,16 +1,14 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 
 import {
   collection,
-  getDocs,
   addDoc,
   deleteDoc,
   doc,
   updateDoc,
-  onSnapshot,
   query,
   orderBy,
-  limit,
+  onSnapshot,
 } from "firebase/firestore";
 
 import { toast } from "react-hot-toast";
@@ -24,58 +22,75 @@ import {
 
 export const useProductCategoryData = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [contents, setContents] = useState<ProductCategoryContent[]>([]);
+  const [allContents, setAllContents] = useState<ProductCategoryContent[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const itemsPerPage = 6;
 
-  // Real-time listener implementation
-  const fetchContents = useCallback(async (page = 0) => {
-    try {
-      setIsLoading(true);
+  // Fetch contents with onSnapshot
+  useEffect(() => {
+    setIsLoading(true);
+    const productCategoryRef = collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_CATEGORY as string);
+    const q = query(productCategoryRef, orderBy('createdAt', 'desc'));
 
-      const productCategoryRef = collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_CATEGORY as string);
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const contents = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as ProductCategoryContent[];
 
-      // Get total count first
-      const totalSnapshot = await getDocs(productCategoryRef);
-      const totalCount = totalSnapshot.size;
-      setTotalItems(totalCount);
-
-      // Set up real-time listener with pagination
-      const q = query(
-        productCategoryRef,
-        orderBy('createdAt', 'desc'),
-        limit(itemsPerPage)
-      );
-
-      const unsubscribe = onSnapshot(q, (snapshot) => {
-        const contentArray = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        })) as ProductCategoryContent[];
-
-        setContents(contentArray);
-        setCurrentPage(page);
-        setIsLoading(false);
-      }, (error) => {
-        console.error("Error in real-time listener:", error);
-        toast.error("Failed to fetch contents");
-        setIsLoading(false);
-      });
-
-      // Cleanup listener when component unmounts or page changes
-      return () => unsubscribe();
-    } catch (error) {
-      console.error("Error setting up real-time listener:", error);
-      toast.error("Failed to fetch contents");
+      setAllContents(contents);
       setIsLoading(false);
+    }, (error) => {
+      console.error("Error in snapshot:", error);
+      toast.error("Gagal mengambil konten");
+      setIsLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Memoized filtered contents
+  const filteredContents = useMemo(() => {
+    let filtered = [...allContents];
+
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(content =>
+        content.title.toLowerCase().includes(query)
+      );
     }
-  }, [itemsPerPage]);
+
+    return filtered;
+  }, [allContents, searchQuery]);
+
+  // Memoized paginated contents
+  const contents = useMemo(() => {
+    const startIndex = currentPage * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredContents.slice(startIndex, endIndex);
+  }, [filteredContents, currentPage, itemsPerPage]);
+
+  // Update total items when filtered contents change
+  useEffect(() => {
+    setTotalItems(filteredContents.length);
+  }, [filteredContents]);
 
   const createContent = async (formData: ProductCategoryFormData) => {
     try {
       setIsSubmitting(true);
+
+      // Check if title already exists
+      const isTitleExists = allContents.some(
+        content => content.title.toLowerCase() === formData.title.toLowerCase()
+      );
+
+      if (isTitleExists) {
+        toast.error("Data dengan judul yang sama sudah ada!");
+        return false;
+      }
 
       await addDoc(
         collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_CATEGORY as string),
@@ -84,23 +99,32 @@ export const useProductCategoryData = () => {
           createdAt: new Date(),
         }
       );
-      toast.success("Content created successfully!");
+      toast.success("Konten berhasil dibuat!");
       return true;
     } catch (error) {
       console.error("Error creating content:", error);
-      toast.error("Failed to create content. Please try again.");
+      toast.error("Gagal membuat konten. Silakan coba lagi.");
       return false;
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const updateContent = async (
-    id: string,
-    formData: ProductCategoryFormData
-  ) => {
+  const updateContent = async (id: string, formData: ProductCategoryFormData) => {
     try {
       setIsSubmitting(true);
+
+      // Check if title already exists (excluding current item)
+      const isTitleExists = allContents.some(
+        content =>
+          content.id !== id &&
+          content.title.toLowerCase() === formData.title.toLowerCase()
+      );
+
+      if (isTitleExists) {
+        toast.error("Data dengan judul yang sama sudah ada!");
+        return false;
+      }
 
       const docRef = doc(
         db,
@@ -111,11 +135,11 @@ export const useProductCategoryData = () => {
         ...formData,
         updatedAt: new Date(),
       });
-      toast.success("Content updated successfully!");
+      toast.success("Konten berhasil diperbarui!");
       return true;
     } catch (error) {
       console.error("Error updating content:", error);
-      toast.error("Failed to update content. Please try again.");
+      toast.error("Gagal memperbarui konten. Silakan coba lagi.");
       return false;
     } finally {
       setIsSubmitting(false);
@@ -130,18 +154,18 @@ export const useProductCategoryData = () => {
         id
       );
       await deleteDoc(docRef);
-      toast.success("Content deleted successfully!");
+      toast.success("Konten berhasil dihapus!");
       return true;
     } catch (error) {
       console.error("Error deleting content:", error);
-      toast.error("Failed to delete content. Please try again.");
+      toast.error("Gagal menghapus konten. Silakan coba lagi.");
       return false;
     }
   };
 
-  useEffect(() => {
-    fetchContents(currentPage);
-  }, [currentPage, fetchContents]);
+  const handlePageChange = useCallback((newPage: number) => {
+    setCurrentPage(newPage);
+  }, []);
 
   return {
     isLoading,
@@ -150,9 +174,11 @@ export const useProductCategoryData = () => {
     createContent,
     updateContent,
     deleteContent,
-    fetchContents,
     currentPage,
     totalItems,
     itemsPerPage,
+    searchQuery,
+    setSearchQuery,
+    handlePageChange,
   };
 };

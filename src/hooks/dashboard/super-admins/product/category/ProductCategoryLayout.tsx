@@ -30,28 +30,25 @@ export default function ProductCategoryLayout() {
         createContent,
         updateContent,
         deleteContent,
-        fetchContents,
         currentPage,
         totalItems,
         itemsPerPage,
+        handlePageChange,
     } = useProductCategoryData();
 
     const [formData, setFormData] = useState<ProductCategoryFormData>(initialFormData);
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [deleteId, setDeleteId] = useState<string | null>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
     const [isInitialLoading, setIsInitialLoading] = useState(true);
 
-    // Fetch data on mount
+    // Set initial loading to false when data is loaded
     useEffect(() => {
-        const loadInitialData = async () => {
-            setIsInitialLoading(true);
-            await fetchContents(0);
+        if (!isLoading) {
             setIsInitialLoading(false);
-        };
-
-        loadInitialData();
-    }, [fetchContents]);
+        }
+    }, [isLoading]);
 
     const handleSubmit = async () => {
         const success = isEditing && editingId
@@ -73,10 +70,15 @@ export default function ProductCategoryLayout() {
 
     const handleDelete = async () => {
         if (deleteId) {
-            await deleteContent(deleteId);
-            setDeleteId(null);
-            const deleteModal = document.getElementById('delete_modal') as HTMLDialogElement | null;
-            deleteModal?.close();
+            try {
+                setIsDeleting(true);
+                await deleteContent(deleteId);
+                setDeleteId(null);
+                const deleteModal = document.getElementById('delete_modal') as HTMLDialogElement | null;
+                deleteModal?.close();
+            } finally {
+                setIsDeleting(false);
+            }
         }
     };
 
@@ -85,8 +87,8 @@ export default function ProductCategoryLayout() {
         modal?.showModal();
     };
 
-    const handlePageChange = (selectedItem: { selected: number }) => {
-        fetchContents(selectedItem.selected);
+    const handlePageChangeWrapper = (selectedItem: { selected: number }) => {
+        handlePageChange(selectedItem.selected);
     };
 
     const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -175,40 +177,47 @@ export default function ProductCategoryLayout() {
                 <FeaturedSkelaton />
             ) : (
                 <motion.div
-                    className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden"
+                    className="bg-background rounded-xl border border-[var(--border-color)] overflow-hidden"
                     variants={containerVariants}
                     initial="hidden"
                     animate="show"
                 >
-                    <div className="overflow-x-auto">
-                        <table className="table w-full">
+                    <div className="overflow-x-auto relative">
+                        <table className="min-w-full divide-y divide-gray-200">
                             <thead>
-                                <tr className='bg-gray-50 text-gray-600'>
-                                    <th className="px-4 py-3 text-left">No</th>
-                                    <th className="px-4 py-3 text-left">Title</th>
-                                    <th className="px-4 py-3 text-left">Created At</th>
-                                    <th className="px-4 py-3 text-left">Actions</th>
+                                <tr>
+                                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                        No
+                                    </th>
+                                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                        Title
+                                    </th>
+                                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                        Created At
+                                    </th>
+                                    <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
+                                        Actions
+                                    </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody className="bg-white divide-y divide-gray-200">
                                 {contents.map((content, index) => (
                                     <motion.tr
                                         key={content.id}
                                         variants={itemVariants}
-                                        className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
-                                        whileHover={{
-                                            backgroundColor: "#f8fafc",
-                                            transition: { duration: 0.2 }
-                                        }}
+                                        className="hover:bg-gray-50 transition-colors duration-200"
+                                        whileHover={{ backgroundColor: "#f8fafc" }}
                                     >
-                                        <td className="px-4 py-3 text-gray-600">{index + 1}</td>
-                                        <td className="px-4 py-3 text-gray-700 font-medium capitalize">
-                                            {content.title}
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                            {(currentPage * itemsPerPage) + index + 1}
                                         </td>
-                                        <td className="px-4 py-3 text-gray-600">
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <div className="text-sm font-medium text-gray-900 capitalize">{content.title}</div>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                             {formatDate(content.createdAt)}
                                         </td>
-                                        <td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm">
                                             <div className="flex items-center gap-3">
                                                 <button
                                                     onClick={() => {
@@ -217,7 +226,7 @@ export default function ProductCategoryLayout() {
                                                         setFormData({ title: content.title });
                                                         openModal();
                                                     }}
-                                                    className="p-1.5 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-full transition-colors"
+                                                    className="p-2 text-indigo-600 hover:text-indigo-900 hover:bg-indigo-50 rounded-full transition-all duration-200"
                                                     title="Edit"
                                                 >
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -230,7 +239,7 @@ export default function ProductCategoryLayout() {
                                                         const deleteModal = document.getElementById('delete_modal') as HTMLDialogElement | null;
                                                         deleteModal?.showModal();
                                                     }}
-                                                    className="p-1.5 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-full transition-colors"
+                                                    className="p-2 text-red-600 hover:text-red-900 hover:bg-red-50 rounded-full transition-all duration-200"
                                                     title="Delete"
                                                 >
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -258,7 +267,7 @@ export default function ProductCategoryLayout() {
                     <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
-                        onPageChange={handlePageChange}
+                        onPageChange={handlePageChangeWrapper}
                     />
                 </motion.div>
             )}
@@ -281,6 +290,7 @@ export default function ProductCategoryLayout() {
                     const deleteModal = document.getElementById('delete_modal') as HTMLDialogElement | null;
                     deleteModal?.close();
                 }}
+                isDeleting={isDeleting}
             />
         </motion.section>
     );

@@ -114,6 +114,19 @@ export const useProductGenreData = () => {
   const createContent = async (formData: ProductGenreFormData) => {
     try {
       setIsSubmitting(true);
+
+      // Check for duplicate title within the same category
+      const isDuplicate = allContents.some(
+        content =>
+          content.categoryTitle.toLowerCase() === formData.categoryTitle.toLowerCase() &&
+          content.title.toLowerCase() === formData.title.toLowerCase()
+      );
+
+      if (isDuplicate) {
+        toast.error("Data dengan judul dan kategori yang sama sudah ada!");
+        return false;
+      }
+
       await addDoc(
         collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_GENRE as string),
         {
@@ -135,6 +148,20 @@ export const useProductGenreData = () => {
   const updateContent = async (id: string, formData: ProductGenreFormData) => {
     try {
       setIsSubmitting(true);
+
+      // Check for duplicate title within the same category excluding the current item
+      const isDuplicate = allContents.some(
+        content =>
+          content.id !== id &&
+          content.categoryTitle.toLowerCase() === formData.categoryTitle.toLowerCase() &&
+          content.title.toLowerCase() === formData.title.toLowerCase()
+      );
+
+      if (isDuplicate) {
+        toast.error("Data dengan judul dan kategori yang sama sudah ada!");
+        return false;
+      }
+
       const docRef = doc(
         db,
         process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_GENRE as string,

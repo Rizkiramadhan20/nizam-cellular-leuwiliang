@@ -226,16 +226,6 @@ export const useProductTypeData = () => {
     try {
       setIsSubmitting(true);
 
-      // Check if title already exists
-      const isTitleExists = allContents.some(
-        content => content.title.toLowerCase() === formData.title.toLowerCase()
-      );
-
-      if (isTitleExists) {
-        toast.error("Title already exists. Please use a different title.");
-        return false;
-      }
-
       await addDoc(
         collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_TYPE as string),
         {
@@ -257,18 +247,6 @@ export const useProductTypeData = () => {
   const updateContent = async (id: string, formData: ProductTypeFormData) => {
     try {
       setIsSubmitting(true);
-
-      // Check if title already exists (excluding current item)
-      const isTitleExists = allContents.some(
-        content =>
-          content.id !== id &&
-          content.title.toLowerCase() === formData.title.toLowerCase()
-      );
-
-      if (isTitleExists) {
-        toast.error("Title already exists. Please use a different title.");
-        return false;
-      }
 
       const docRef = doc(
         db,

@@ -44,6 +44,7 @@ export default function ProductGenreLayout() {
     const [formData, setFormData] = useState<ProductGenreFormData>(initialFormData);
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
+    const [isDeleting, setIsDeleting] = useState(false);
     const [deleteId, setDeleteId] = useState<string | null>(null);
 
     const handleSubmit = async () => {
@@ -66,10 +67,17 @@ export default function ProductGenreLayout() {
 
     const handleDelete = async () => {
         if (deleteId) {
-            await deleteContent(deleteId);
-            setDeleteId(null);
-            const deleteModal = document.getElementById('delete_modal') as HTMLDialogElement | null;
-            deleteModal?.close();
+            setIsDeleting(true);
+            try {
+                await deleteContent(deleteId);
+                setDeleteId(null);
+                const deleteModal = document.getElementById('delete_modal') as HTMLDialogElement | null;
+                deleteModal?.close();
+            } catch (error) {
+                console.error('Error deleting content:', error);
+            } finally {
+                setIsDeleting(false);
+            }
         }
     };
 
@@ -318,6 +326,7 @@ export default function ProductGenreLayout() {
                     const deleteModal = document.getElementById('delete_modal') as HTMLDialogElement | null;
                     deleteModal?.close();
                 }}
+                isDeleting={isDeleting}
             />
         </motion.section>
     );
