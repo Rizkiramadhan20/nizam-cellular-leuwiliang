@@ -11,7 +11,7 @@ export const navLink = [
 
   {
     name: "Product",
-    href: "/services",
+    href: "/product",
   },
 
   {

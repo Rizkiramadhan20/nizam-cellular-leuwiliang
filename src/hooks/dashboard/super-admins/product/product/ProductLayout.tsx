@@ -1,20 +1,36 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
+
 import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc, Timestamp, query, orderBy } from 'firebase/firestore'
+
 import { db } from '@/utils/firebase/firebase'
+
 import imagekitInstance from '@/utils/imagekit/imagekit'
+
 import { compressImage } from '@/base/helper/ImageCompression'
+
 import { toast } from 'react-hot-toast'
+
 import Image from 'next/image'
+
 import ProductSkelaton from "@/hooks/dashboard/super-admins/product/product/ProductSkelaton"
+
 import RichTextEditor from '@/base/helper/TextEditor'
+
 import { useAuth } from '@/utils/context/AuthContext'
+
 import { useRouter } from 'next/navigation'
+
 import { Project, ProjectType, FormInputs } from '@/hooks/dashboard/super-admins/product/product/types/Product'
+
 import { Pagination } from '@/base/helper/Pagination'
+
 import { useForm, SubmitHandler } from 'react-hook-form'
-import ViewModal from './components/view/ViewModal';
+
+import dynamic from 'next/dynamic'
+
+const ViewModal = dynamic(() => import('@/hooks/dashboard/super-admins/product/product/components/view/ViewModal'), { ssr: false })
 
 export default function ProjectLayout() {
     const { user, hasRole } = useAuth()
