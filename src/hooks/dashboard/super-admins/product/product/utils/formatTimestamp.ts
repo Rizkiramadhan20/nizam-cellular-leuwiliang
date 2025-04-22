@@ -1,5 +1,7 @@
 import { Timestamp } from 'firebase/firestore';
+
 import { format } from 'date-fns';
+
 import { id } from 'date-fns/locale';
 
 export const formatTimestamp = (timestamp: Timestamp | Date | undefined): string => {

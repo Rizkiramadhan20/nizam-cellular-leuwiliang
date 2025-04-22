@@ -1,12 +1,12 @@
 import React from 'react';
-import Image from 'next/image';
-import { Project } from '../../types/Product';
-import { formatTimestamp } from '../../utils/formatTimestamp';
-import ViewImages from './ViewImages';
 
-interface ViewSidebarProps {
-    project: Project;
-}
+import Image from 'next/image';
+
+import { ViewSidebarProps } from '@/hooks/dashboard/super-admins/product/product/types/Product';
+
+import { formatTimestamp } from '@/hooks/dashboard/super-admins/product/product/utils/formatTimestamp';
+
+import ViewImages from '@/hooks/dashboard/super-admins/product/product/components/view/ViewImages';
 
 const ViewSidebar: React.FC<ViewSidebarProps> = ({ project }) => {
     return (
@@ -34,6 +34,29 @@ const ViewSidebar: React.FC<ViewSidebarProps> = ({ project }) => {
                     </div>
                 </div>
             </div>
+
+            {/* Product Icon */}
+            {project.icon && (
+                <div className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                        Product Icon
+                    </h3>
+                    <div className="flex items-center justify-center p-4 bg-gray-50 rounded-xl">
+                        <div className="relative w-full h-full">
+                            <Image
+                                src={project.icon}
+                                alt="Product icon"
+                                width={500}
+                                height={500}
+                                className="object-contain"
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Timeline */}
             <div className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300">

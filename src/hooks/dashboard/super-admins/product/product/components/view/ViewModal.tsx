@@ -1,14 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import { Project } from '../../types/Product';
-import ViewHero from './ViewHero';
-import ViewStats from './ViewStats';
-import ViewContent from './ViewContent';
-import ViewSidebar from './ViewSidebar';
 
-interface ViewModalProps {
-    viewProject: Project | null;
-    onClose: () => void;
-}
+import { ViewModalProps } from '@/hooks/dashboard/super-admins/product/product/types/Product';
+
+import ViewHero from '@/hooks/dashboard/super-admins/product/product/components/view/ViewHero';
+
+import ViewStats from '@/hooks/dashboard/super-admins/product/product/components/view/ViewStats';
+
+import ViewContent from '@/hooks/dashboard/super-admins/product/product/components/view/ViewContent';
+
+import ViewSidebar from '@/hooks/dashboard/super-admins/product/product/components/view/ViewSidebar';
 
 const ViewModal: React.FC<ViewModalProps> = ({ viewProject, onClose }) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
@@ -29,15 +29,19 @@ const ViewModal: React.FC<ViewModalProps> = ({ viewProject, onClose }) => {
     if (!viewProject) return null;
 
     return (
-        <dialog ref={dialogRef} className="modal" onClose={handleClose}>
-            <div className="modal-box max-w-5xl bg-background p-0 rounded-2xl overflow-hidden max-h-[90vh] flex flex-col">
+        <dialog
+            ref={dialogRef}
+            className="modal backdrop-blur-sm bg-black/30"
+            onClose={handleClose}
+        >
+            <div className="modal-box max-w-5xl bg-background p-0 rounded-2xl overflow-hidden max-h-[95vh] flex flex-col shadow-2xl border border-gray-100">
                 <ViewHero project={viewProject} onClose={handleClose} />
 
-                <div className="p-8 space-y-10 overflow-y-auto flex-grow">
+                <div className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 lg:space-y-10 overflow-y-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
                     <ViewStats project={viewProject} />
 
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="lg:col-span-2 space-y-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div className="lg:col-span-2 space-y-6 sm:space-y-8">
                             <ViewContent project={viewProject} />
                         </div>
 
@@ -46,7 +50,12 @@ const ViewModal: React.FC<ViewModalProps> = ({ viewProject, onClose }) => {
                 </div>
             </div>
             <form method="dialog" className="modal-backdrop">
-                <button onClick={handleClose}>close</button>
+                <button
+                    onClick={handleClose}
+                    className="absolute inset-0 w-full h-full cursor-default"
+                    aria-label="Close modal"
+                >
+                </button>
             </form>
         </dialog>
     );
