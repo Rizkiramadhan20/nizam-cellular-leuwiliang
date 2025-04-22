@@ -164,7 +164,7 @@ export default function ProjectLayout() {
 
     const fetchProductIcons = async () => {
         try {
-            const querySnapshot = await getDocs(collection(db, 'product_icons'))
+            const querySnapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_ICONS as string))
             const iconsData = querySnapshot.docs.map(doc => ({
                 id: doc.id,
                 imageUrl: doc.data().imageUrl
@@ -234,13 +234,13 @@ export default function ProjectLayout() {
     return (
         <section className='min-h-full'>
             {/* Header Section */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8">
+            <div className="bg-background rounded-2xl shadow-sm border border-[var(--border-color)] p-6 mb-6">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="space-y-1">
                         <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'>
                             Products
                         </h1>
-                        <p className='text-gray-500'>Manage and organize your products</p>
+                        <p className='text-gray-500'>Kelola dan atur produk Anda</p>
                     </div>
 
                     <button
@@ -273,7 +273,7 @@ export default function ProjectLayout() {
 
             {/* Project Grid */}
             {paginatedProjects.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     {paginatedProjects.map((project) => (
                         <Card
                             key={project.id}

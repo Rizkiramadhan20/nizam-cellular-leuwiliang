@@ -18,7 +18,7 @@ export default function SearchFilter({
 }: SearchFilterProps) {
     return (
         <div className="bg-background rounded-xl border border-[var(--border-color)] p-6 mb-5">
-            <div className="flex flex-col sm:flex-row gap-6 w-full">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
                 <div className="flex-1">
                     <div className="relative">
                         <label htmlFor="categoryFilter" className="block text-sm font-medium text-gray-700 mb-2">
@@ -29,7 +29,7 @@ export default function SearchFilter({
                                 id="categoryFilter"
                                 value={selectedCategory}
                                 onChange={(e) => setSelectedCategory(e.target.value)}
-                                className="block w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none transition-all duration-200"
+                                className="block w-full px-4 py-3 text-gray-700 bg-background border border-[var(--border-color)] rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none transition-all duration-200 capitalize"
                             >
                                 <option value="">All Categories</option>
                                 {availableCategories.map(category => (
@@ -55,7 +55,7 @@ export default function SearchFilter({
                                 id="genreFilter"
                                 value={selectedGenre}
                                 onChange={(e) => setSelectedGenre(e.target.value)}
-                                className="block w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none transition-all duration-200"
+                                className="block w-full px-4 py-3 text-gray-700 bg-background border border-[var(--border-color)] rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none transition-all duration-200 capitalize"
                             >
                                 <option value="">All Genres</option>
                                 {availableGenres
@@ -83,7 +83,7 @@ export default function SearchFilter({
                                 id="typeFilter"
                                 value={selectedType}
                                 onChange={(e) => setSelectedType(e.target.value)}
-                                className="block w-full px-4 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none transition-all duration-200"
+                                className="block w-full px-4 py-3 text-gray-700 bg-background border border-[var(--border-color)] rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 appearance-none transition-all duration-200 capitalize"
                             >
                                 <option value="">All Types</option>
                                 {availableTypes
@@ -121,7 +121,7 @@ export default function SearchFilter({
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 placeholder="Search by title or category..."
-                                className="block w-full pl-10 pr-10 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+                                className="block w-full pl-10 pr-10 py-3 text-gray-700 bg-background border border-[var(--border-color)] rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 capitalize"
                             />
                             {searchTerm && (
                                 <button

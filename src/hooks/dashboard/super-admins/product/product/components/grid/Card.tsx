@@ -6,7 +6,7 @@ import { CardProps } from '@/hooks/dashboard/super-admins/product/product/types/
 
 export default function Card({ project, onView, onEdit, onDelete }: CardProps) {
     return (
-        <div className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+        <div className="group bg-background rounded-2xl overflow-hidden border border-[var(--border-color)] shadow-sm">
             {/* Image Container */}
             <div className="relative h-48 overflow-hidden">
                 <Image
@@ -37,13 +37,14 @@ export default function Card({ project, onView, onEdit, onDelete }: CardProps) {
                 </div>
 
                 {/* Stats */}
-                <div className="grid grid-cols-2 gap-2 py-3 border-y border-gray-100">
+                <div className="grid grid-cols-2 gap-2 py-3 border-y border-[var(--border-color)]">
                     <div className="text-center">
                         <p className="text-sm font-semibold text-gray-900">{project.stock}</p>
                         <p className="text-xs text-gray-500">Stock</p>
                     </div>
+
                     <div className="text-center">
-                        <p className="text-sm font-semibold text-gray-900">Rp {project.price.toLocaleString('id-ID')}</p>
+                        <p className="text-sm font-semibold text-gray-900">{project.price.toLocaleString('id-ID')}</p>
                         <p className="text-xs text-gray-500">Price</p>
                     </div>
                 </div>

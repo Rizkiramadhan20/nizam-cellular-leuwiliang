@@ -414,11 +414,11 @@ export default function FormModal({
 
     return (
         <dialog ref={dialogRef} id="project_modal" className="modal">
-            <div className="modal-box bg-background max-w-6xl p-0 overflow-hidden">
+            <div className="modal-box bg-background w-full h-full md:max-w-6xl md:h-auto p-0 overflow-hidden">
                 {/* Modal Header */}
-                <div className="sticky top-0 bg-background border-b border-[var(--border-color)] px-6 py-4 flex justify-between items-center z-10">
+                <div className="sticky top-0 bg-background border-b border-[var(--border-color)] px-4 md:px-6 py-4 flex justify-between items-center z-10">
                     <h3 className="font-bold text-xl text-gray-900">
-                        {isEditing ? 'Edit Project' : 'Add New Project'}
+                        {isEditing ? 'Edit Produk' : 'Tambah Produk'}
                     </h3>
                     <button
                         onClick={handleCloseModal}
@@ -431,7 +431,7 @@ export default function FormModal({
                 </div>
 
                 {/* Modal Body */}
-                <div className="p-6 overflow-y-auto max-h-[calc(100vh-12rem)]">
+                <div className="p-4 md:p-6 overflow-y-auto max-h-[calc(100vh-9rem)] sm:max-h-[calc(100vh-12rem)]">
                     <form id="project-form" onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                         {/* Basic Information */}
                         <div className="bg-background rounded-2xl p-6 shadow-sm border border-[var(--border-color)] hover:shadow-md transition-shadow">
@@ -441,17 +441,17 @@ export default function FormModal({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
-                                <h4 className="font-semibold text-lg text-gray-900">Basic Information</h4>
+                                <h4 className="font-semibold text-lg text-gray-900">Informasi Dasar</h4>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="form-control">
-                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Title</label>
+                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Judul</label>
                                     <input
                                         type="text"
                                         {...register('title')}
                                         className="input input-bordered w-full bg-gray-50/50 border-[var(--border-color)] focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-                                        placeholder="Enter project title"
+                                        placeholder="Masukkan judul produk"
                                     />
                                     {errors.title && (
                                         <span className="text-red-500 text-sm mt-1">{errors.title.message}</span>
@@ -473,11 +473,11 @@ export default function FormModal({
                                 </div>
 
                                 <div className="form-control md:col-span-2">
-                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Description</label>
+                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Deskripsi</label>
                                     <textarea
                                         {...register('description')}
-                                        className="textarea textarea-bordered w-full h-24 bg-gray-50/50 border-[var(--border-color)] focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-                                        placeholder="Enter project description"
+                                        className="textarea textarea-bordered w-full h-24 bg-gray-50/50 border-[var(--border-color)] focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all resize-none"
+                                        placeholder="Masukkan deskripsi produk"
                                     />
                                     {errors.description && (
                                         <span className="text-red-500 text-sm mt-1">{errors.description.message}</span>
@@ -486,7 +486,7 @@ export default function FormModal({
 
                                 {/* Status Project */}
                                 <div className="form-control">
-                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Status Project</label>
+                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Status Produk</label>
                                     <select
                                         {...register('status')}
                                         className="select select-bordered w-full bg-gray-50/50 border-[var(--border-color)] focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all hover:border-purple-300"
@@ -509,16 +509,16 @@ export default function FormModal({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                                     </svg>
                                 </div>
-                                <h4 className="font-semibold text-lg text-gray-900">Categories & Details</h4>
+                                <h4 className="font-semibold text-lg text-gray-900">Kategori & Detail</h4>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                                 <div className="form-control">
-                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Category</label>
+                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Kategori</label>
                                     <select
                                         {...register('typeCategory')}
                                         className="select select-bordered w-full bg-gray-50/50 border-[var(--border-color)] focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all"
                                     >
-                                        <option value="">Select category</option>
+                                        <option value="">Pilih kategori</option>
                                         {[...new Set(projectTypes.map(type => type.categoryTitle))].map(category => (
                                             <option key={category} value={category}>{category}</option>
                                         ))}
@@ -579,12 +579,12 @@ export default function FormModal({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
-                                <h4 className="font-semibold text-lg text-gray-900">Stock & Price</h4>
+                                <h4 className="font-semibold text-lg text-gray-900">Stok & Harga</h4>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Stock Input */}
                                 <div className="form-control">
-                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Stock</label>
+                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Stok</label>
                                     <input
                                         type="text"
                                         {...register('stock', {
@@ -592,7 +592,7 @@ export default function FormModal({
                                             onChange: (e) => handleNumberChange(e, 'stock')
                                         })}
                                         className="input input-bordered w-full bg-gray-50/50 border-[var(--border-color)] focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all"
-                                        placeholder="Enter stock quantity"
+                                        placeholder="Masukkan jumlah stok"
                                         defaultValue={watch('stock') ? formatNumber(watch('stock').toString()) : ''}
                                     />
                                     {errors.stock && (
@@ -602,7 +602,7 @@ export default function FormModal({
 
                                 {/* Price Input */}
                                 <div className="form-control">
-                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Price</label>
+                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Harga</label>
                                     <div className="relative">
                                         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">Rp</span>
                                         <input
@@ -621,7 +621,7 @@ export default function FormModal({
                                                 }
                                             })}
                                             className="input input-bordered w-full bg-gray-50/50 border-[var(--border-color)] focus:border-green-500 focus:ring-2 focus:ring-green-200 transition-all pl-10"
-                                            placeholder="Enter price"
+                                            placeholder="Masukkan harga"
                                             defaultValue={watch('price') ? formatNumber(watch('price')) : ''}
                                         />
                                     </div>
@@ -640,7 +640,7 @@ export default function FormModal({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
                                 </div>
-                                <h4 className="font-semibold text-lg text-gray-900">Images</h4>
+                                <h4 className="font-semibold text-lg text-gray-900">Gambar & Ikon</h4>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {/* Thumbnail Upload */}
@@ -728,7 +728,7 @@ export default function FormModal({
 
                                 {/* Slider Images Upload */}
                                 <div className="form-control">
-                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Slider Images</label>
+                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Gambar Slider</label>
                                     <div className="relative">
                                         <div className="space-y-4">
                                             <div className="grid grid-cols-2 gap-4">
@@ -809,14 +809,14 @@ export default function FormModal({
                                                             onKeyDown={(e) => handleKeyDown(e, index)}
                                                             tabIndex={0}
                                                             role="button"
-                                                            aria-label={`Slider image ${index + 1}. Use arrow keys to reorder.`}
+                                                            aria-label={`Gambar slider ${index + 1}. Gunakan tombol panah untuk mengurutkan.`}
                                                         >
                                                             <div className="absolute top-2 left-2 z-10 bg-black bg-opacity-50 text-white px-2 py-1 rounded-md text-xs">
                                                                 {index + 1}
                                                             </div>
                                                             <Image
                                                                 src={url}
-                                                                alt={`Slider image ${index + 1}`}
+                                                                alt={`Gambar slider ${index + 1}`}
                                                                 width={200}
                                                                 height={150}
                                                                 className="w-full h-[150px] object-cover"
@@ -889,15 +889,15 @@ export default function FormModal({
                                                             {isSliderUploading ? (
                                                                 <div className="flex flex-col items-center justify-center">
                                                                     <span className="loading loading-spinner loading-md text-green-600"></span>
-                                                                    <p className="mt-2 text-sm text-gray-500">Uploading...</p>
+                                                                    <p className="mt-2 text-sm text-gray-500">Memuat...</p>
                                                                 </div>
                                                             ) : (
                                                                 <>
                                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-gray-400 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                                                     </svg>
-                                                                    <p className="text-sm text-gray-500">Add Image</p>
-                                                                    <p className="text-xs text-gray-400 mt-1">Drag or click to upload</p>
+                                                                    <p className="text-sm text-gray-500">Tambah Gambar</p>
+                                                                    <p className="text-xs text-gray-400 mt-1">Seret atau klik untuk mengunggah</p>
                                                                 </>
                                                             )}
                                                         </div>
@@ -918,7 +918,7 @@ export default function FormModal({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                                     </svg>
                                 </div>
-                                <h4 className="font-semibold text-lg text-gray-900">Project Icon</h4>
+                                <h4 className="font-semibold text-lg text-gray-900">Ikon Produk</h4>
                             </div>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                                 {productIcons.map((icon) => (
@@ -959,20 +959,18 @@ export default function FormModal({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h7" />
                                     </svg>
                                 </div>
-                                <h4 className="font-semibold text-lg text-gray-900">Content</h4>
+                                <h4 className="font-semibold text-lg text-gray-900">Konten</h4>
                             </div>
-                            <div className="space-y-6">
-                                <div className="form-control">
-                                    <label className="text-sm font-medium text-gray-700 mb-1.5">Content</label>
-                                    <RichTextEditor
-                                        value={watch('content')}
-                                        onChange={(value) => setValue('content', value)}
-                                        className="min-h-[200px] bg-gray-50/50 rounded-lg border border-gray-200 focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-200 transition-all"
-                                    />
-                                    {errors.content && (
-                                        <span className="text-red-500 text-sm mt-1">{errors.content.message}</span>
-                                    )}
-                                </div>
+
+                            <div className="form-control">
+                                <RichTextEditor
+                                    value={watch('content')}
+                                    onChange={(value) => setValue('content', value)}
+                                    className="min-h-[200px] bg-gray-50/50 rounded-lg border border-gray-200 focus-within:border-amber-500 focus-within:ring-2 focus-within:ring-amber-200 transition-all"
+                                />
+                                {errors.content && (
+                                    <span className="text-red-500 text-sm mt-1">{errors.content.message}</span>
+                                )}
                             </div>
                         </div>
 
@@ -984,7 +982,7 @@ export default function FormModal({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
                                 </div>
-                                <h4 className="font-semibold text-lg text-gray-900">Author Information</h4>
+                                <h4 className="font-semibold text-lg text-gray-900">Informasi Penulis</h4>
                             </div>
 
                             <div className="grid md:grid-cols-[200px,1fr] gap-8 items-start">
@@ -1006,7 +1004,7 @@ export default function FormModal({
                                 {/* Author Details */}
                                 <div className="space-y-6">
                                     <div className="form-control">
-                                        <label className="text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                        <label className="text-sm font-medium text-gray-700 mb-2">Nama Lengkap</label>
                                         <div className="relative">
                                             <input
                                                 type="text"
@@ -1020,11 +1018,11 @@ export default function FormModal({
                                                 </svg>
                                             </div>
                                         </div>
-                                        <p className="mt-2 text-xs text-gray-500">This information is pulled from your profile and cannot be edited here.</p>
+                                        <p className="mt-2 text-xs text-gray-500">Informasi ini diambil dari profil Anda dan tidak dapat diubah di sini.</p>
                                     </div>
 
                                     <div className="form-control">
-                                        <label className="text-sm font-medium text-gray-700 mb-2">Access Level</label>
+                                        <label className="text-sm font-medium text-gray-700 mb-2">Level Akses</label>
                                         <div className="relative">
                                             <input
                                                 type="text"
@@ -1046,14 +1044,14 @@ export default function FormModal({
                 </div>
 
                 {/* Modal Footer */}
-                <div className="sticky bottom-0 bg-background border-t border-[var(--border-color)] px-6 py-4 flex justify-end gap-3 z-10">
+                <div className="sticky bottom-0 bg-background border-t border-[var(--border-color)] px-4 md:px-6 py-4 flex justify-end gap-3 z-10">
                     <button
                         type="button"
                         onClick={handleCloseModal}
                         className="btn btn-ghost hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors"
                         disabled={isSubmitting}
                     >
-                        Cancel
+                        Batal
                     </button>
                     <button
                         type="submit"
@@ -1064,9 +1062,9 @@ export default function FormModal({
                         {isSubmitting ? (
                             <div className="btn flex items-center gap-2 bg-primary">
                                 <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-                                <span>Loading...</span>
+                                <span>Memuat...</span>
                             </div>
-                        ) : isEditing ? 'Update Project' : 'Save Project'}
+                        ) : isEditing ? 'Update Produk' : 'Simpan Produk'}
                     </button>
                 </div>
             </div>

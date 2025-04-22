@@ -12,7 +12,7 @@ const ViewSidebar: React.FC<ViewSidebarProps> = ({ project }) => {
     return (
         <div className="space-y-8">
             {/* Author Information */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300">
+            <div className="bg-background rounded-2xl border border-[var(--border-color)] p-6 transition-all duration-300">
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -37,7 +37,7 @@ const ViewSidebar: React.FC<ViewSidebarProps> = ({ project }) => {
 
             {/* Product Icon */}
             {project.icon && (
-                <div className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300">
+                <div className="bg-background rounded-2xl border border-[var(--border-color)] p-6 transition-all duration-300">
                     <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
@@ -59,7 +59,7 @@ const ViewSidebar: React.FC<ViewSidebarProps> = ({ project }) => {
             )}
 
             {/* Timeline */}
-            <div className="bg-white rounded-2xl border border-gray-100 p-6 hover:shadow-lg transition-all duration-300">
+            <div className="bg-background rounded-2xl border border-[var(--border-color)] p-6 transition-all duration-300">
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-amber-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -74,7 +74,7 @@ const ViewSidebar: React.FC<ViewSidebarProps> = ({ project }) => {
                             </svg>
                         </div>
                         <div>
-                            <p className="text-sm font-medium text-gray-900">Created</p>
+                            <p className="text-sm font-medium text-gray-900">Dibuat</p>
                             <p className="text-sm text-gray-500">{formatTimestamp(project.createdAt)}</p>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ const ViewSidebar: React.FC<ViewSidebarProps> = ({ project }) => {
                             </svg>
                         </div>
                         <div>
-                            <p className="text-sm font-medium text-gray-900">Last Updated</p>
+                            <p className="text-sm font-medium text-gray-900">Terakhir Diperbarui</p>
                             <p className="text-sm text-gray-500">{formatTimestamp(project.updatedAt)}</p>
                         </div>
                     </div>
