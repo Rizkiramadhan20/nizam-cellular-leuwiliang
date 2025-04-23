@@ -1,5 +1,4 @@
 const BASE_URL = process.env.NEXT_PUBLIC_URL as string;
-const SEARCH_CONSOLE = process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_ID as string;
 const TAG_MANAGER = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string;
 
 export const viewport = {
@@ -52,7 +51,6 @@ interface Metadata {
     images: string[];
   };
   verification?: {
-    google?: string;
     googleTagManager?: string;
   };
   robots: {
@@ -100,7 +98,7 @@ export const metadata: Metadata = {
 
   manifest: "/manifest.json",
   metadataBase: new URL(BASE_URL),
-  canonical: `${BASE_URL}/`,
+  canonical: `${BASE_URL}`,
 
   other: {
     "mobile-web-app-capable": "yes",
@@ -108,7 +106,6 @@ export const metadata: Metadata = {
     "format-detection": "telephone=yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "msapplication-TileColor": "#f5f5f5",
-    "google-site-verification": SEARCH_CONSOLE,
     "google-tag-manager": TAG_MANAGER,
   },
 
@@ -139,7 +136,6 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    google: SEARCH_CONSOLE,
     googleTagManager: TAG_MANAGER,
   },
 
