@@ -10,23 +10,23 @@ import dynamic from 'next/dynamic'
 
 import Image from 'next/image'
 
-import { IconsContent } from '@/hooks/dashboard/super-admins/product/icons/types/Icons'
+import { LogoContent } from '@/hooks/dashboard/super-admins/product/logo/types/Logo'
 
-import { useIconsData } from '@/hooks/dashboard/super-admins/product/icons/lib/FetchIcons'
+import { useLogoData } from '@/hooks/dashboard/super-admins/product/logo/lib/FetchLogo'
 
-const ContentModal = dynamic(() => import('@/hooks/dashboard/super-admins/product/icons/modal/ContentModal').then(mod => mod.ContentModal), {
+const ContentModal = dynamic(() => import('@/hooks/dashboard/super-admins/product/logo/modal/ContentModal').then(mod => mod.ContentModal), {
     ssr: false
 })
 
-const DeleteModal = dynamic(() => import('@/hooks/dashboard/super-admins/product/icons/modal/DeleteModal').then(mod => mod.DeleteModal), {
+const DeleteModal = dynamic(() => import('@/hooks/dashboard/super-admins/product/logo/modal/DeleteModal').then(mod => mod.DeleteModal), {
     ssr: false
 })
 
-const KonsultasiSkelaton = dynamic(() => import('@/hooks/dashboard/super-admins/product/icons/IconsSkelaton').then(mod => mod.default), {
+const ProductLogoSkelaton = dynamic(() => import('@/hooks/dashboard/super-admins/product/logo/ProductLogoSkelaton').then(mod => mod.default), {
     ssr: false
 })
 
-const initialFormData: IconsContent = {
+const initialFormData: LogoContent = {
     imageUrl: ''
 };
 
@@ -40,10 +40,10 @@ export default function HomeLayout() {
         createContent,
         handleUpdate,
         handleDelete,
-    } = useIconsData();
+    } = useLogoData();
 
     const [selectedImage, setSelectedImage] = useState<File | null>(null)
-    const [formData, setFormData] = useState<IconsContent>(initialFormData)
+    const [formData, setFormData] = useState<LogoContent>(initialFormData)
     const [isEditing, setIsEditing] = useState(false)
     const [editingId, setEditingId] = useState<string | null>(null)
     const [deleteId, setDeleteId] = useState<string | null>(null)
@@ -100,7 +100,7 @@ export default function HomeLayout() {
     }, [deleteId, handleDelete, closeModal, setIsSubmitting])
 
     if (isLoading) {
-        return <KonsultasiSkelaton />
+        return <ProductLogoSkelaton />
     }
 
     const openContentModal = () => {
@@ -121,9 +121,9 @@ export default function HomeLayout() {
             >
                 <div className="space-y-2">
                     <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent'>
-                        Product Icons
+                        Product Logo
                     </h1>
-                    <p className='text-gray-600 text-sm sm:text-base'>Manage your product icon page</p>
+                    <p className='text-gray-600 text-sm sm:text-base'>Manage your Logo page</p>
                 </div>
 
                 <button

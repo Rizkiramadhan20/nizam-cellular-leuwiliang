@@ -16,6 +16,7 @@ export interface ProductType {
   price: number;
   slug: string;
   icon: string;
+  logo: string;
   status: string;
   stock: number;
   genreTitle: string;

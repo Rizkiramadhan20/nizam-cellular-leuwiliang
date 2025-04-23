@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ProductIconSkelaton() {
+export default function ProductLogoSkelaton() {
     return (
         <div className="space-y-6">
             {/* Header Skeleton */}

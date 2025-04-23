@@ -79,6 +79,7 @@ export const menuItems = [
       { label: "Genre", href: "/dashboard/super-admins/product/genre" },
       { label: "Type", href: "/dashboard/super-admins/product/type" },
       { label: "Icons", href: "/dashboard/super-admins/product/icons" },
+      { label: "Logo", href: "/dashboard/super-admins/product/logo" },
     ],
   },
 

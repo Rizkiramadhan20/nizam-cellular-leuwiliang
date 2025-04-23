@@ -47,6 +47,7 @@ export default function ProjectLayout() {
     const [projects, setProjects] = useState<Project[]>([])
     const [projectTypes, setProjectTypes] = useState<ProjectType[]>([])
     const [productIcons, setProductIcons] = useState<{ id: string; imageUrl: string }[]>([])
+    const [productLogo, setProductLogo] = useState<{ id: string; imageUrl: string }[]>([])
 
     // UI states
     const [isLoading, setIsLoading] = useState(true)
@@ -100,7 +101,8 @@ export default function ProjectLayout() {
                 await Promise.all([
                     fetchProjects(),
                     fetchProjectTypes(),
-                    fetchProductIcons()
+                    fetchProductIcons(),
+                    fetchProductLogo()
                 ])
             } catch (error) {
                 console.error('Error fetching data:', error)
@@ -170,6 +172,20 @@ export default function ProjectLayout() {
                 imageUrl: doc.data().imageUrl
             }))
             setProductIcons(iconsData)
+        } catch (error) {
+            console.error('Error fetching product icons:', error)
+            toast.error('Failed to fetch product icons')
+        }
+    }
+
+    const fetchProductLogo = async () => {
+        try {
+            const querySnapshot = await getDocs(collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_LOGO as string))
+            const logoData = querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                imageUrl: doc.data().imageUrl
+            }))
+            setProductLogo(logoData)
         } catch (error) {
             console.error('Error fetching product icons:', error)
             toast.error('Failed to fetch product icons')
@@ -329,6 +345,7 @@ export default function ProjectLayout() {
                 editingId={editingId}
                 projectTypes={projectTypes}
                 productIcons={productIcons}
+                productLogo={productLogo}
                 user={user as { uid: string; displayName: string; email: string; photoURL: string; role?: string }}
                 onSuccess={async () => {
                     await fetchProjects();

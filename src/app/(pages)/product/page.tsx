@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Metadata } from 'next'
 
-import ProductLayout from "@/hooks/pages/product/ProductLayout"
+import ProductLayout from "@/hooks/pages/product/product/ProductLayout"
 
 export const metadata: Metadata = {
     title: 'Product | Nizam Cellular Leuwiliang',

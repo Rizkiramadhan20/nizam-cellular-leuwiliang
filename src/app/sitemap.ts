@@ -15,15 +15,43 @@ async function getBlogSlugs() {
     }
 }
 
+async function getProductTypeCategories() {
+    try {
+        const productRef = collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT as string)
+        const querySnapshot = await getDocs(productRef)
+        const typeCategories = new Set<string>()
+
+        querySnapshot.docs.forEach(doc => {
+            const data = doc.data()
+            if (data.typeCategory) {
+                typeCategories.add(data.typeCategory)
+            }
+        })
+
+        return Array.from(typeCategories)
+    } catch (error) {
+        console.error("Error fetching product type categories:", error)
+        return []
+    }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://nizamcellularleuwiliang.my.id'
     const blogSlugs = await getBlogSlugs()
+    const typeCategories = await getProductTypeCategories()
 
     const blogUrls = blogSlugs.map(slug => ({
         url: `${baseUrl}/blog/${slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.7,
+    }))
+
+    const typeCategoryUrls = typeCategories.map(typeCategory => ({
+        url: `${baseUrl}/product/${typeCategory}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
     }))
 
     return [
@@ -57,6 +85,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'weekly',
             priority: 0.9,
         },
-        ...blogUrls
+        ...blogUrls,
+        ...typeCategoryUrls
     ]
 } 

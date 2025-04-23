@@ -28,6 +28,7 @@ export default function FormModal({
     editingId,
     projectTypes,
     productIcons,
+    productLogo,
     user,
     onSuccess
 }: FormModalProps) {
@@ -46,6 +47,7 @@ export default function FormModal({
         imageUrl: '',
         images: [],
         icon: '',
+        logo: '',
         slug: '',
         typeCategory: '',
         typeTitle: '',
@@ -86,6 +88,7 @@ export default function FormModal({
             stock: 0,
             price: 0,
             icon: '',
+            logo: '',
         }
     })
 
@@ -183,6 +186,7 @@ export default function FormModal({
                 createdAt: isEditing ? editData?.createdAt : Timestamp.now(),
                 updatedAt: Timestamp.now(),
                 icon: newProject.icon || '',
+                logo: newProject.logo || ''
             }
 
             let imageUrl = newProject.imageUrl
@@ -221,6 +225,7 @@ export default function FormModal({
                 imageUrl: '',
                 images: [],
                 icon: '',
+                logo: '',
                 slug: '',
                 typeCategory: '',
                 typeTitle: '',
@@ -385,6 +390,7 @@ export default function FormModal({
                     setValue('stock', editData.stock)
                     setValue('price', editData.price)
                     setValue('icon', editData.icon || '')
+                    setValue('logo', editData.logo || '')
 
                     setNewProject(editData)
                 } catch (error) {
@@ -918,7 +924,7 @@ export default function FormModal({
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
                                     </svg>
                                 </div>
-                                <h4 className="font-semibold text-lg text-gray-900">Ikon Produk</h4>
+                                <h4 className="font-semibold text-lg text-gray-900">Ikon Kategori Produk</h4>
                             </div>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
                                 {productIcons.map((icon) => (
@@ -940,6 +946,47 @@ export default function FormModal({
                                             className="object-contain p-2"
                                         />
                                         {newProject.icon === icon.imageUrl && (
+                                            <div className="absolute inset-0 bg-purple-500/10 flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Logo Selection */}
+                        <div className="bg-background rounded-2xl p-6 shadow-sm border border-[var(--border-color)] hover:shadow-md transition-shadow mt-6">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="p-2 bg-purple-50 rounded-lg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-purple-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                    </svg>
+                                </div>
+                                <h4 className="font-semibold text-lg text-gray-900">Logo Produk</h4>
+                            </div>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                                {productLogo.map((logo) => (
+                                    <div
+                                        key={logo.id}
+                                        className={`relative aspect-square rounded-xl overflow-hidden bg-gray-50/50 border-2 cursor-pointer transition-all ${newProject.logo === logo.imageUrl
+                                            ? 'border-purple-500 ring-2 ring-purple-500'
+                                            : 'border-[var(--border-color)] hover:border-purple-500'
+                                            }`}
+                                        onClick={() => {
+                                            setNewProject(prev => ({ ...prev, logo: logo.imageUrl }));
+                                            setValue('icon', logo.imageUrl);
+                                        }}
+                                    >
+                                        <Image
+                                            src={logo.imageUrl}
+                                            alt="Icon"
+                                            fill
+                                            className="object-contain p-2"
+                                        />
+                                        {newProject.logo === logo.imageUrl && (
                                             <div className="absolute inset-0 bg-purple-500/10 flex items-center justify-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

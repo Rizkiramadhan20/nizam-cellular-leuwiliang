@@ -58,6 +58,29 @@ const ViewSidebar: React.FC<ViewSidebarProps> = ({ project }) => {
                 </div>
             )}
 
+            {/* Product Logo */}
+            {project.logo && (
+                <div className="bg-background rounded-2xl border border-[var(--border-color)] p-6 transition-all duration-300">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                        Product Logo
+                    </h3>
+                    <div className="flex items-center justify-center p-4 bg-gray-50 rounded-xl">
+                        <div className="relative w-full h-full">
+                            <Image
+                                src={project.logo}
+                                alt="Product logo"
+                                width={500}
+                                height={500}
+                                className="object-contain"
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Timeline */}
             <div className="bg-background rounded-2xl border border-[var(--border-color)] p-6 transition-all duration-300">
                 <h3 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">

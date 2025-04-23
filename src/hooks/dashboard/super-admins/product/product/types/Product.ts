@@ -16,6 +16,7 @@ export interface Project {
     content: string;
     stock: number;
     price: number;
+    logo: string;
     author: {
         name: string;
         role: string;
@@ -48,6 +49,7 @@ export interface FormInputs {
     price: number;
     authorId: string;
     icon: string;
+    logo: string;
 }
 
 export interface ViewModalProps {
@@ -119,6 +121,7 @@ export interface FormModalProps {
     editingId: string | null
     projectTypes: ProjectType[]
     productIcons: { id: string; imageUrl: string }[]
+    productLogo: { id: string; imageUrl: string }[]
     user: {
         uid: string;
         displayName: string;

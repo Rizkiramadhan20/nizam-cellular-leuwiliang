@@ -34,7 +34,7 @@ const ViewModal: React.FC<ViewModalProps> = ({ viewProject, onClose }) => {
             className="modal backdrop-blur-sm bg-black/30"
             onClose={handleClose}
         >
-            <div className="modal-box max-w-5xl bg-background p-0 rounded-2xl overflow-hidden max-h-[95vh] flex flex-col shadow-2xl border border-[var(--border-color)]">
+            <div className="modal-box max-w-6xl bg-background p-0 rounded-2xl overflow-hidden max-h-[95vh] flex flex-col shadow-2xl border border-[var(--border-color)]">
                 <ViewHero project={viewProject} onClose={handleClose} />
 
                 <div className="p-4 sm:p-6 lg:p-8 space-y-6 sm:space-y-8 lg:space-y-10 overflow-y-auto flex-grow scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">

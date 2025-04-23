@@ -2,32 +2,25 @@
 
 import React, { useState, useEffect } from 'react'
 
-import { FetchProduct } from "@/hooks/pages/product/lib/FetchProduct"
+import { FetchProduct } from "@/hooks/pages/product/product/lib/FetchProduct"
 
-import { ProductType } from "@/hooks/pages/product/types/Product"
+import { ProductType } from "@/hooks/pages/product/product/types/Product"
 
-import ProductSkelaton from "@/hooks/pages/product/ProductSkelaton"
+import ProductSkelaton from "@/hooks/pages/product/product/ProductSkelaton"
 
-import { BannerType } from "@/hooks/pages/product/banner/types/Banner"
+import { BannerType } from "@/hooks/pages/product/product/banner/types/Banner"
 
-import { FetchBanner } from "@/hooks/pages/product/banner/lib/FetchBanner"
+import { FetchBanner } from "@/hooks/pages/product/product/banner/lib/FetchBanner"
 
 import Image from 'next/image'
 
-import { Swiper, SwiperSlide } from 'swiper/react'
-
 import { FormatSlug } from "@/base/helper/FormatSlug"
-
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-import 'swiper/css/effect-creative'
-
-import { Autoplay, Pagination, Navigation, EffectCreative } from 'swiper/modules'
 
 import Link from 'next/link'
 
 import { FormatRupiah } from "@/base/helper/FormatRupiah"
+
+import BannerSwiper from './banner/BannerSwiper'
 
 export default function ProductLayout() {
     const [product, setProduct] = useState<ProductType[]>([]);
@@ -57,61 +50,13 @@ export default function ProductLayout() {
 
     return (
         <>
-            <div className='py-24 container px-4 sm:px-6 lg:px-8 xl:px-10'>
-                <Swiper
-                    spaceBetween={30}
-                    centeredSlides={true}
-                    effect="creative"
-                    speed={500}
-                    creativeEffect={{
-                        prev: {
-                            shadow: true,
-                            translate: ['-20%', 0, -1],
-                        },
-                        next: {
-                            translate: ['100%', 0, 0],
-                        },
-                    }}
-                    loop={true}
-                    grabCursor={true}
-                    autoplay={{
-                        delay: 2000,
-                        disableOnInteraction: false,
-                    }}
-                    pagination={{
-                        clickable: true,
-                        dynamicBullets: true,
-                    }}
-                    navigation={{
-                        nextEl: '.swiper-button-next',
-                        prevEl: '.swiper-button-prev',
-                    }}
-                    modules={[Autoplay, Pagination, Navigation, EffectCreative]}
-                    className="mySwiper rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl relative cursor-grab active:cursor-grabbing"
-                >
-                    {banner.map((item, index) => (
-                        <SwiperSlide key={index}>
-                            <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] md:aspect-[24/9]">
-                                <Image
-                                    src={item.imageUrl}
-                                    alt={`Banner image ${index + 1}`}
-                                    fill
-                                    className="object-cover"
-                                    quality={100}
-                                    priority={index === 0}
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                    <div className="swiper-button-next !w-8 !h-8 sm:!w-10 sm:!h-10 md:!w-12 md:!h-12 !bg-white/20 !backdrop-blur-sm !rounded-full after:!text-lg sm:after:!text-xl after:!text-white hover:!bg-white/30 !transition-all !duration-300" />
-                    <div className="swiper-button-prev !w-8 !h-8 sm:!w-10 sm:!h-10 md:!w-12 md:!h-12 !bg-white/20 !backdrop-blur-sm !rounded-full after:!text-lg sm:after:!text-xl after:!text-white hover:!bg-white/30 !transition-all !duration-300" />
-                    <div className="swiper-pagination !bottom-2 sm:!bottom-4" />
-                </Swiper>
+            <div className='pt-28 container px-4 sm:px-6 lg:px-8 xl:px-10'>
+                <BannerSwiper banners={banner} />
             </div>
 
-            <section className='min-h-screen py-10'>
+            <section className='min-h-screen py-12 sm:py-16'>
                 <div className="container px-4 sm:px-6 lg:px-8 xl:px-10">
-                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
+                    <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
                         {
                             product.filter((item, index, self) =>
                                 index === self.findIndex((t) => t.typeCategory === item.typeCategory)
@@ -143,7 +88,7 @@ export default function ProductLayout() {
                     </div>
 
                     <div className="mt-16">
-                        <h2 className="text-2xl font-bold mb-8">Produk Terbaru</h2>
+                        <h2 className="text-2xl font-bold mb-10">Produk Terbaru</h2>
                         <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
                             {
                                 product
@@ -172,8 +117,8 @@ export default function ProductLayout() {
                                                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                                <div className="absolute top-4 left-4">
-                                                    <span className='bg-primary/90 backdrop-blur-sm text-white text-xs font-semibold py-1.5 px-3 rounded-full'>
+                                                <div className="absolute bottom-4 left-2">
+                                                    <span className='capitalize bg-primary text-white text-xs font-semibold py-1.5 px-3 rounded-full shadow-md'>
                                                         {product.typeCategory}
                                                     </span>
                                                 </div>
