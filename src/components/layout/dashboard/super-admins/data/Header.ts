@@ -45,6 +45,10 @@ export const menuItems = [
         label: "Testimonials",
         href: "/dashboard/super-admins/pages/testimonials",
       },
+      {
+        label: "Banner",
+        href: "/dashboard/super-admins/pages/banner",
+      },
     ],
   },
 

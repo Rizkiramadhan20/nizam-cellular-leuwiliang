@@ -15,6 +15,7 @@ export interface ProductType {
   images: string[];
   price: number;
   slug: string;
+  icon: string;
   status: string;
   stock: number;
   genreTitle: string;

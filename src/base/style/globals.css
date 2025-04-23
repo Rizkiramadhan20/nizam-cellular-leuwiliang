@@ -31,6 +31,16 @@
   }
 }
 
+@layer components {
+  .swiper-pagination-bullet {
+    @apply w-3 h-3 bg-white/50 opacity-100 transition-all duration-300;
+  }
+
+  .swiper-pagination-bullet-active {
+    @apply bg-white w-8 rounded-full;
+  }
+} 
+
 /* Rest of your existing CSS */
 :root {
   --background: #ffffff;
