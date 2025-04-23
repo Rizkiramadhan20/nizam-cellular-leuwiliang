@@ -40,9 +40,8 @@ export const metadata = {
   },
 
   manifest: "/manifest.json",
-
   metadataBase: new URL(BASE_URL),
-  canonical: BASE_URL,
+  canonical: `${BASE_URL}/`,
 
   other: {
     "mobile-web-app-capable": "yes",
@@ -50,6 +49,8 @@ export const metadata = {
     "format-detection": "telephone=yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "msapplication-TileColor": "#f5f5f5",
+    "google-site-verification": process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_ID,
+    "google-tag-manager": "GTM-K5M792LB",
   },
 
   openGraph: {
@@ -78,10 +79,10 @@ export const metadata = {
     images: ["/og-image.jpg"],
   },
 
-  // verification: {
-  //   google: process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_ID,
-  //   googleTagManager: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
-  // },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_ID,
+    googleTagManager: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
+  },
 
   robots: {
     index: true,

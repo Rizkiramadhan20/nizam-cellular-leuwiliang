@@ -4,6 +4,8 @@ import { db } from "@/utils/firebase/firebase"
 
 import { collection, getDocs } from "firebase/firestore"
 
+const BASE_URL = process.env.NEXT_PUBLIC_URL as string;
+
 async function getBlogSlugs() {
     try {
         const blogRef = collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_BLOG as string)
@@ -36,19 +38,18 @@ async function getProductTypeCategories() {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://nizamcellularleuwiliang.my.id'
     const blogSlugs = await getBlogSlugs()
     const typeCategories = await getProductTypeCategories()
 
     const blogUrls = blogSlugs.map(slug => ({
-        url: `${baseUrl}/blog/${slug}`,
+        url: `${BASE_URL}/blog/${slug}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.7,
     }))
 
     const typeCategoryUrls = typeCategories.map(typeCategory => ({
-        url: `${baseUrl}/product/${typeCategory}`,
+        url: `${BASE_URL}/product/${typeCategory}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
@@ -56,31 +57,31 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     return [
         {
-            url: baseUrl,
+            url: BASE_URL,
             lastModified: new Date(),
             changeFrequency: 'daily',
             priority: 1,
         },
         {
-            url: `${baseUrl}/about`,
+            url: `${BASE_URL}/about`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/blog`,
+            url: `${BASE_URL}/blog`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/contact`,
+            url: `${BASE_URL}/contact`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
-            url: `${baseUrl}/product`,
+            url: `${BASE_URL}/product`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 0.9,

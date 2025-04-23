@@ -1,5 +1,7 @@
 import { metadata } from "@/base/meta/Metadata";
 
+import { GoogleTagManager, GoogleTagManagerNoScript } from '@/base/analytics/GoogleTagManager'
+
 import "@/base/style/globals.css";
 
 import { openSans } from "@/base/fonts/Fonts";
@@ -18,10 +20,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="id">
+      <head>
+        <GoogleTagManager />
+      </head>
       <body
         className={`${openSans.variable} antialiased`}
       >
+        <GoogleTagManagerNoScript />
         <Providers>
           <Pathname>
             {children}
@@ -31,3 +37,4 @@ export default function RootLayout({
     </html>
   );
 }
+
