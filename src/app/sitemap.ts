@@ -6,6 +6,8 @@ import { collection, getDocs } from "firebase/firestore"
 
 const BASE_URL = process.env.NEXT_PUBLIC_URL as string;
 
+import { FormatSlug } from '@/base/helper/FormatSlug';
+
 async function getBlogSlugs() {
     try {
         const blogRef = collection(db, process.env.NEXT_PUBLIC_COLLECTIONS_BLOG as string)
@@ -49,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
 
     const typeCategoryUrls = typeCategories.map(typeCategory => ({
-        url: `${BASE_URL}/product/${typeCategory}`,
+        url: `${BASE_URL}/product/${FormatSlug(typeCategory)}`,
         lastModified: new Date(),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
