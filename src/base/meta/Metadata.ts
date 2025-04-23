@@ -1,4 +1,6 @@
 const BASE_URL = process.env.NEXT_PUBLIC_URL as string;
+const SEARCH_CONSOLE = process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_ID as string;
+const TAG_MANAGER = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string;
 
 export const viewport = {
   width: "device-width",
@@ -8,7 +10,64 @@ export const viewport = {
   themeColor: "#f5f5f5",
 };
 
-export const metadata = {
+interface Metadata {
+  title: string;
+  description: string;
+  authors: Array<{ name: string }>;
+  keywords: string[];
+  icons: {
+    icon: Array<{
+      url: string;
+      sizes: string;
+      type: string;
+    }>;
+    apple: string;
+    shortcut: string;
+    appleTouchIcon: string;
+  };
+  manifest: string;
+  metadataBase: URL;
+  canonical: string;
+  other: {
+    [key: string]: string;
+  };
+  openGraph: {
+    type: string;
+    title: string;
+    description: string;
+    url: string;
+    siteName: string;
+    locale: string;
+    images: Array<{
+      url: string;
+      width: number;
+      height: number;
+      alt: string;
+    }>;
+  };
+  twitter: {
+    card: string;
+    title: string;
+    description: string;
+    images: string[];
+  };
+  verification?: {
+    google?: string;
+    googleTagManager?: string;
+  };
+  robots: {
+    index: boolean;
+    follow: boolean;
+  };
+  alternates: {
+    canonical: string;
+    languages: {
+      [key: string]: string;
+    };
+  };
+}
+
+export const metadata: Metadata = {
   title: "Nizam Cellular Leuwiliang - Service Handphone Terlengkap",
   description:
     "Nizam Cellular Leuwiliang menyediakan layanan service handphone terlengkap di Leuwiliang. Kami menangani berbagai masalah handphone dengan teknisi berpengalaman dan harga terjangkau.",
@@ -49,8 +108,8 @@ export const metadata = {
     "format-detection": "telephone=yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "msapplication-TileColor": "#f5f5f5",
-    "google-site-verification": process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_ID,
-    "google-tag-manager": "GTM-K5M792LB",
+    "google-site-verification": SEARCH_CONSOLE,
+    "google-tag-manager": TAG_MANAGER,
   },
 
   openGraph: {
@@ -80,8 +139,8 @@ export const metadata = {
   },
 
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_ID,
-    googleTagManager: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
+    google: SEARCH_CONSOLE,
+    googleTagManager: TAG_MANAGER,
   },
 
   robots: {
