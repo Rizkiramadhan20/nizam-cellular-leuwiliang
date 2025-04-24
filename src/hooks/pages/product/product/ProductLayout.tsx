@@ -20,7 +20,7 @@ import Link from 'next/link'
 
 import { FormatRupiah } from "@/base/helper/FormatRupiah"
 
-import BannerSwiper from './banner/BannerSwiper'
+import BannerSwiper from '@/hooks/pages/product/product/banner/BannerSwiper'
 
 export default function ProductLayout() {
     const [product, setProduct] = useState<ProductType[]>([]);
