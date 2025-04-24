@@ -81,7 +81,7 @@ export default function ProductCategoryHero({ typeCategory }: { typeCategory: st
                             Home
                         </Link>
                         <IoIosArrowForward className="text-white/90 text-sm" />
-                        <Link href="/project" className='text-sm md:text-base text-white hover:text-primary transition-all duration-300'>
+                        <Link href="/product" className='text-sm md:text-base text-white hover:text-primary transition-all duration-300'>
                             Product
                         </Link>
                         <IoIosArrowForward className="text-white/90 text-sm" />

@@ -80,10 +80,12 @@ export default function ProductCategoryHero({ typeCategory, genreTitle }: { type
                         <Link href="/" className='text-sm md:text-base text-white hover:text-primary transition-all duration-300'>
                             Home
                         </Link>
+
                         <IoIosArrowForward className="text-white/90 text-sm" />
-                        <Link href="/project" className='text-sm md:text-base text-white hover:text-primary transition-all duration-300'>
+                        <Link href="/product" className='text-sm md:text-base text-white hover:text-primary transition-all duration-300'>
                             Product
                         </Link>
+
                         <IoIosArrowForward className="text-white/90 text-sm" />
                         <Link href={`/product/${product?.typeCategory}`} className='text-sm md:text-base text-white hover:text-primary transition-all duration-300 capitalize'>{product?.typeCategory}</Link>
                         <IoIosArrowForward className="text-white/90 text-sm" />

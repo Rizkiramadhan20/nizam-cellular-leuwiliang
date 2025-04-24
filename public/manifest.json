@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "/favicon.ico",
+      "src": "/favicon.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/favicon.ico",
+      "src": "/icons.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -26,10 +26,30 @@
   "categories": [
     "nizamcellular",
     "nizamcell",
+    "nizam",
+    "nizam cellular",
+    "nizam cellular leuwiliang",
+    "nizam cellular leuwiliang service",
+    "nizam cellular leuwiliang service handphone",
+    "nizam cellular leuwiliang service hp",
     "software",
     "hardware",
     "handphone",
-    "laptop"
+    "laptop",
+    "tablet",
+    "service",
+    "service handphone",
+    "service hp",
+    "service handphone terlengkap",
+    "service hp terlengkap",
+    "service handphone murah",
+    "service hp murah",
+    "service handphone berkualitas",
+    "service hp berkualitas",
+    "service handphone profesional",
+    "service hp profesional",
+    "service handphone terbaik",
+    "service hp terbaik"
   ],
   "screenshots": [
     {
@@ -38,5 +58,5 @@
       "type": "image/png"
     }
   ],
-  "description": "Space Digitalia"
+  "description": "Nizam Cellular Leuwiliang menyediakan layanan service handphone terlengkap di Leuwiliang. Kami menangani berbagai masalah handphone dengan teknisi berpengalaman dan harga terjangkau"
 }

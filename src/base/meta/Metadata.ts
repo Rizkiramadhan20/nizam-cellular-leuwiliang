@@ -1,4 +1,7 @@
+import { Metadata } from "next";
+
 const BASE_URL = process.env.NEXT_PUBLIC_URL as string;
+
 const TAG_MANAGER = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID as string;
 
 export const viewport = {
@@ -8,62 +11,6 @@ export const viewport = {
   userScalable: true,
   themeColor: "#f5f5f5",
 };
-
-interface Metadata {
-  title: string;
-  description: string;
-  authors: Array<{ name: string }>;
-  keywords: string[];
-  icons: {
-    icon: Array<{
-      url: string;
-      sizes: string;
-      type: string;
-    }>;
-    apple: string;
-    shortcut: string;
-    appleTouchIcon: string;
-  };
-  manifest: string;
-  metadataBase: URL;
-  canonical: string;
-  other: {
-    [key: string]: string;
-  };
-  openGraph: {
-    type: string;
-    title: string;
-    description: string;
-    url: string;
-    siteName: string;
-    locale: string;
-    images: Array<{
-      url: string;
-      width: number;
-      height: number;
-      alt: string;
-    }>;
-  };
-  twitter: {
-    card: string;
-    title: string;
-    description: string;
-    images: string[];
-  };
-  verification?: {
-    googleTagManager?: string;
-  };
-  robots: {
-    index: boolean;
-    follow: boolean;
-  };
-  alternates: {
-    canonical: string;
-    languages: {
-      [key: string]: string;
-    };
-  };
-}
 
 export const metadata: Metadata = {
   title: "Nizam Cellular Leuwiliang - Service Handphone Terlengkap",
@@ -93,12 +40,10 @@ export const metadata: Metadata = {
     ],
     apple: "/favicon.ico",
     shortcut: "/favicon.ico",
-    appleTouchIcon: "/favicon.ico",
   },
 
   manifest: "/manifest.json",
   metadataBase: new URL(BASE_URL),
-  canonical: `${BASE_URL}`,
 
   other: {
     "mobile-web-app-capable": "yes",
@@ -136,7 +81,7 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    googleTagManager: TAG_MANAGER,
+    google: TAG_MANAGER,
   },
 
   robots: {

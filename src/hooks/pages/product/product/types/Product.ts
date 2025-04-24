@@ -14,6 +14,7 @@ export interface ProductType {
   imageUrl: string;
   images: string[];
   price: number;
+  sold: number;
   slug: string;
   icon: string;
   logo: string;
