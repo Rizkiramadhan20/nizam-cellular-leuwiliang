@@ -30,23 +30,23 @@ export default async function Page({ params }: Props) {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
-                    "name": `Products - ${resolvedParams.typeCategory} - Space Digitalia`,
-                    "description": `Koleksi project ${resolvedParams.typeCategory} terbaik dari Space Digitalia`,
-                    "url": `https://spacedigitalia.my.id/product/${resolvedParams.typeCategory}`,
+                    "name": `Products - ${resolvedParams.typeCategory} - Nizam Cellular Leuwiliang`,
+                    "description": `Koleksi project ${resolvedParams.typeCategory} terbaik dari Nizam Cellular Leuwiliang`,
+                    "url": `https://nizamcellularleuwiliang.my.id/product/${resolvedParams.typeCategory}`,
                     "isPartOf": {
                         "@type": "WebSite",
-                        "name": "Space Digitalia",
-                        "url": "https://spacedigitalia.my.id"
+                        "name": "Nizam Cellular Leuwiliang",
+                        "url": "https://nizamcellularleuwiliang.my.id"
                     },
                     "about": {
                         "@type": "Thing",
                         "name": `Products - ${resolvedParams.typeCategory}`,
-                        "description": `Product kategori ${resolvedParams.typeCategory} oleh Space Digitalia`
+                        "description": `Product kategori ${resolvedParams.typeCategory} oleh Nizam Cellular Leuwiliang`
                     },
                     "provider": {
                         "@type": "Organization",
-                        "name": "Space Digitalia",
-                        "url": "https://spacedigitalia.my.id"
+                        "name": "Nizam Cellular Leuwiliang",
+                        "url": "https://nizamcellularleuwiliang.my.id"
                     },
                     "breadcrumb": {
                         "@type": "BreadcrumbList",
@@ -55,13 +55,13 @@ export default async function Page({ params }: Props) {
                                 "@type": "ListItem",
                                 "position": 1,
                                 "name": "Product",
-                                "item": "https://spacedigitalia.my.id/product"
+                                "item": "https://nizamcellularleuwiliang.my.id/product"
                             },
                             {
                                 "@type": "ListItem",
                                 "position": 2,
                                 "name": resolvedParams.typeCategory,
-                                "item": `https://spacedigitalia.my.id/product/${resolvedParams.typeCategory}`
+                                "item": `https://nizamcellularleuwiliang.my.id/product/${resolvedParams.typeCategory}`
                             }
                         ]
                     }

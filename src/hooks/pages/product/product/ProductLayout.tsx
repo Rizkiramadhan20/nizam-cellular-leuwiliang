@@ -103,7 +103,7 @@ export default function ProductLayout() {
                                     .slice(0, 10)
                                     .map((product) => (
                                         <Link
-                                            href={`/product/${FormatSlug(product.typeCategory)}/${FormatSlug(product.genreTitle)}/${FormatSlug(product.typeTitle)}/${FormatSlug(product.slug)}`}
+                                            href={`/product/${FormatSlug(product.typeCategory)}/${FormatSlug(product.genreTitle)}/${FormatSlug(product.slug)}`}
                                             key={product.id}
                                             className="group relative bg-white rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md"
                                         >

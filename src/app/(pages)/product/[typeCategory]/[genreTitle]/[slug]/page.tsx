@@ -4,14 +4,12 @@ import { Fragment } from 'react'
 
 import Script from "next/script";
 
-import ProductGenreTitle from '@/hooks/pages/product/GenreTitle/ProductGenreTitle'
+import ProductSlug from '@/hooks/pages/product/slug/ProductSlug'
 
-import { getProductMetadata } from '@/hooks/pages/product/GenreTitle/meta/metadata'
-
-import ProductTypeHero from '@/hooks/pages/product/GenreTitle/ProductGenreHero'
+import { generateMetadata as getProductMetadata } from '@/hooks/pages/product/slug/meta/metadata'
 
 type Props = {
-    params: Promise<{ typeCategory: string, genreTitle: string }>
+    params: Promise<{ slug: string }>
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
@@ -19,7 +17,7 @@ export async function generateMetadata(
     { params }: Props,
 ): Promise<Metadata> {
     const resolvedParams = await params
-    return getProductMetadata({ params: { typeCategory: resolvedParams.typeCategory, genreTitle: resolvedParams.genreTitle } })
+    return getProductMetadata({ params: { slug: resolvedParams.slug } })
 }
 
 export default async function Page({ params }: Props) {
@@ -30,23 +28,23 @@ export default async function Page({ params }: Props) {
                 {JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "CollectionPage",
-                    "name": `Products - ${resolvedParams.typeCategory} - ${resolvedParams.genreTitle} - Nizam Cellular Leuwiliang`,
-                    "description": `Koleksi project ${resolvedParams.genreTitle} terbaik dari Nizam Cellular Leuwiliang`,
-                    "url": `https://nizamcellularleuwiliang.my.id/product/${resolvedParams.typeCategory}/${resolvedParams.genreTitle}`,
+                    "name": `Products - ${resolvedParams.slug} - Nizam Cellular Leuwiliang`,
+                    "description": `Koleksi project ${resolvedParams.slug} terbaik dari Nizam Cellular Leuwiliang`,
+                    "url": `https://nizamcellularleuwiliang.my.id/product/${resolvedParams.slug}`,
                     "isPartOf": {
                         "@type": "WebSite",
                         "name": "Nizam Cellular Leuwiliang",
-                        "url": "https://nizamcellularleuwiliang.my.id/"
+                        "url": "https://nizamcellularleuwiliang.my.id"
                     },
                     "about": {
                         "@type": "Thing",
-                        "name": `Products - ${resolvedParams.typeCategory} - ${resolvedParams.genreTitle}`,
-                        "description": `Product kategori ${resolvedParams.genreTitle} oleh Nizam Cellular Leuwiliang`
+                        "name": `Products - ${resolvedParams.slug}`,
+                        "description": `Product kategori ${resolvedParams.slug} oleh Nizam Cellular Leuwiliang`
                     },
                     "provider": {
                         "@type": "Organization",
                         "name": "Nizam Cellular Leuwiliang",
-                        "url": "https://nizamcellularleuwiliang.my.id/"
+                        "url": "https://nizamcellularleuwiliang.my.id"
                     },
                     "breadcrumb": {
                         "@type": "BreadcrumbList",
@@ -60,16 +58,15 @@ export default async function Page({ params }: Props) {
                             {
                                 "@type": "ListItem",
                                 "position": 2,
-                                "name": resolvedParams.genreTitle,
-                                "item": `https://nizamcellularleuwiliang.my.id/product/${resolvedParams.typeCategory}/${resolvedParams.genreTitle}`
+                                "name": resolvedParams.slug,
+                                "item": `https://nizamcellularleuwiliang.my.id/product/${resolvedParams.slug}`
                             }
                         ]
                     }
                 })}
             </Script>
 
-            <ProductTypeHero typeCategory={resolvedParams.typeCategory} genreTitle={resolvedParams.genreTitle} />
-            <ProductGenreTitle typeCategory={resolvedParams.typeCategory} genreTitle={resolvedParams.genreTitle} />
+            <ProductSlug slug={resolvedParams.slug} />
         </Fragment>
     )
 }

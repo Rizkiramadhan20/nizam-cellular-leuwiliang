@@ -23,4 +23,5 @@ export interface ProductType {
   genreTitle: string;
   typeCategory: string;
   typeTitle: string;
+  relatedProducts: ProductType[];
 }

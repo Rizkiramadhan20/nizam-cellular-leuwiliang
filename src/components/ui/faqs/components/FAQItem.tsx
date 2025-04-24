@@ -15,11 +15,7 @@ export const FAQItem = ({ faq }: FAQItemProps) => {
             className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 transition-all duration-300 border border-[var(--border-color)]"
         >
             <div className={`flex flex-col md:flex-row gap-4 sm:gap-6 md:gap-8 ${isEvenId ? 'md:flex-row-reverse' : ''}`}>
-                <motion.div
-                    initial={{ x: isEvenId ? 30 : -30, opacity: 0 }}
-                    whileInView={{ x: 0, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
+                <div
                     className="md:w-1/2"
                 >
                     <motion.h2
@@ -47,7 +43,7 @@ export const FAQItem = ({ faq }: FAQItemProps) => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     </motion.div>
-                </motion.div>
+                </div>
 
                 <motion.div
                     initial={{ x: isEvenId ? -30 : 30, opacity: 0 }}
