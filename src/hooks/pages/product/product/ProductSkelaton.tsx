@@ -4,7 +4,7 @@ export default function ProductSkelaton() {
   return (
     <>
       {/* Banner Section */}
-      <div className='pt-28 container px-4 sm:px-6 lg:px-8 xl:px-10'>
+      <div className='pt-24 container px-4 sm:px-6 lg:px-8 xl:px-10'>
         <div className="relative w-full h-[200px] sm:h-[250px] md:h-[300px] xl:h-[400px] bg-gray-200 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl">
           <div className='absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200'></div>
         </div>

@@ -4,9 +4,32 @@ export default function ProductSkelaton() {
   return (
     <>
       {/* Banner Section */}
-      <div className='pt-28 container px-4 sm:px-6 lg:px-8 xl:px-10'>
-        <div className="relative w-full h-[200px] sm:h-[250px] md:h-[300px] xl:h-[400px] bg-gray-200 rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl">
+      <div className="relative h-[60vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
+        <div className="absolute inset-0 bg-gray-200">
           <div className='absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200'></div>
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/10" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 z-10">
+          <div className="h-16 w-64 bg-gray-200 rounded-lg relative overflow-hidden">
+            <div className='absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200'></div>
+          </div>
+          <div className="flex items-center gap-4 bg-white/10 px-8 py-3 rounded-full backdrop-blur-md border border-white/20">
+            <div className="h-4 w-16 bg-gray-200 rounded-lg relative overflow-hidden">
+              <div className='absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200'></div>
+            </div>
+            <div className="h-4 w-4 bg-gray-200 rounded-full relative overflow-hidden">
+              <div className='absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200'></div>
+            </div>
+            <div className="h-4 w-16 bg-gray-200 rounded-lg relative overflow-hidden">
+              <div className='absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200'></div>
+            </div>
+            <div className="h-4 w-4 bg-gray-200 rounded-full relative overflow-hidden">
+              <div className='absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200'></div>
+            </div>
+            <div className="h-4 w-24 bg-gray-200 rounded-lg relative overflow-hidden">
+              <div className='absolute inset-0 -translate-x-full animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200'></div>
+            </div>
+          </div>
         </div>
       </div>
 

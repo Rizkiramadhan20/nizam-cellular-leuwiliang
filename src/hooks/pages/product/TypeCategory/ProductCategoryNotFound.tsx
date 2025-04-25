@@ -1,7 +1,8 @@
 import React from 'react'
+
 import { motion } from 'framer-motion'
 
-export default function ProjectTypeNotFound({ typeCategory }: { typeCategory: string }) {
+export default function ProductTypeNotFound({ typeCategory }: { typeCategory: string }) {
     return (
         <section className='min-h-screen bg-gradient-to-b from-blue-50/50 via-white to-white flex items-center'>
             <div className="container mx-auto px-4 lg:px-8 xl:px-10 py-2 lg:py-12 max-w-7xl">
@@ -18,7 +19,7 @@ export default function ProjectTypeNotFound({ typeCategory }: { typeCategory: st
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                            Oops! Project Tidak Ditemukan
+                            Oops! Product Tidak Ditemukan
                         </motion.h1>
                         <motion.p
                             className="text-lg text-gray-600 leading-relaxed"
@@ -26,7 +27,7 @@ export default function ProjectTypeNotFound({ typeCategory }: { typeCategory: st
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4, duration: 0.5 }}
                         >
-                            Kami tidak dapat menemukan project apa pun dalam kategori <span className="font-semibold text-blue-600">&quot;{typeCategory}&quot;</span>. Project tersebut mungkin telah dipindahkan atau dihapus.
+                            Kami tidak dapat menemukan product apa pun dalam kategori <span className="font-semibold text-blue-600">&quot;{typeCategory}&quot;</span>. Product tersebut mungkin telah dipindahkan atau dihapus.
                         </motion.p>
                         <motion.div
                             className="pt-4"

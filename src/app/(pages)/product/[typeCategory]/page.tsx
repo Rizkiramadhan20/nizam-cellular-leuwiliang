@@ -8,8 +8,6 @@ import ProductTypeCategory from '@/hooks/pages/product/TypeCategory/ProductTypeC
 
 import { getProductMetadata } from '@/hooks/pages/product/TypeCategory/meta/metadata'
 
-import ProductTypeHero from '@/hooks/pages/product/TypeCategory/ProductCategoryHero'
-
 type Props = {
     params: Promise<{ typeCategory: string }>
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -24,6 +22,7 @@ export async function generateMetadata(
 
 export default async function Page({ params }: Props) {
     const resolvedParams = await params
+
     return (
         <Fragment>
             <Script id="json-ld-product-category" type="application/ld+json" strategy="afterInteractive">
@@ -68,7 +67,6 @@ export default async function Page({ params }: Props) {
                 })}
             </Script>
 
-            <ProductTypeHero typeCategory={resolvedParams.typeCategory} />
             <ProductTypeCategory typeCategory={resolvedParams.typeCategory} />
         </Fragment>
     )

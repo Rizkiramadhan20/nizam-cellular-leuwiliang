@@ -1,4 +1,4 @@
-import { metadata } from "@/base/meta/Metadata";
+import { metadata } from "@/base/meta/meta";
 
 import { GoogleTagManager, GoogleTagManagerNoScript } from '@/base/analytics/GoogleTagManager'
 

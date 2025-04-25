@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import Image from 'next/image'
 
@@ -12,40 +12,16 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 
 import banner from '@/base/assets/pages/product/category.jpg'
 
-import { FetchTypeCategory } from '@/hooks/pages/product/TypeCategory/lib/FetchTypeCategory'
-
-import { ProductType } from '@/hooks/pages/product/product/types/Product'
-
 import ProductTypeSkelaton from '@/hooks/pages/product/product/ProductSkelaton'
 
-import ProductTypeNotFound from '@/hooks/pages/product/TypeCategory/ProductCategoryNotFound'
-
-export default function ProductCategoryHero({ typeCategory }: { typeCategory: string }) {
-    const [product, setProduct] = useState<ProductType | null>(null)
-    const [isLoading, setIsLoading] = useState(true)
+export default function ProductCategoryHero({ typeCategory, isLoading }: { typeCategory: string, isLoading: boolean }) {
     const { scrollY } = useScroll();
-    const y = useTransform(scrollY, [0, 500], [0, 250]);
     const opacity = useTransform(scrollY, [0, 300], [1, 0]);
     const titleY = useTransform(scrollY, [0, 300], [0, 100]);
-    const scale = useTransform(scrollY, [0, 300], [1, 0.9]);
-
-    useEffect(() => {
-        const unsubscribe = FetchTypeCategory(typeCategory, (data) => {
-            if (data && data.length > 0) {
-                setProduct(data[0])
-            }
-            setIsLoading(false)
-        })
-
-        return () => unsubscribe()
-    }, [typeCategory])
+    const y = useTransform(scrollY, [0, 500], [0, 250]);
 
     if (isLoading) {
         return <ProductTypeSkelaton />
-    }
-
-    if (!product) {
-        return <ProductTypeNotFound typeCategory={typeCategory} />
     }
 
     return (
@@ -70,7 +46,6 @@ export default function ProductCategoryHero({ typeCategory }: { typeCategory: st
                     style={{
                         opacity,
                         y: titleY,
-                        scale,
                     }}
                 >
                     <h3 className='text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight drop-shadow-lg capitalize'>
