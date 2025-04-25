@@ -17,6 +17,7 @@
     "chart.js": "^4.4.8",
     "date-fns": "^4.1.0",
     "firebase": "^11.6.0",
+    "firebase-admin": "^13.3.0",
     "framer-motion": "^12.7.4",
     "html-react-parser": "^5.2.3",
     "imagekit": "^6.0.0",

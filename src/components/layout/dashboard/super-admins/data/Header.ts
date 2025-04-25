@@ -112,10 +112,10 @@ export const menuItems = [
   {
     icon: FiSettings,
     label: "Pengaturan",
-    href: "/dashboard/super-admins/profile",
+    href: "/dashboard/super-admins/settings",
     subItems: [
-      { label: "Profile", href: "/dashboard/super-admins/profile" },
-      { label: "Security", href: "/dashboard/super-admins/profile/security" },
+      { label: "Profile", href: "/dashboard/super-admins/settings/profile" },
+      { label: "Security", href: "/dashboard/super-admins/settings/security" },
     ],
   },
 
