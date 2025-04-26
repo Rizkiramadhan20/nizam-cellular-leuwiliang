@@ -10,8 +10,6 @@ export interface Customer {
   id?: string;
   name: string;
   phone: string;
-  email?: string;
-  address?: string;
 }
 
 export interface Transaction {
@@ -25,5 +23,6 @@ export interface Transaction {
   price: number;
   createdAt: Timestamp;
   updatedAt: Timestamp;
+  transactionDate?: Date;
   [key: `${string}.${string}`]: string | number | boolean | null | undefined;
 }

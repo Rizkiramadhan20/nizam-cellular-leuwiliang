@@ -1,33 +1,43 @@
 import { FiHome, FiSettings } from "react-icons/fi";
 
-import { FaHistory, FaBookmark } from "react-icons/fa";
+import { GrTransaction } from "react-icons/gr";
 
 export const menuItems = [
   {
     icon: FiHome,
     label: "Dashboard",
-    href: "/dashboard/user",
+    href: "/dashboard/users",
   },
 
   {
-    icon: FaHistory,
-    label: "History",
-    href: "/dashboard/user/history",
-  },
+    icon: GrTransaction,
+    label: "Transaksi",
+    href: "/dashboard/users/transaction",
+    subItems: [
+      {
+        label: "Daftar Transaksi",
+        href: "/dashboard/users/transaction",
+      },
 
-  {
-    icon: FaBookmark,
-    label: "Bookmarks",
-    href: "/dashboard/user/bookmarks",
+      {
+        label: "Pengembalian Transaksi",
+        href: "/dashboard/users/transaction/return",
+      },
+
+      {
+        label: "Transaksi Selesai",
+        href: "/dashboard/users/transaction/completed",
+      },
+    ],
   },
 
   {
     icon: FiSettings,
     label: "Pengaturan",
-    href: "/dashboard/user/profile",
+    href: "/dashboard/users/settings",
     subItems: [
-      { label: "Profile", href: "/dashboard/user/profile" },
-      { label: "Security", href: "/dashboard/user/profile/security" },
+      { label: "Profile", href: "/dashboard/users/settings/profile" },
+      { label: "Security", href: "/dashboard/users/settings/security" },
     ],
   },
 
