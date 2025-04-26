@@ -85,11 +85,21 @@ export const menuItems = [
 
   {
     icon: GrTransaction,
-    label: "Transactions",
-    href: "/dashboard/super-admins/price",
+    label: "Transaksi",
+    href: "/dashboard/super-admins/transaction",
     subItems: [
-      { label: "Price List", href: "/dashboard/super-admins/price" },
-      { label: "Card", href: "/dashboard/super-admins/price/card" },
+      {
+        label: "Daftar Transaksi",
+        href: "/dashboard/super-admins/transaction",
+      },
+      {
+        label: "Pengembalian Transaksi",
+        href: "/dashboard/super-admins/transaction/return",
+      },
+      {
+        label: "Transaksi Selesai",
+        href: "/dashboard/super-admins/transaction/completed",
+      },
     ],
   },
 

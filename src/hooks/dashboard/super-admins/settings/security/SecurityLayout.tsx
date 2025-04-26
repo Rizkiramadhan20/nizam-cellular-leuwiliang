@@ -63,13 +63,13 @@ export default function PrivacyContent() {
     }
 
     return (
-        <section className="min-h-full py-0 px-0 sm:py-4 sm:px-4">
+        <section className="min-h-full">
             {/* Header Section */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8"
+                className="bg-white rounded-2xl shadow-sm border border-[var(--border-color)] p-6 mb-8"
             >
                 <div className="space-y-1">
                     <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'>
@@ -84,7 +84,7 @@ export default function PrivacyContent() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="bg-white rounded-2xl shadow-lg px-6 py-6 mt-2"
+                className="bg-white rounded-2xl border border-[var(--border-color)] px-6 py-6 mt-2"
             >
                 {/* Privacy Cards */}
                 <div className="grid gap-6">
@@ -93,7 +93,7 @@ export default function PrivacyContent() {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
-                        className="p-6 border border-gray-100 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all"
+                        className="p-6 border border-[var(--border-color)] rounded-xl bg-gray-50 hover:bg-gray-100 transition-all"
                     >
                         <div className="flex items-start space-x-4">
                             <div className="p-3 bg-blue-100 rounded-lg">
