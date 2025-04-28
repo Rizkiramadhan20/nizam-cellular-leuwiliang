@@ -46,6 +46,10 @@ export const menuItems = [
         label: "Merek Handphone",
         href: "/dashboard/super-admins/handphone/brand",
       },
+      {
+        label: "Pemilik Handphone",
+        href: "/dashboard/super-admins/handphone/owner",
+      },
     ],
   },
 

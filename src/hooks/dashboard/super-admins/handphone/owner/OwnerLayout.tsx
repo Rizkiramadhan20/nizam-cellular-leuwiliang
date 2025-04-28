@@ -6,19 +6,19 @@ import { Timestamp } from 'firebase/firestore';
 
 import { format } from 'date-fns';
 
-import { useBrandHandphoneData } from '@/hooks/dashboard/super-admins/handphone/brand/lib/FetchBrandHandphone';
+import { useOwnerHandphoneData } from '@/hooks/dashboard/super-admins/handphone/owner/lib/FetchOwnerHandphone';
 
-import { ContentModal } from '@/hooks/dashboard/super-admins/handphone/brand/modal/ContentModal';
+import { ContentModal } from '@/hooks/dashboard/super-admins/handphone/owner/modal/ContentModal';
 
-import { DeleteModal } from '@/hooks/dashboard/super-admins/handphone/brand/modal/DeleteModal';
+import { DeleteModal } from '@/hooks/dashboard/super-admins/handphone/owner/modal/DeleteModal';
 
-import FeaturedSkelaton from '@/hooks/dashboard/super-admins/handphone/brand/BrandHandphoneSkelaton';
+import FeaturedSkelaton from '@/hooks/dashboard/super-admins/handphone/owner/OwnerSkelaton';
 
-import { BrandHandphoneContentFormData, initialFormData } from '@/hooks/dashboard/super-admins/handphone/brand/types/BrandHandphone';
+import { OwnerHandphoneContentFormData, initialFormData } from '@/hooks/dashboard/super-admins/handphone/owner/types/Owner';
 
 import { Pagination } from '@/base/helper/Pagination';
 
-export default function ProductCategoryLayout() {
+export default function OwnerHandphoneLayout() {
     const {
         isLoading,
         contents,
@@ -30,9 +30,9 @@ export default function ProductCategoryLayout() {
         totalItems,
         itemsPerPage,
         handlePageChange,
-    } = useBrandHandphoneData();
+    } = useOwnerHandphoneData();
 
-    const [formData, setFormData] = useState<BrandHandphoneContentFormData>(initialFormData);
+    const [formData, setFormData] = useState<OwnerHandphoneContentFormData>(initialFormData);
     const [isEditing, setIsEditing] = useState(false);
     const [editingId, setEditingId] = useState<string | null>(null);
     const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -106,10 +106,10 @@ export default function ProductCategoryLayout() {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="space-y-1">
                         <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'>
-                            Brand Handphone
+                            Pemilik Handphone
                         </h1>
                         <p className='text-gray-500'>
-                            Manage and organize your Brand Handphone
+                            Kelola dan atur Pemilik Handphone Anda
                         </p>
                     </div>
 
@@ -129,7 +129,7 @@ export default function ProductCategoryLayout() {
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
                         </svg>
-                        Add Category
+                        Tambah Pemilik
                     </button>
                 </div>
             </div>
@@ -150,7 +150,7 @@ export default function ProductCategoryLayout() {
                                         Title
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
-                                        Created At
+                                        Dibuat Pada
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
                                         Actions
