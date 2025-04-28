@@ -1,6 +1,6 @@
 import Script from 'next/script'
 
-const GTM_ID = 'GTM-K5M792LB'
+const GTM_ID = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID
 
 export const GoogleTagManager = () => {
     return (
@@ -13,7 +13,7 @@ export const GoogleTagManager = () => {
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer',,'${GTM_ID}');
+})(window,document,'script','dataLayer','${GTM_ID}');
         `,
             }}
         />
