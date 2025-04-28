@@ -8,11 +8,84 @@ import { TbReportAnalytics } from "react-icons/tb";
 
 import { FiLayout } from "react-icons/fi";
 
+import { CiCreditCard1 } from "react-icons/ci";
+
+import { SlScreenSmartphone } from "react-icons/sl";
+
 export const menuItems = [
   {
     icon: FiHome,
     label: "Dashboard",
     href: "/dashboard/super-admins",
+  },
+
+  {
+    icon: FiPackage,
+    label: "Product",
+    href: "/dashboard/super-admins/product",
+    subItems: [
+      { label: "Daftar Product", href: "/dashboard/super-admins/product" },
+      { label: "Category", href: "/dashboard/super-admins/product/category" },
+      { label: "Genre", href: "/dashboard/super-admins/product/genre" },
+      { label: "Type", href: "/dashboard/super-admins/product/type" },
+      { label: "Icons", href: "/dashboard/super-admins/product/icons" },
+      { label: "Logo", href: "/dashboard/super-admins/product/logo" },
+    ],
+  },
+
+  {
+    icon: SlScreenSmartphone,
+    label: "Handphone",
+    href: "/dashboard/super-admins/handphone",
+    subItems: [
+      {
+        label: "Handphone",
+        href: "/dashboard/super-admins/handphone",
+      },
+      {
+        label: "Merek Handphone",
+        href: "/dashboard/super-admins/handphone/brand",
+      },
+    ],
+  },
+
+  {
+    icon: CiCreditCard1,
+    label: "Voucher",
+    href: "/dashboard/super-admins/voucher",
+    subItems: [
+      {
+        label: "Voucher",
+        href: "/dashboard/super-admins/voucher",
+      },
+      { label: "Merek Voucher", href: "/dashboard/super-admins/voucher/brand" },
+    ],
+  },
+
+  {
+    icon: GrTransaction,
+    label: "Transaksi",
+    href: "/dashboard/super-admins/transaction",
+    subItems: [
+      {
+        label: "Daftar Transaksi",
+        href: "/dashboard/super-admins/transaction",
+      },
+      {
+        label: "Pengembalian Transaksi",
+        href: "/dashboard/super-admins/transaction/return",
+      },
+      {
+        label: "Transaksi Selesai",
+        href: "/dashboard/super-admins/transaction/completed",
+      },
+    ],
+  },
+
+  {
+    icon: TbReportAnalytics,
+    label: "Rekap",
+    href: "/dashboard/super-admins/rekap",
   },
 
   {
@@ -67,46 +140,6 @@ export const menuItems = [
         href: "/dashboard/super-admins/blog/category",
       },
     ],
-  },
-
-  {
-    icon: FiPackage,
-    label: "Product",
-    href: "/dashboard/super-admins/product",
-    subItems: [
-      { label: "Daftar Product", href: "/dashboard/super-admins/product" },
-      { label: "Category", href: "/dashboard/super-admins/product/category" },
-      { label: "Genre", href: "/dashboard/super-admins/product/genre" },
-      { label: "Type", href: "/dashboard/super-admins/product/type" },
-      { label: "Icons", href: "/dashboard/super-admins/product/icons" },
-      { label: "Logo", href: "/dashboard/super-admins/product/logo" },
-    ],
-  },
-
-  {
-    icon: GrTransaction,
-    label: "Transaksi",
-    href: "/dashboard/super-admins/transaction",
-    subItems: [
-      {
-        label: "Daftar Transaksi",
-        href: "/dashboard/super-admins/transaction",
-      },
-      {
-        label: "Pengembalian Transaksi",
-        href: "/dashboard/super-admins/transaction/return",
-      },
-      {
-        label: "Transaksi Selesai",
-        href: "/dashboard/super-admins/transaction/completed",
-      },
-    ],
-  },
-
-  {
-    icon: TbReportAnalytics,
-    label: "Rekap",
-    href: "/dashboard/super-admins/rekap",
   },
 
   {
