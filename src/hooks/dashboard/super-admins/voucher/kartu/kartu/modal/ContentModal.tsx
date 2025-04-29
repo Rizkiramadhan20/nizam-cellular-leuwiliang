@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-import { voucher } from '../types/voucher';
+import { Kartu } from '../types/Kartu';
 
-import { useBrandVoucherData } from '@/hooks/dashboard/super-admins/voucher/voucher/brand/lib/FetchBrandVoucher';
+import { useBrandPerdanaData } from '@/hooks/dashboard/super-admins/voucher/kartu/brand/lib/FetchBrandPerdana';
 
 interface VoucherFormProps {
-    voucher?: voucher;
-    onSubmit: (data: Omit<voucher, 'id' | 'createdAt' | 'updatedAt'>) => Promise<boolean>;
+    Kartu?: Kartu;
+    onSubmit: (data: Omit<Kartu, 'id' | 'createdAt' | 'updatedAt'>) => Promise<boolean>;
     onCancel: () => void;
     isSubmitting?: boolean;
 }
 
 export default function HandphoneForm({
-    voucher,
+    Kartu,
     onSubmit,
     onCancel,
     isSubmitting = false
@@ -26,19 +26,19 @@ export default function HandphoneForm({
     });
 
     // Fetch brand data from brand_handphone collection
-    const { contents: brandOptions, isLoading: loadingBrands } = useBrandVoucherData();
+    const { contents: brandOptions, isLoading: loadingBrands } = useBrandPerdanaData();
 
     useEffect(() => {
-        if (voucher) {
+        if (Kartu) {
             setFormData({
-                title: voucher.title,
-                brand: voucher.brand,
-                stock: voucher.stock,
-                price: voucher.price,
-                total: voucher.total || voucher.stock * voucher.price
+                title: Kartu.title,
+                brand: Kartu.brand,
+                stock: Kartu.stock,
+                price: Kartu.price,
+                total: Kartu.total || Kartu.stock * Kartu.price
             });
         }
-    }, [voucher]);
+    }, [Kartu]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -101,15 +101,15 @@ export default function HandphoneForm({
     return (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 overflow-y-auto">
             <div className="flex items-center justify-center min-h-screen p-4">
-                <div className="bg-white rounded-2xl shadow-xl max-w-2xl w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto custom-scrollbar">
+                <div className="bg-white rounded-2xl shadow-xl max-w-3xl w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto custom-scrollbar">
                     {/* Modal Header */}
                     <div className="flex items-center justify-between mb-8">
                         <div className="space-y-1">
                             <h3 className="text-2xl font-bold text-gray-900">
-                                {voucher ? 'Edit Voucher' : 'Create New Voucher'}
+                                {Kartu ? 'Edit Kartu' : 'Buat Kartu Baru'}
                             </h3>
                             <p className="text-sm text-gray-500">
-                                Fill in the information below to {voucher ? 'update' : 'create'} your voucher
+                                Isi informasi di bawah ini untuk {Kartu ? 'update' : 'create'} your kartu
                             </p>
                         </div>
                         <button
@@ -127,78 +127,82 @@ export default function HandphoneForm({
                         <div className="space-y-8">
                             <div className="bg-gray-50/50 p-6 rounded-2xl space-y-6 border border-[var(--border-color)]">
                                 <div className="space-y-5">
-                                    {/* Title */}
-                                    <div className="form-control">
-                                        <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                            Title
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="title"
-                                            name="title"
-                                            value={formData.title}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                            placeholder="Enter title"
-                                        />
+                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                                        {/* Title */}
+                                        <div className="form-control">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                                                Title
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="title"
+                                                name="title"
+                                                value={formData.title}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
+                                                placeholder="Enter title"
+                                            />
+                                        </div>
+
+                                        {/* Brand */}
+                                        <div className="form-control">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                                                Brand
+                                            </label>
+                                            <select
+                                                id="brand"
+                                                name="brand"
+                                                value={formData.brand}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
+                                                disabled={loadingBrands}
+                                            >
+                                                <option value="">Select Brand</option>
+                                                {brandOptions.map((brand) => (
+                                                    <option key={brand.id} value={brand.title}>
+                                                        {brand.title}
+                                                    </option>
+                                                ))}
+                                            </select>
+                                        </div>
                                     </div>
 
-                                    {/* Brand */}
-                                    <div className="form-control">
-                                        <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                            Brand
-                                        </label>
-                                        <select
-                                            id="brand"
-                                            name="brand"
-                                            value={formData.brand}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                            disabled={loadingBrands}
-                                        >
-                                            <option value="">Select Brand</option>
-                                            {brandOptions.map((brand) => (
-                                                <option key={brand.id} value={brand.title}>
-                                                    {brand.title}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
+                                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                                        {/* Stock */}
+                                        <div className="form-control">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                                                Stock
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="stock"
+                                                name="stock"
+                                                value={formData.stock}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
+                                                placeholder="Enter stock"
+                                            />
+                                        </div>
 
-                                    {/* Stock */}
-                                    <div className="form-control">
-                                        <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                            Stock
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="stock"
-                                            name="stock"
-                                            value={formData.stock}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                            placeholder="Enter stock"
-                                        />
-                                    </div>
-
-                                    {/* Price */}
-                                    <div className="form-control">
-                                        <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                            Price
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="price"
-                                            name="price"
-                                            value={formData.price ? formatPrice(formData.price) : ''}
-                                            onChange={handleChange}
-                                            required
-                                            className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                            placeholder="Enter price"
-                                        />
+                                        {/* Price */}
+                                        <div className="form-control">
+                                            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                                                Price
+                                            </label>
+                                            <input
+                                                type="text"
+                                                id="price"
+                                                name="price"
+                                                value={formData.price ? formatPrice(formData.price) : ''}
+                                                onChange={handleChange}
+                                                required
+                                                className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
+                                                placeholder="Enter price"
+                                            />
+                                        </div>
                                     </div>
 
                                     {/* Total (read-only) */}
@@ -247,7 +251,7 @@ export default function HandphoneForm({
                                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                         </svg>
-                                        <span>{voucher ? 'Save Changes' : 'Create'}</span>
+                                        <span>{Kartu ? 'Save Changes' : 'Create'}</span>
                                     </>
                                 )}
                             </button>

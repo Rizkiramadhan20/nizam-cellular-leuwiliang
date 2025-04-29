@@ -19,9 +19,9 @@ export const ContentModal: React.FC<ContentModalProps> = ({
             <div className="flex items-center justify-between mb-8">
               <div className="space-y-1">
                 <h3 className="text-2xl font-bold text-gray-900">
-                  {isEditing ? 'Edit Brand Handphone' : 'Create New Brand Handphone'}
+                  {isEditing ? 'Edit Brand Perdana' : 'Create New Brand Perdana'}
                 </h3>
-                <p className="text-sm text-gray-500">Fill in the information below to {isEditing ? 'update' : 'create'} your brand handphone</p>
+                <p className="text-sm text-gray-500">Fill in the information below to {isEditing ? 'update' : 'create'} your brand perdana</p>
               </div>
               <button
                 onClick={onClose}

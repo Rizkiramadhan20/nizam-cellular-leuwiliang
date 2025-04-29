@@ -14,7 +14,7 @@ import {
 
 import { db } from "@/utils/firebase/firebase";
 
-import { voucher } from "./types/voucher";
+import { voucher } from "@/hooks/dashboard/super-admins/voucher/voucher/voucher/types/voucher";
 
 export const useVoucher = () => {
   const [voucher, setVoucher] = useState<voucher[]>([]);
@@ -49,7 +49,7 @@ export const useVoucher = () => {
     }
   };
 
-  // Add a new handphone
+  // Add a new voucher
   const addVoucher = async (
     voucherData: Omit<voucher, "id" | "createdAt" | "updatedAt">
   ) => {
@@ -95,7 +95,7 @@ export const useVoucher = () => {
     }
   };
 
-  // Delete a handphone
+  // Delete a voucher
   const deleteVoucher = async (id: string) => {
     try {
       await deleteDoc(

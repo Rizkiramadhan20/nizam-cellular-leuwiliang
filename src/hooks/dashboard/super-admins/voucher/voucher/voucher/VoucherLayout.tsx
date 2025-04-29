@@ -2,9 +2,9 @@
 
 import React, { useState, useMemo } from 'react';
 
-import { useVoucher } from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/useVoucher';
+import { useVoucher } from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/utils/useVoucher';
 
-import VoucherTable from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/VoucherTable';
+import VoucherTable from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/components/VoucherTable';
 
 import VoucherForm from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/modal/ContentModal';
 
@@ -120,7 +120,7 @@ export default function VoucherLayout() {
 
     return (
         <section>
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-4 sm:mb-8">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-4">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="space-y-1">
                         <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'>
@@ -164,7 +164,7 @@ export default function VoucherLayout() {
                     selectedBrand={selectedBrand}
                     setSelectedBrand={setSelectedBrand}
                     availableBrands={availableBrands}
-                    handphones={vouchers}
+                    vouchers={vouchers}
                 />
             </div>
 

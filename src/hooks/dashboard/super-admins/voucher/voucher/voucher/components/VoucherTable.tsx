@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { voucher } from './types/voucher';
+import { RiEdit2Line, RiDeleteBinLine } from 'react-icons/ri';
+
+import { voucher } from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/types/voucher';
 
 interface HandphoneTableProps {
     handphones: voucher[];
@@ -46,13 +48,13 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                             Stock
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Price
+                            Harga
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Total
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Created At
+                            Dibuat pada
                         </th>
                         <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Actions
@@ -92,18 +94,20 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                                         {formatDate(handphone.createdAt)}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <div className="flex justify-end space-x-2">
+                                        <div className="flex justify-end space-x-3">
                                             <button
                                                 onClick={() => onEdit(handphone)}
-                                                className="text-indigo-600 hover:text-indigo-900"
+                                                className="text-indigo-600 hover:text-indigo-900 p-1 rounded-full hover:bg-indigo-50"
+                                                title="Edit"
                                             >
-                                                Edit
+                                                <RiEdit2Line className="h-5 w-5" />
                                             </button>
                                             <button
                                                 onClick={() => onDelete(handphone.id)}
-                                                className="text-red-600 hover:text-red-900"
+                                                className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
+                                                title="Delete"
                                             >
-                                                Delete
+                                                <RiDeleteBinLine className="h-5 w-5" />
                                             </button>
                                         </div>
                                     </td>

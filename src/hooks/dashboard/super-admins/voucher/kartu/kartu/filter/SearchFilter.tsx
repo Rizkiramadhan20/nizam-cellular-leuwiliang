@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { voucher } from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/types/voucher';
+import { Kartu } from '@/hooks/dashboard/super-admins/voucher/kartu/kartu/types/Kartu';
 
 interface SearchFilterProps {
     searchTerm: string;
@@ -8,7 +8,7 @@ interface SearchFilterProps {
     selectedBrand: string;
     setSelectedBrand: (value: string) => void;
     availableBrands: string[];
-    vouchers: voucher[];
+    kartus: Kartu[];
 }
 
 export default function SearchFilter({
@@ -17,7 +17,7 @@ export default function SearchFilter({
     selectedBrand,
     setSelectedBrand,
     availableBrands,
-    vouchers
+    kartus
 }: SearchFilterProps) {
     return (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6">
@@ -28,7 +28,7 @@ export default function SearchFilter({
                         type="text"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        placeholder="Cari Ponsel..."
+                        placeholder="Cari Kartu Perdana..."
                         className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
                     />
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3">
@@ -57,7 +57,7 @@ export default function SearchFilter({
 
             {/* Results Count */}
             <div className="mt-4 text-sm text-gray-500">
-                Showing {vouchers.length} handphone{vouchers.length !== 1 ? 's' : ''}
+                Menampilkan {kartus.length} Perdana{kartus.length !== 1 ? '' : ''}
             </div>
         </div>
     );

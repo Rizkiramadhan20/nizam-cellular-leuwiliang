@@ -8,15 +8,24 @@ import { format } from 'date-fns';
 
 import { useBrandPerdanaData } from '@/hooks/dashboard/super-admins/voucher/kartu/brand/lib/FetchBrandPerdana';
 
-import { ContentModal } from '@/hooks/dashboard/super-admins/voucher/kartu/brand/modal/ContentModal';
-
-import { DeleteModal } from '@/hooks/dashboard/super-admins/voucher/kartu/brand/modal/DeleteModal';
-
 import FeaturedSkelaton from '@/hooks/dashboard/super-admins/voucher/kartu/brand/BrandKartuSkelaton';
 
 import { BrandPerdanaContentFormData, initialFormData } from '@/hooks/dashboard/super-admins/voucher/kartu/brand/types/BrandPerdana';
 
 import { Pagination } from '@/base/helper/Pagination';
+
+import dynamic from 'next/dynamic';
+
+// Dynamically import modals with loading fallback
+const ContentModal = dynamic(
+    () => import('@/hooks/dashboard/super-admins/voucher/kartu/brand/modal/ContentModal').then(mod => mod.ContentModal),
+    { ssr: false, loading: () => <div className="p-4">Loading modal...</div> }
+);
+
+const DeleteModal = dynamic(
+    () => import('@/hooks/dashboard/super-admins/voucher/kartu/brand/modal/DeleteModal').then(mod => mod.DeleteModal),
+    { ssr: false, loading: () => <div className="p-4">Loading modal...</div> }
+);
 
 export default function BrendPerdanaLayout() {
     const {
@@ -109,7 +118,7 @@ export default function BrendPerdanaLayout() {
                             Merk Perdana
                         </h1>
                         <p className='text-gray-500'>
-                            Kelola dan atur Merek Perdana Anda
+                            Kelola dan atur Merk Perdana Anda
                         </p>
                     </div>
 
@@ -150,7 +159,7 @@ export default function BrendPerdanaLayout() {
                                         Title
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
-                                        Created At
+                                        Dibuat Pada
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
                                         Actions
