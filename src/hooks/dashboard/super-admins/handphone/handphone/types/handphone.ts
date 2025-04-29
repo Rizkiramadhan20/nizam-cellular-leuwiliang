@@ -10,3 +10,11 @@ export interface Handphone {
   createdAt: Date;
   updatedAt: Date;
 }
+
+// Table
+
+export interface HandphoneTableProps {
+  handphones: Handphone[];
+  onEdit: (handphone: Handphone) => void;
+  onDelete: (id: string) => void;
+}

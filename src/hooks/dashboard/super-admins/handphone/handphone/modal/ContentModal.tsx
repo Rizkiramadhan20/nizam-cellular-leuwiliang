@@ -23,7 +23,7 @@ export default function HandphoneForm({
         title: '',
         brand: '',
         owner: '',
-        stock: 0,
+        stock: '',
         price: 0,
         total: 0,
         description: ''
@@ -41,7 +41,7 @@ export default function HandphoneForm({
                 title: handphone.title,
                 brand: handphone.brand,
                 owner: handphone.owner,
-                stock: handphone.stock,
+                stock: handphone.stock.toString(),
                 price: handphone.price,
                 total: handphone.total || handphone.stock * handphone.price,
                 description: handphone.description || ''
@@ -52,7 +52,7 @@ export default function HandphoneForm({
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
 
-        if (name === 'stock' || name === 'price') {
+        if (name === 'price') {
             // Remove non-numeric characters
             const numericValue = String(value).replace(/[^\d]/g, '');
 
@@ -66,11 +66,9 @@ export default function HandphoneForm({
                             [name]: numberValue
                         };
 
-                        // Calculate total when stock or price changes
-                        if (name === 'stock' || name === 'price') {
-                            updatedData.total = updatedData.stock * updatedData.price;
-                        }
-
+                        // Calculate total when price changes
+                        const stockNumber = parseInt(prev.stock) || 0;
+                        updatedData.total = stockNumber * updatedData.price;
                         return updatedData;
                     });
 
@@ -86,6 +84,13 @@ export default function HandphoneForm({
                 }));
                 e.target.value = '';
             }
+        } else if (name === 'stock') {
+            // For stock, just update the text value directly
+            setFormData(prev => ({
+                ...prev,
+                [name]: value,
+                total: prev.price * (parseInt(value) || 0)
+            }));
         } else {
             // For non-numeric fields, update directly
             setFormData(prev => ({
@@ -97,16 +102,18 @@ export default function HandphoneForm({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Ensure total is calculated before submitting
+        // Convert stock to number for submission
+        const stockNumber = parseInt(formData.stock) || 0;
         const dataToSubmit = {
             ...formData,
-            total: formData.stock * formData.price
+            stock: stockNumber,
+            total: stockNumber * formData.price
         };
         await onSubmit(dataToSubmit);
     };
 
     // Calculate total value
-    const totalValue = formData.stock * formData.price;
+    const totalValue = (parseInt(formData.stock) || 0) * formData.price;
 
     // Format price for display
     const formatPrice = (price: number) => {
@@ -115,14 +122,14 @@ export default function HandphoneForm({
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
                 <div className="flex items-center justify-between mb-8">
                     <div className="space-y-1">
                         <h3 className="text-2xl font-bold text-gray-900">
-                            {handphone ? 'Edit Handphone' : 'Create New Handphone'}
+                            {handphone ? 'Edit Data Handphone' : 'Buat Data Handphone Baru'}
                         </h3>
                         <p className="text-sm text-gray-500">
-                            Fill in the information below to {handphone ? 'update' : 'create'} your handphone
+                            Isi informasi di bawah ini untuk {handphone ? 'update' : 'membuat'} handphone Anda
                         </p>
                     </div>
                     <button
@@ -151,7 +158,7 @@ export default function HandphoneForm({
                                         value={formData.title}
                                         onChange={handleChange}
                                         className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                        placeholder="Enter handphone title"
+                                        placeholder="Masukan Nama Ponsel"
                                     />
                                 </div>
 
@@ -165,61 +172,63 @@ export default function HandphoneForm({
                                         value={formData.description}
                                         onChange={handleChange}
                                         className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent resize-none h-24"
-                                        placeholder="Enter handphone description (optional)"
+                                        placeholder="Masukan deskripsi handphone (optional)"
                                     />
                                 </div>
 
-                                <div className="form-control">
-                                    <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="brand">
-                                        Brand
-                                    </label>
-                                    <select
-                                        id="brand"
-                                        name="brand"
-                                        required
-                                        value={formData.brand}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                    >
-                                        <option value="">Select a brand</option>
-                                        {loadingBrands ? (
-                                            <option value="" disabled>Loading brands...</option>
-                                        ) : (
-                                            brandOptions?.map((brand) => (
-                                                <option key={brand.id} value={brand.title}>
-                                                    {brand.title}
-                                                </option>
-                                            ))
-                                        )}
-                                    </select>
+                                <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                                    <div className="form-control">
+                                        <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="brand">
+                                            Merk
+                                        </label>
+                                        <select
+                                            id="brand"
+                                            name="brand"
+                                            required
+                                            value={formData.brand}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
+                                        >
+                                            <option value="">Select a brand</option>
+                                            {loadingBrands ? (
+                                                <option value="" disabled>Loading brands...</option>
+                                            ) : (
+                                                brandOptions?.map((brand) => (
+                                                    <option key={brand.id} value={brand.title}>
+                                                        {brand.title}
+                                                    </option>
+                                                ))
+                                            )}
+                                        </select>
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="owner">
+                                            Pemilik
+                                        </label>
+                                        <select
+                                            id="owner"
+                                            name="owner"
+                                            required
+                                            value={formData.owner}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
+                                        >
+                                            <option value="">Select an owner</option>
+                                            {loadingOwners ? (
+                                                <option value="" disabled>Loading owners...</option>
+                                            ) : (
+                                                ownerOptions?.map((owner) => (
+                                                    <option key={owner.id} value={owner.title}>
+                                                        {owner.title}
+                                                    </option>
+                                                ))
+                                            )}
+                                        </select>
+                                    </div>
                                 </div>
 
-                                <div className="form-control">
-                                    <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="owner">
-                                        Owner
-                                    </label>
-                                    <select
-                                        id="owner"
-                                        name="owner"
-                                        required
-                                        value={formData.owner}
-                                        onChange={handleChange}
-                                        className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                    >
-                                        <option value="">Select an owner</option>
-                                        {loadingOwners ? (
-                                            <option value="" disabled>Loading owners...</option>
-                                        ) : (
-                                            ownerOptions?.map((owner) => (
-                                                <option key={owner.id} value={owner.title}>
-                                                    {owner.title}
-                                                </option>
-                                            ))
-                                        )}
-                                    </select>
-                                </div>
-
-                                <div className="grid grid-cols-2 gap-5">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="form-control">
                                         <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="stock">
                                             Stock
@@ -229,10 +238,10 @@ export default function HandphoneForm({
                                             name="stock"
                                             type="text"
                                             required
-                                            value={formData.stock ? formatPrice(formData.stock) : ''}
+                                            value={formData.stock}
                                             onChange={handleChange}
                                             className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                            placeholder="Enter stock amount"
+                                            placeholder="Masukkan jumlah stok"
                                         />
                                     </div>
 
@@ -248,14 +257,14 @@ export default function HandphoneForm({
                                             value={formData.price ? formatPrice(formData.price) : ''}
                                             onChange={handleChange}
                                             className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                            placeholder="Enter price"
+                                            placeholder="Masukan Harga"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="form-control">
                                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                        Total Value
+                                        Total Stock X Harga
                                     </label>
                                     <div className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] bg-gray-50 text-indigo-600 font-medium">
                                         {formatPrice(totalValue)}

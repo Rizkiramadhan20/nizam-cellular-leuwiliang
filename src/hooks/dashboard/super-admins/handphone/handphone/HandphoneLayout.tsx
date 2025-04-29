@@ -2,15 +2,15 @@
 
 import React, { useState, useMemo } from 'react';
 
-import { useHandphoneStore } from './useHandphoneStore';
+import { useHandphoneStore } from '@/hooks/dashboard/super-admins/handphone/handphone/utils/useHandphoneStore';
 
-import HandphoneTable from './HandphoneTable';
+import HandphoneTable from '@/hooks/dashboard/super-admins/handphone/handphone/components/HandphoneTable';
 
-import HandphoneForm from './modal/ContentModal';
+import HandphoneForm from '@/hooks/dashboard/super-admins/handphone/handphone/modal/ContentModal';
 
-import SearchFilter from './filter/SearchFilter';
+import SearchFilter from '@/hooks/dashboard/super-admins/handphone/handphone/filter/SearchFilter';
 
-import { Handphone } from './types/handphone';
+import { Handphone } from '@/hooks/dashboard/super-admins/handphone/handphone/types/handphone';
 
 import { Pagination } from '@/base/helper/Pagination';
 
@@ -128,7 +128,7 @@ export default function HandphoneLayout() {
 
     return (
         <section>
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-4 sm:mb-8">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-4">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="space-y-1">
                         <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'>

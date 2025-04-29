@@ -1,15 +1,14 @@
 import React from 'react';
-import { Handphone } from './types/handphone';
 
-interface HandphoneTableProps {
-    handphones: Handphone[];
-    onEdit: (handphone: Handphone) => void;
-    onDelete: (id: string) => void;
-}
+import { format } from 'date-fns';
+
+import { HandphoneTableProps } from '@/hooks/dashboard/super-admins/handphone/handphone/types/handphone';
+
+import { RiEdit2Line, RiDeleteBinLine } from 'react-icons/ri';
 
 export default function HandphoneTable({ handphones, onEdit, onDelete }: HandphoneTableProps) {
     const formatDate = (date: Date) => {
-        return date ? new Date(date).toLocaleDateString() : 'N/A';
+        return date ? format(new Date(date), 'dd/MMMM/yyyy') : 'N/A';
     };
 
     const formatPrice = (price: number) => {
@@ -35,6 +34,9 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
             <table className="w-full table-auto">
                 <thead className="bg-gray-50">
                     <tr>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            No
+                        </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Title
                         </th>
@@ -67,14 +69,17 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                 <tbody className="bg-white divide-y divide-gray-200">
                     {handphones.length === 0 ? (
                         <tr>
-                            <td colSpan={8} className="px-6 py-4 text-center text-sm text-gray-500">
+                            <td colSpan={9} className="px-6 py-4 text-center text-sm text-gray-500">
                                 No handphones found. Add one to get started.
                             </td>
                         </tr>
                     ) : (
                         <>
-                            {handphones.map((handphone) => (
+                            {handphones.map((handphone, index) => (
                                 <tr key={handphone.id} className="hover:bg-gray-50">
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {index + 1}
+                                    </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {handphone.title}
                                     </td>
@@ -106,22 +111,24 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                                         <div className="flex justify-end gap-2">
                                             <button
                                                 onClick={() => onEdit(handphone)}
-                                                className="text-indigo-600 hover:text-indigo-900"
+                                                className="text-indigo-600 hover:text-indigo-900 p-1 rounded-full hover:bg-indigo-50 transition-colors"
+                                                title="Edit"
                                             >
-                                                Edit
+                                                <RiEdit2Line size={18} />
                                             </button>
                                             <button
                                                 onClick={() => onDelete(handphone.id)}
-                                                className="text-red-600 hover:text-red-900"
+                                                className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50 transition-colors"
+                                                title="Delete"
                                             >
-                                                Delete
+                                                <RiDeleteBinLine size={18} />
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
                             ))}
                             <tr className="bg-gray-50 font-semibold">
-                                <td colSpan={3} className="px-6 py-4 text-right text-sm font-medium text-gray-900">
+                                <td colSpan={4} className="px-6 py-4 text-right text-sm font-medium text-gray-900">
                                     Total:
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">

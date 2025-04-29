@@ -1,59 +1,65 @@
 import React from 'react'
 
-export default function ProductSkelaton() {
+export default function HandphoneSkelaton() {
     return (
-        <div className="space-y-6">
+        <section>
             {/* Header Skeleton */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-4 sm:mb-8">
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                         <div className="h-8 w-48 bg-gray-200 rounded-lg animate-pulse" />
                         <div className="h-4 w-32 bg-gray-200 rounded-lg animate-pulse" />
                     </div>
-                    <div className="h-10 w-32 bg-gray-200 rounded-lg animate-pulse" />
+                    <div className="h-10 w-40 bg-gray-200 rounded-lg animate-pulse" />
                 </div>
             </div>
 
-            {/* Grid Skeleton */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {[...Array(8)].map((_, index) => (
-                    <div
-                        key={index}
-                        className="group bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm"
-                    >
-                        {/* Image Skeleton */}
-                        <div className="relative h-48 bg-gray-200 animate-pulse" />
-
-                        {/* Content Skeleton */}
-                        <div className="p-5 space-y-4">
-                            <div className="space-y-2">
-                                <div className="h-6 w-3/4 bg-gray-200 rounded-lg animate-pulse" />
-                                <div className="h-4 w-full bg-gray-200 rounded-lg animate-pulse" />
-                                <div className="h-4 w-2/3 bg-gray-200 rounded-lg animate-pulse" />
-                            </div>
-
-                            {/* Stats Skeleton */}
-                            <div className="grid grid-cols-2 gap-2 py-3 border-y border-gray-100">
-                                <div className="text-center">
-                                    <div className="h-5 w-12 bg-gray-200 rounded-lg animate-pulse mx-auto" />
-                                    <div className="h-4 w-16 bg-gray-200 rounded-lg animate-pulse mx-auto mt-1" />
-                                </div>
-                                <div className="text-center">
-                                    <div className="h-5 w-16 bg-gray-200 rounded-lg animate-pulse mx-auto" />
-                                    <div className="h-4 w-16 bg-gray-200 rounded-lg animate-pulse mx-auto mt-1" />
-                                </div>
-                            </div>
-
-                            {/* Actions Skeleton */}
-                            <div className="flex items-center justify-end gap-2">
-                                <div className="h-8 w-8 bg-gray-200 rounded-lg animate-pulse" />
-                                <div className="h-8 w-8 bg-gray-200 rounded-lg animate-pulse" />
-                                <div className="h-8 w-8 bg-gray-200 rounded-lg animate-pulse" />
-                            </div>
-                        </div>
-                    </div>
-                ))}
+            {/* Search and Filter Skeleton */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="h-10 bg-gray-200 rounded-xl animate-pulse" />
+                    <div className="h-10 bg-gray-200 rounded-xl animate-pulse" />
+                    <div className="h-10 bg-gray-200 rounded-xl animate-pulse" />
+                </div>
+                <div className="mt-4 h-4 w-32 bg-gray-200 rounded-lg animate-pulse" />
             </div>
-        </div>
+
+            {/* Table Skeleton */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                <div className="overflow-x-auto">
+                    <table className="w-full table-auto">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                {[...Array(9)].map((_, index) => (
+                                    <th key={index} className="px-6 py-3">
+                                        <div className="h-4 w-24 bg-gray-200 rounded-lg animate-pulse" />
+                                    </th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {[...Array(5)].map((_, rowIndex) => (
+                                <tr key={rowIndex}>
+                                    {[...Array(9)].map((_, colIndex) => (
+                                        <td key={colIndex} className="px-6 py-4">
+                                            <div className="h-4 w-20 bg-gray-200 rounded-lg animate-pulse" />
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Pagination Skeleton */}
+            <div className="mt-6 flex justify-center">
+                <div className="flex gap-2">
+                    {[...Array(3)].map((_, index) => (
+                        <div key={index} className="h-8 w-8 bg-gray-200 rounded-lg animate-pulse" />
+                    ))}
+                </div>
+            </div>
+        </section>
     )
 }

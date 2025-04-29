@@ -14,7 +14,7 @@ import {
 
 import { db } from "@/utils/firebase/firebase";
 
-import { Handphone } from "./types/handphone";
+import { Handphone } from "@/hooks/dashboard/super-admins/handphone/handphone/types/handphone";
 
 export const useHandphoneStore = () => {
   const [handphones, setHandphones] = useState<Handphone[]>([]);
