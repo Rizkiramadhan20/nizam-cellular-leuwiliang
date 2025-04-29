@@ -34,7 +34,7 @@ export const useBrandHandphoneData = () => {
     setIsLoading(true);
     const brandHandphoneRef = collection(
       db,
-      process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_BRAND_HANDPHONE as string
+      process.env.NEXT_PUBLIC_COLLECTIONS_BRAND_HANDPHONE as string
     );
     const q = query(brandHandphoneRef, orderBy("createdAt", "desc"));
 
@@ -103,7 +103,7 @@ export const useBrandHandphoneData = () => {
       await addDoc(
         collection(
           db,
-          process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_BRAND_HANDPHONE as string
+          process.env.NEXT_PUBLIC_COLLECTIONS_BRAND_HANDPHONE as string
         ),
         {
           ...formData,
@@ -142,7 +142,7 @@ export const useBrandHandphoneData = () => {
 
       const docRef = doc(
         db,
-        process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_BRAND_HANDPHONE as string,
+        process.env.NEXT_PUBLIC_COLLECTIONS_BRAND_HANDPHONE as string,
         id
       );
       await updateDoc(docRef, {
@@ -164,7 +164,7 @@ export const useBrandHandphoneData = () => {
     try {
       const docRef = doc(
         db,
-        process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_BRAND_HANDPHONE as string,
+        process.env.NEXT_PUBLIC_COLLECTIONS_BRAND_HANDPHONE as string,
         id
       );
       await deleteDoc(docRef);

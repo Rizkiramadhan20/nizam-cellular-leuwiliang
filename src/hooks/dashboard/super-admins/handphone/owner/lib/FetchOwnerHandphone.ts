@@ -34,7 +34,7 @@ export const useOwnerHandphoneData = () => {
     setIsLoading(true);
     const ownerHandphoneRef = collection(
       db,
-      process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_OWNER_HANDPHONE as string
+      process.env.NEXT_PUBLIC_COLLECTIONS_OWNER_HANDPHONE as string
     );
     const q = query(ownerHandphoneRef, orderBy("createdAt", "desc"));
 
@@ -103,7 +103,7 @@ export const useOwnerHandphoneData = () => {
       await addDoc(
         collection(
           db,
-          process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_OWNER_HANDPHONE as string
+          process.env.NEXT_PUBLIC_COLLECTIONS_OWNER_HANDPHONE as string
         ),
         {
           ...formData,
@@ -142,7 +142,7 @@ export const useOwnerHandphoneData = () => {
 
       const docRef = doc(
         db,
-        process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_OWNER_HANDPHONE as string,
+        process.env.NEXT_PUBLIC_COLLECTIONS_OWNER_HANDPHONE as string,
         id
       );
       await updateDoc(docRef, {
@@ -164,7 +164,7 @@ export const useOwnerHandphoneData = () => {
     try {
       const docRef = doc(
         db,
-        process.env.NEXT_PUBLIC_COLLECTIONS_PRODUCT_OWNER_HANDPHONE as string,
+        process.env.NEXT_PUBLIC_COLLECTIONS_OWNER_HANDPHONE as string,
         id
       );
       await deleteDoc(docRef);
