@@ -1,6 +1,6 @@
 import React from 'react'
 
-import BrandLayout from '@/hooks/dashboard/super-admins/voucher/brand/BrandLayout'
+import BrandLayout from '@/hooks/dashboard/super-admins/voucher/voucher/brand/BrandLayout'
 
 import { Metadata } from 'next'
 

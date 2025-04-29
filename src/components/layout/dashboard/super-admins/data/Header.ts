@@ -55,14 +55,22 @@ export const menuItems = [
 
   {
     icon: CiCreditCard1,
-    label: "Voucher",
-    href: "/dashboard/super-admins/voucher",
+    label: "Voucher | Perdana",
+    href: "/dashboard/super-admins/electrick",
     subItems: [
       {
         label: "Voucher",
-        href: "/dashboard/super-admins/voucher",
+        href: "/dashboard/super-admins/electrick/voucher",
       },
-      { label: "Merek Voucher", href: "/dashboard/super-admins/voucher/brand" },
+      {
+        label: "Merek Voucher",
+        href: "/dashboard/super-admins/electrick/brand-voucher",
+      },
+      { label: "Kartu", href: "/dashboard/super-admins/electrick/kartu" },
+      {
+        label: "Merek Kartu",
+        href: "/dashboard/super-admins/electrick/brand-kartu",
+      },
     ],
   },
 

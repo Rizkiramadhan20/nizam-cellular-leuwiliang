@@ -1,6 +1,6 @@
 import React from 'react'
 
-import PulsaLayout from '@/hooks/dashboard/super-admins/voucher/voucher/PulsaLayout'
+import PulsaLayout from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/VoucherLayout'
 
 import { Metadata } from 'next'
 
