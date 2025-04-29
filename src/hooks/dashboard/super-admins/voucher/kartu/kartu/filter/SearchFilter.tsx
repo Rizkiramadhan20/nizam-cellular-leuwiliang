@@ -1,15 +1,6 @@
 import React from 'react';
 
-import { Kartu } from '@/hooks/dashboard/super-admins/voucher/kartu/kartu/types/Kartu';
-
-interface SearchFilterProps {
-    searchTerm: string;
-    setSearchTerm: (value: string) => void;
-    selectedBrand: string;
-    setSelectedBrand: (value: string) => void;
-    availableBrands: string[];
-    kartus: Kartu[];
-}
+import { SearchFilterProps } from '@/hooks/dashboard/super-admins/voucher/kartu/kartu/types/Kartu';
 
 export default function SearchFilter({
     searchTerm,
@@ -45,7 +36,7 @@ export default function SearchFilter({
                         onChange={(e) => setSelectedBrand(e.target.value)}
                         className="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
                     >
-                        <option value="">Semua Merek</option>
+                        <option value="">Semua Provider</option>
                         {availableBrands.map((brand) => (
                             <option key={brand} value={brand}>
                                 {brand}
@@ -57,7 +48,7 @@ export default function SearchFilter({
 
             {/* Results Count */}
             <div className="mt-4 text-sm text-gray-500">
-                Menampilkan {kartus.length} Perdana{kartus.length !== 1 ? '' : ''}
+                Menampilkan {kartus.length} Kartu Perdana{kartus.length !== 1 ? '' : ''}
             </div>
         </div>
     );

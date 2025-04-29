@@ -2,15 +2,9 @@ import React from 'react';
 
 import { RiEdit2Line, RiDeleteBinLine } from 'react-icons/ri';
 
-import { voucher } from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/types/voucher';
+import { VoucherTableProps } from '@/hooks/dashboard/super-admins/voucher/voucher/voucher/types/voucher';
 
-interface HandphoneTableProps {
-    handphones: voucher[];
-    onEdit: (handphone: voucher) => void;
-    onDelete: (id: string) => void;
-}
-
-export default function HandphoneTable({ handphones, onEdit, onDelete }: HandphoneTableProps) {
+export default function VoucherTable({ vouchers, onEdit, onDelete }: VoucherTableProps) {
     const formatDate = (date: Date) => {
         return date ? new Date(date).toLocaleDateString() : 'N/A';
     };
@@ -24,13 +18,13 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
     };
 
     // Calculate total value of all handphones
-    const totalValue = handphones.reduce((sum, handphone) => {
-        return sum + (handphone.total || handphone.stock * handphone.price);
+    const totalValue = vouchers.reduce((sum, voucher) => {
+        return sum + (voucher.total || voucher.stock * voucher.price);
     }, 0);
 
     // Calculate total stock
-    const totalStock = handphones.reduce((sum, handphone) => {
-        return sum + handphone.stock;
+    const totalStock = vouchers.reduce((sum, voucher) => {
+        return sum + voucher.stock;
     }, 0);
 
     return (
@@ -42,7 +36,7 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                             Title
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Brand
+                            Provider
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Stock
@@ -62,48 +56,48 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {handphones.length === 0 ? (
+                    {vouchers.length === 0 ? (
                         <tr>
                             <td colSpan={6} className="px-6 py-4 text-center text-sm text-gray-500">
-                                No handphones found. Add one to get started.
+                                No vouchers found. Add one to get started.
                             </td>
                         </tr>
                     ) : (
                         <>
-                            {handphones.map((handphone) => (
-                                <tr key={handphone.id} className="hover:bg-gray-50">
+                            {vouchers.map((voucher) => (
+                                <tr key={voucher.id} className="hover:bg-gray-50">
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {handphone.title}
+                                        {voucher.title}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {handphone.brand}
+                                        {voucher.brand}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${handphone.stock > 0 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                                        <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${voucher.stock > 0 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                                             }`}>
-                                            {handphone.stock}
+                                            {voucher.stock}
                                         </span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {formatPrice(handphone.price)}
+                                        {formatPrice(voucher.price)}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600">
-                                        {formatPrice(handphone.total || handphone.stock * handphone.price)}
+                                        {formatPrice(voucher.total || voucher.stock * voucher.price)}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {formatDate(handphone.createdAt)}
+                                        {formatDate(voucher.createdAt)}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <div className="flex justify-end space-x-3">
                                             <button
-                                                onClick={() => onEdit(handphone)}
+                                                onClick={() => onEdit(voucher)}
                                                 className="text-indigo-600 hover:text-indigo-900 p-1 rounded-full hover:bg-indigo-50"
                                                 title="Edit"
                                             >
                                                 <RiEdit2Line className="h-5 w-5" />
                                             </button>
                                             <button
-                                                onClick={() => onDelete(handphone.id)}
+                                                onClick={() => onDelete(voucher.id)}
                                                 className="text-red-600 hover:text-red-900 p-1 rounded-full hover:bg-red-50"
                                                 title="Delete"
                                             >

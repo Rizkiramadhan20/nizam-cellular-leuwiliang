@@ -8,9 +8,15 @@ import { format } from 'date-fns';
 
 import { useBrandVoucherData } from '@/hooks/dashboard/super-admins/voucher/voucher/brand/lib/FetchBrandVoucher';
 
-import { ContentModal } from '@/hooks/dashboard/super-admins/voucher/voucher/brand/modal/ContentModal';
+import dynamic from 'next/dynamic';
 
-import { DeleteModal } from '@/hooks/dashboard/super-admins/voucher/voucher/brand/modal/DeleteModal';
+const ContentModal = dynamic(() => import('@/hooks/dashboard/super-admins/voucher/voucher/brand/modal/ContentModal').then(mod => mod.ContentModal), {
+    ssr: false
+});
+
+const DeleteModal = dynamic(() => import('@/hooks/dashboard/super-admins/voucher/voucher/brand/modal/DeleteModal').then(mod => mod.DeleteModal), {
+    ssr: false
+});
 
 import FeaturedSkelaton from '@/hooks/dashboard/super-admins/voucher/voucher/brand/BrandVoucherSkelaton';
 
@@ -106,10 +112,10 @@ export default function ProductCategoryLayout() {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="space-y-1">
                         <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'>
-                            Brand Voucher
+                            Provider Voucher
                         </h1>
                         <p className='text-gray-500'>
-                            Manage and organize your Brand Voucher
+                            Kelola dan atur Provider Voucher
                         </p>
                     </div>
 
@@ -129,7 +135,7 @@ export default function ProductCategoryLayout() {
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
                         </svg>
-                        Add Category
+                        Tambah Provider
                     </button>
                 </div>
             </div>
@@ -150,7 +156,7 @@ export default function ProductCategoryLayout() {
                                         Title
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
-                                        Created At
+                                        Dibuat Pada
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
                                         Actions

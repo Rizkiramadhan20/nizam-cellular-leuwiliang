@@ -16,7 +16,6 @@ import { Pagination } from '@/base/helper/Pagination';
 
 import dynamic from 'next/dynamic';
 
-// Dynamically import modals with loading fallback
 const ContentModal = dynamic(
     () => import('@/hooks/dashboard/super-admins/voucher/kartu/brand/modal/ContentModal').then(mod => mod.ContentModal),
     { ssr: false, loading: () => <div className="p-4">Loading modal...</div> }

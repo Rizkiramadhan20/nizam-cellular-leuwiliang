@@ -6,7 +6,15 @@ import { HandphoneTableProps } from '@/hooks/dashboard/super-admins/handphone/ha
 
 import { RiEdit2Line, RiDeleteBinLine } from 'react-icons/ri';
 
-export default function HandphoneTable({ handphones, onEdit, onDelete }: HandphoneTableProps) {
+export default function HandphoneTable({
+    handphones,
+    onEdit,
+    onDelete,
+    currentPage = 1,
+    itemsPerPage = 10,
+    totalValue = 0,
+    totalStock = 0
+}: HandphoneTableProps) {
     const formatDate = (date: Date) => {
         return date ? format(new Date(date), 'dd/MMMM/yyyy') : 'N/A';
     };
@@ -19,15 +27,10 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
         }).format(price);
     };
 
-    // Calculate total value of all handphones
-    const totalValue = handphones.reduce((sum, handphone) => {
-        return sum + (handphone.total || handphone.stock * handphone.price);
-    }, 0);
-
-    // Calculate total stock
-    const totalStock = handphones.reduce((sum, handphone) => {
-        return sum + handphone.stock;
-    }, 0);
+    // Calculate the starting number for the current page
+    const getRowNumber = (index: number) => {
+        return (currentPage - 1) * itemsPerPage + index + 1;
+    };
 
     return (
         <div className="overflow-x-auto">
@@ -44,22 +47,22 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                             Description
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Brand
+                            Merek
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Owner
+                            Pemilik
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Stock
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Price
+                            Harga
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Total
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Created At
+                            Tanggal Dibuat
                         </th>
                         <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Actions
@@ -69,7 +72,7 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                 <tbody className="bg-white divide-y divide-gray-200">
                     {handphones.length === 0 ? (
                         <tr>
-                            <td colSpan={9} className="px-6 py-4 text-center text-sm text-gray-500">
+                            <td colSpan={10} className="px-6 py-4 text-center text-sm text-gray-500">
                                 No handphones found. Add one to get started.
                             </td>
                         </tr>
@@ -78,7 +81,7 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                             {handphones.map((handphone, index) => (
                                 <tr key={handphone.id} className="hover:bg-gray-50">
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {index + 1}
+                                        {getRowNumber(index)}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {handphone.title}
@@ -127,25 +130,23 @@ export default function HandphoneTable({ handphones, onEdit, onDelete }: Handpho
                                     </td>
                                 </tr>
                             ))}
-                            <tr className="bg-gray-50 font-semibold">
-                                <td colSpan={4} className="px-6 py-4 text-right text-sm font-medium text-gray-900">
-                                    Total:
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {totalStock}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    -
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-700">
-                                    {formatPrice(totalValue)}
-                                </td>
-                                <td colSpan={2} className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    -
-                                </td>
-                            </tr>
                         </>
                     )}
+
+                    <tr className="bg-gray-50 font-semibold border-t-2 border-gray-200">
+                        <td colSpan={5} className="px-6 py-4 text-right text-sm font-medium text-gray-900">
+                            Total Stock:
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            {totalStock}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                            Total Value:
+                        </td>
+                        <td colSpan={3} className="px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-700">
+                            {formatPrice(totalValue)}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

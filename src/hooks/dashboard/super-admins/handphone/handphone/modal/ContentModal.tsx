@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import { Handphone } from '@/hooks/dashboard/super-admins/handphone/handphone/types/handphone';
+import { HandphoneFormProps } from '@/hooks/dashboard/super-admins/handphone/handphone/types/handphone';
 
 import { useBrandHandphoneData } from '@/hooks/dashboard/super-admins/handphone/brand/lib/FetchBrandHandphone';
 
 import { useOwnerHandphoneData } from '@/hooks/dashboard/super-admins/handphone/owner/lib/FetchOwnerHandphone';
-
-interface HandphoneFormProps {
-    handphone?: Handphone;
-    onSubmit: (data: Omit<Handphone, 'id' | 'createdAt' | 'updatedAt'>) => Promise<boolean>;
-    onCancel: () => void;
-    isSubmitting?: boolean;
-}
 
 export default function HandphoneForm({
     handphone,

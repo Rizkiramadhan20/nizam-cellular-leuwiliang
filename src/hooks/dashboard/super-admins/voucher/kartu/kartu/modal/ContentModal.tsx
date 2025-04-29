@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { Kartu } from '../types/Kartu';
+import { VoucherFormProps } from '@/hooks/dashboard/super-admins/voucher/kartu/kartu/types/Kartu';
 
 import { useBrandPerdanaData } from '@/hooks/dashboard/super-admins/voucher/kartu/brand/lib/FetchBrandPerdana';
-
-interface VoucherFormProps {
-    Kartu?: Kartu;
-    onSubmit: (data: Omit<Kartu, 'id' | 'createdAt' | 'updatedAt'>) => Promise<boolean>;
-    onCancel: () => void;
-    isSubmitting?: boolean;
-}
 
 export default function HandphoneForm({
     Kartu,
@@ -131,7 +124,7 @@ export default function HandphoneForm({
                                         {/* Title */}
                                         <div className="form-control">
                                             <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                                Title
+                                                Judul
                                             </label>
                                             <input
                                                 type="text"
@@ -141,14 +134,14 @@ export default function HandphoneForm({
                                                 onChange={handleChange}
                                                 required
                                                 className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                                placeholder="Enter title"
+                                                placeholder="Masukan Judul"
                                             />
                                         </div>
 
                                         {/* Brand */}
                                         <div className="form-control">
                                             <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                                Brand
+                                                Provider
                                             </label>
                                             <select
                                                 id="brand"
@@ -159,7 +152,7 @@ export default function HandphoneForm({
                                                 className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
                                                 disabled={loadingBrands}
                                             >
-                                                <option value="">Select Brand</option>
+                                                <option value="">Select Provider</option>
                                                 {brandOptions.map((brand) => (
                                                     <option key={brand.id} value={brand.title}>
                                                         {brand.title}
@@ -183,14 +176,14 @@ export default function HandphoneForm({
                                                 onChange={handleChange}
                                                 required
                                                 className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                                placeholder="Enter stock"
+                                                placeholder="Masukan Stock"
                                             />
                                         </div>
 
                                         {/* Price */}
                                         <div className="form-control">
                                             <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                                Price
+                                                Harga
                                             </label>
                                             <input
                                                 type="text"
@@ -200,7 +193,7 @@ export default function HandphoneForm({
                                                 onChange={handleChange}
                                                 required
                                                 className="w-full px-4 py-2.5 rounded-xl border border-[var(--border-color)] focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 bg-transparent"
-                                                placeholder="Enter price"
+                                                placeholder="Masukan harga"
                                             />
                                         </div>
                                     </div>
@@ -208,7 +201,7 @@ export default function HandphoneForm({
                                     {/* Total (read-only) */}
                                     <div className="form-control">
                                         <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                                            Total
+                                            Total Stock * Harga
                                         </label>
                                         <input
                                             type="text"

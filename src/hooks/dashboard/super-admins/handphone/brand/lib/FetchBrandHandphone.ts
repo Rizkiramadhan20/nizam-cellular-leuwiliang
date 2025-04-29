@@ -27,7 +27,7 @@ export const useBrandHandphoneData = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const itemsPerPage = 6;
+  const itemsPerPage = 10;
 
   // Fetch contents with onSnapshot
   useEffect(() => {

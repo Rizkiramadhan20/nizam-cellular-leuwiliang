@@ -2,13 +2,7 @@ import React from 'react';
 
 import { RiEdit2Line, RiDeleteBinLine } from 'react-icons/ri';
 
-import { Kartu } from '@/hooks/dashboard/super-admins/voucher/kartu/kartu/types/Kartu';
-
-interface KartuTableProps {
-    kartus: Kartu[];
-    onEdit: (handphone: Kartu) => void;
-    onDelete: (id: string) => void;
-}
+import { KartuTableProps } from '@/hooks/dashboard/super-admins/voucher/kartu/kartu/types/Kartu';
 
 export default function HandphoneTable({ kartus, onEdit, onDelete }: KartuTableProps) {
     const formatDate = (date: Date) => {
@@ -45,7 +39,7 @@ export default function HandphoneTable({ kartus, onEdit, onDelete }: KartuTableP
                             Title
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Brand
+                            Provider
                         </th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Stock

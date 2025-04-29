@@ -106,10 +106,10 @@ export default function ProductCategoryLayout() {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="space-y-1">
                         <h1 className='text-2xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent'>
-                            Brand Handphone
+                            Merek Handphone
                         </h1>
                         <p className='text-gray-500'>
-                            Manage and organize your Brand Handphone
+                            Kelola dan atur Merek Handphone
                         </p>
                     </div>
 
@@ -129,7 +129,7 @@ export default function ProductCategoryLayout() {
                         >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
                         </svg>
-                        Add Category
+                        Tambah Merek
                     </button>
                 </div>
             </div>
@@ -147,10 +147,10 @@ export default function ProductCategoryLayout() {
                                         No
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
-                                        Title
+                                        Merek
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
-                                        Created At
+                                        Tanggal Dibuat
                                     </th>
                                     <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider whitespace-nowrap">
                                         Actions
