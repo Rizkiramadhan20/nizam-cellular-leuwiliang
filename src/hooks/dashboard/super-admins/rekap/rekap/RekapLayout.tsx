@@ -59,7 +59,9 @@ export default function RekapLayout() {
     )[0];
 
     const totalProfit = uangLaciContents.reduce((sum, content) => sum + Number(content.UangLaba), 0);
-    const totalPiutang = piutangContents.reduce((sum, content) => sum + Number(content.price), 0);
+    const totalPiutang = piutangContents
+        .filter(piutang => piutang.status === 'belum_bayar')
+        .reduce((sum, content) => sum + Number(content.price), 0);
 
     const sortedUangLaci = [...uangLaciContents].sort((a, b) =>
         new Date(a.date).getTime() - new Date(b.date).getTime()

@@ -52,12 +52,12 @@ export default function DashboardLayout({
       }
       setCurrentRole(Role.SUPER_ADMIN);
     } else if (currentPath.startsWith('/dashboard/admins')) {
-      if (!hasRole(Role.ADMIN)) {
+      if (!hasRole(Role.KARYAWAN)) {
         setIsAuthorized(false);
         setLoading(false);
         return;
       }
-      setCurrentRole(Role.ADMIN);
+      setCurrentRole(Role.KARYAWAN);
     } else if (currentPath.startsWith('/dashboard/user')) {
       if (!hasRole(Role.USER)) {
         setIsAuthorized(false);
@@ -100,7 +100,7 @@ export default function DashboardLayout({
     switch (currentRole) {
       case Role.SUPER_ADMIN:
         return <SuperAdminHeader onSidebarToggle={setIsSidebarOpen} isCollapsed={isSidebarCollapsed} />;
-      case Role.ADMIN:
+      case Role.KARYAWAN:
         return <AdminHeader onSidebarToggle={setIsSidebarOpen} isCollapsed={isSidebarCollapsed} />;
       case Role.USER:
         return <UserHeader onSidebarToggle={setIsSidebarOpen} isCollapsed={isSidebarCollapsed} />;

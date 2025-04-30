@@ -177,7 +177,11 @@ export const menuItems = [
     label: "Accounts",
     href: "/dashboard/super-admins/accounts",
     subItems: [
-      { label: "Admins", href: "/dashboard/super-admins/accounts/admins" },
+      {
+        label: "Super Admins",
+        href: "/dashboard/super-admins/accounts/super-admins",
+      },
+      { label: "Karyawan", href: "/dashboard/super-admins/accounts/karyawan" },
       { label: "User", href: "/dashboard/super-admins/accounts/user" },
     ],
   },
