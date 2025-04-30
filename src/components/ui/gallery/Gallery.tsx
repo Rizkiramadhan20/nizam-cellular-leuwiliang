@@ -47,7 +47,7 @@ export default function Gallery() {
     };
 
     return (
-        <section className='min-h-screen py-4 sm:py-8 lg:py-12 bg-gradient-to-br from-gray-100 via-white to-gray-100 relative'>
+        <section className='min-h-full py-4 sm:py-8 lg:py-12 bg-gradient-to-br from-gray-100 via-white to-gray-100 relative'>
             <div className="container px-3 sm:px-6 lg:px-8 mx-auto">
                 <GalleryFilter
                     activeSection={activeSection}

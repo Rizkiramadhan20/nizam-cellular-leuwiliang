@@ -18,6 +18,8 @@ import { FormatRupiah } from '@/base/helper/FormatRupiah';
 
 import { formatDateToMonthName } from '@/base/helper/FormatDate';
 
+import UangLaciSkelaton from '@/hooks/dashboard/super-admins/rekap/uang-laci/UangLaciSkelaton';
+
 export default function UangLaciLayout() {
     const [selectedContent, setSelectedContent] = useState<UangLaciContent | null>(null);
     const [formData, setFormData] = useState<UangLaciFormData>(initialFormData);
@@ -111,6 +113,10 @@ export default function UangLaciLayout() {
             }
         }
     };
+
+    if (isLoading) {
+        return <UangLaciSkelaton />
+    }
 
     return (
         <section>
