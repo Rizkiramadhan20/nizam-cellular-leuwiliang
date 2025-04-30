@@ -18,15 +18,17 @@ import {
 
 import { Line, Doughnut } from 'react-chartjs-2';
 
-import { useUangLaciData } from '../uang-laci/lib/FetchUangLaci';
+import { useUangLaciData } from '@/hooks/dashboard/super-admins/rekap/uang-laci/lib/FetchUangLaci';
 
-import { useSaldoData } from '../saldo/lib/FetchSaldo';
+import { useSaldoData } from '@/hooks/dashboard/super-admins/rekap/saldo/lib/FetchSaldo';
 
-import { usePiutangData } from '../piutang/lib/FetchPiutang';
+import { usePiutangData } from '@/hooks/dashboard/super-admins/rekap/piutang/lib/FetchPiutang';
 
 import { FormatRupiah } from '@/base/helper/FormatRupiah';
 
 import { formatDateToMonthName } from '@/base/helper/FormatDate';
+
+import RekapSkelaton from '@/hooks/dashboard/super-admins/rekap/rekap/RekapSkelaton';
 
 ChartJS.register(
     CategoryScale,
@@ -40,17 +42,25 @@ ChartJS.register(
 );
 
 export default function RekapLayout() {
-    const { contents: uangLaciContents } = useUangLaciData();
-    const { contents: saldoContents } = useSaldoData();
-    const { contents: piutangContents } = usePiutangData();
+    const { contents: uangLaciContents, isLoading: isUangLaciLoading } = useUangLaciData();
+    const { contents: saldoContents, isLoading: isSaldoLoading } = useSaldoData();
+    const { contents: piutangContents, isLoading: isPiutangLoading } = usePiutangData();
 
-    // Calculate total income and profit
-    const totalIncome = uangLaciContents.reduce((sum, content) => sum + Number(content.pendapatan), 0);
+    if (isUangLaciLoading || isSaldoLoading || isPiutangLoading) {
+        return <RekapSkelaton />;
+    }
+
+    const latestUangLaci = [...uangLaciContents].sort((a, b) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    )[0];
+
+    const latestSaldo = [...saldoContents].sort((a, b) =>
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+    )[0];
+
     const totalProfit = uangLaciContents.reduce((sum, content) => sum + Number(content.UangLaba), 0);
-    const totalSaldo = saldoContents.reduce((sum, content) => sum + Number(content.saldo), 0);
     const totalPiutang = piutangContents.reduce((sum, content) => sum + Number(content.price), 0);
 
-    // Prepare data for income and profit chart
     const sortedUangLaci = [...uangLaciContents].sort((a, b) =>
         new Date(a.date).getTime() - new Date(b.date).getTime()
     );
@@ -59,7 +69,7 @@ export default function RekapLayout() {
         labels: sortedUangLaci.map(content => formatDateToMonthName(content.date)),
         datasets: [
             {
-                label: 'Pendapatan',
+                label: 'Uang Laci',
                 data: sortedUangLaci.map(content => Number(content.pendapatan)),
                 borderColor: 'rgb(99, 102, 241)',
                 backgroundColor: 'rgba(99, 102, 241, 0.5)',
@@ -83,8 +93,7 @@ export default function RekapLayout() {
                 position: 'top' as const,
             },
             title: {
-                display: true,
-                text: 'Grafik Pendapatan dan Laba',
+                display: false,
             },
         },
         scales: {
@@ -133,51 +142,116 @@ export default function RekapLayout() {
                 position: 'top' as const,
             },
             title: {
-                display: true,
-                text: 'Status Piutang',
+                display: false,
             },
         },
     };
 
     return (
         <section className="space-y-6">
-            {/* Header */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                <h1 className="text-2xl font-bold text-gray-900 mb-2">Dashboard Rekap</h1>
-                <p className="text-gray-600">Ringkasan data keuangan dan piutang</p>
-            </div>
-
             {/* Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 className="text-sm font-medium text-gray-500 mb-1">Total Pendapatan</h3>
-                    <p className="text-2xl font-bold text-indigo-600">{FormatRupiah(totalIncome.toString())}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="card bg-white border border-[var(--border-color)]">
+                    <div className="card-body">
+                        <h3 className="card-title text-sm font-medium text-gray-600">Uang Laci</h3>
+                        <p className="text-2xl font-bold text-indigo-600">
+                            {latestUangLaci ? FormatRupiah(latestUangLaci.pendapatan) : 'Rp 0'}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                            {latestUangLaci ? formatDateToMonthName(latestUangLaci.date) : 'Tidak ada data'}
+                        </p>
+                    </div>
                 </div>
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 className="text-sm font-medium text-gray-500 mb-1">Total Laba</h3>
-                    <p className="text-2xl font-bold text-green-600">{FormatRupiah(totalProfit.toString())}</p>
+                <div className="card bg-white border border-[var(--border-color)]">
+                    <div className="card-body">
+                        <h3 className="card-title text-sm font-medium text-gray-600">Total Laba</h3>
+                        <p className="text-2xl font-bold text-emerald-600">{FormatRupiah(totalProfit.toString())}</p>
+                        <p className="text-xs text-gray-500">
+                            {latestUangLaci ? formatDateToMonthName(latestUangLaci.date) : 'Tidak ada data'}
+                        </p>
+                    </div>
                 </div>
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 className="text-sm font-medium text-gray-500 mb-1">Total Saldo</h3>
-                    <p className="text-2xl font-bold text-blue-600">{FormatRupiah(totalSaldo.toString())}</p>
+                <div className="card bg-white border border-[var(--border-color)]">
+                    <div className="card-body">
+                        <h3 className="card-title text-sm font-medium text-gray-600">Saldo</h3>
+                        <p className="text-2xl font-bold text-blue-600">
+                            {latestSaldo ? FormatRupiah(latestSaldo.saldo) : 'Rp 0'}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                            {latestSaldo ? formatDateToMonthName(latestSaldo.date) : 'Tidak ada data'}
+                        </p>
+                    </div>
                 </div>
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                    <h3 className="text-sm font-medium text-gray-500 mb-1">Total Piutang</h3>
-                    <p className="text-2xl font-bold text-red-600">{FormatRupiah(totalPiutang.toString())}</p>
+                <div className="card bg-white border border-[var(--border-color)]">
+                    <div className="card-body">
+                        <h3 className="card-title text-sm font-medium text-gray-600">Total Piutang</h3>
+                        <p className="text-2xl font-bold text-red-600">{FormatRupiah(totalPiutang.toString())}</p>
+                        <p className="text-xs text-gray-500">
+                            {piutangContents.length > 0 ? formatDateToMonthName(piutangContents[0].date) : 'Tidak ada data'}
+                        </p>
+                    </div>
                 </div>
             </div>
 
             {/* Charts */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <div className="bg-white rounded-2xl border border-[var(--border-color)] p-6">
                     <div className="h-[400px]">
                         <Line data={incomeChartData} options={incomeChartOptions} />
                     </div>
                 </div>
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <div className="bg-white rounded-2xl border border-[var(--border-color)] p-6">
                     <div className="h-[400px]">
                         <Doughnut data={piutangStatusData} options={piutangChartOptions} />
                     </div>
+                </div>
+            </div>
+
+            {/* Latest Piutang Data */}
+            <div className="bg-white rounded-2xl border border-[var(--border-color)] p-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Data Piutang Terbaru</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+                    {piutangContents
+                        .filter(piutang => piutang.createdAt)
+                        .sort((a, b) => {
+                            const dateA = new Date(a.createdAt as unknown as string);
+                            const dateB = new Date(b.createdAt as unknown as string);
+                            return dateB.getTime() - dateA.getTime();
+                        })
+                        .slice(0, 4)
+                        .map((piutang, index) => (
+                            <div key={index} className="card bg-base-100 shadow-sm hover:shadow-md transition-shadow">
+                                <div className="card-body p-4">
+                                    <div className="space-y-2">
+                                        <div>
+                                            <p className="text-sm font-medium text-gray-200">Nama</p>
+                                            <p className="text-lg font-semibold text-gray-200">{piutang.nama}</p>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-medium text-gray-200">Jumlah</p>
+                                            <p className="text-lg font-semibold text-gray-200">
+                                                {FormatRupiah(piutang.price)}
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-sm font-medium text-gray-200">Tanggal</p>
+                                            <p className="text-sm text-gray-200">
+                                                {formatDateToMonthName(piutang.date)}
+                                            </p>
+                                        </div>
+
+                                        <div className='flex flex-col gap-2'>
+                                            <p className="text-sm font-medium text-gray-200">Status</p>
+                                            <div className={`badge ${piutang.status === 'belum_bayar' ? 'badge-error' : 'badge-success'}`}>
+                                                {piutang.status === 'belum_bayar' ? 'Belum Bayar' : 'Sudah Bayar'}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                 </div>
             </div>
         </section>
