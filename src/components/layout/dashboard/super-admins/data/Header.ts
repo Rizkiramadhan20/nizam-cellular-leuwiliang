@@ -96,8 +96,26 @@ export const menuItems = [
 
   {
     icon: TbReportAnalytics,
-    label: "Rekap",
+    label: "Rekaps",
     href: "/dashboard/super-admins/rekap",
+    subItems: [
+      {
+        label: "Rekap",
+        href: "/dashboard/super-admins/rekap",
+      },
+      {
+        label: "Uang Laci",
+        href: "/dashboard/super-admins/rekap/uang-laci",
+      },
+      {
+        label: "Saldo Electrik",
+        href: "/dashboard/super-admins/rekap/saldo",
+      },
+      {
+        label: "Piutang",
+        href: "/dashboard/super-admins/rekap/piutang",
+      },
+    ],
   },
 
   {

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 
 import { useHandphoneStore } from '@/hooks/dashboard/super-admins/handphone/handphone/utils/useHandphoneStore';
 
@@ -79,6 +79,11 @@ export default function HandphoneLayout() {
             return sum + handphone.stock;
         }, 0);
     }, [filteredHandphones]);
+
+    // Reset current page when search or filters change
+    useEffect(() => {
+        setCurrentPage(0);
+    }, [searchTerm, selectedBrand, selectedOwner]);
 
     // Handle page change
     const handlePageChange = (selectedItem: { selected: number }) => {

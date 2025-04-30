@@ -21,7 +21,6 @@ export const useHandphoneStore = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Get all handphones
   const fetchHandphones = async () => {
     setLoading(true);
     try {
@@ -49,7 +48,6 @@ export const useHandphoneStore = () => {
     }
   };
 
-  // Add a new handphone
   const addHandphone = async (
     handphoneData: Omit<Handphone, "id" | "createdAt" | "updatedAt">
   ) => {
