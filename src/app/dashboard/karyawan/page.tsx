@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SuperAdminsLayout from '@/hooks/dashboard/super-admins/SuperAdminsLayout'
+import KaryawanLayout from '@/hooks/dashboard/super-admins/accounts/karyawan/KaryawanLayout'
 
 import { Metadata } from 'next'
 
@@ -11,6 +11,6 @@ export const metadata: Metadata = {
 
 export default function page() {
     return (
-        <SuperAdminsLayout />
+        <KaryawanLayout />
     )
 }
