@@ -16,7 +16,7 @@ import DatePicker from "react-datepicker"
 
 import "react-datepicker/dist/react-datepicker.css"
 
-import FormModal from "@/components/ui/konsultasi/FormModal"
+import FormModal from "@/components/ui/konsultasi/modal/FormModal"
 
 import { useAuth } from "@/utils/context/AuthContext"
 
@@ -55,7 +55,7 @@ export default function Konsultasi() {
   }
 
   return (
-    <section className='min-h-screen relative overflow-hidden bg-gradient-to-br from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.5)]'>
+    <section className='min-h-full relative overflow-hidden bg-gradient-to-br from-[rgba(0,0,0,0.7)] to-[rgba(0,0,0,0.5)]'>
       {/* Background Images */}
       <div className='absolute inset-0'>
         {konsultasi.map((item, index) => (

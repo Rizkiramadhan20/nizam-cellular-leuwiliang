@@ -6,7 +6,7 @@ import Services from "@/components/ui/services/Services"
 
 import Konsultasi from "@/components/ui/konsultasi/Konsultasi"
 
-import Faqs from "@/components/ui/faqs/Faqs"
+import Faqs from "@/components/ui/faqs/FaqLayout"
 
 import Gallery from "@/components/ui/gallery/Gallery"
 

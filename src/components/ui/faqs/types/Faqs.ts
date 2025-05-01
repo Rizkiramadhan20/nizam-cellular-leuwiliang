@@ -15,8 +15,32 @@ export interface FaqsList {
   updatedAt: string;
 }
 
-// FAQ Item Props
+export interface FaqItemProps {
+  faq: {
+    title: string;
+    description: string;
+  };
+  isExpanded: boolean;
+  onToggle: () => void;
+}
 
-export interface FAQItemProps {
-  faq: FaqsType;
+export interface FaqsContentProps {
+  faqs: Array<{
+    title: string;
+    faqs: Array<{
+      title: string;
+      description: string;
+    }>;
+  }>;
+  activeTitle: string;
+  expandedFaqs: { [key: string]: boolean };
+  onToggleFaq: (faqId: string) => void;
+}
+
+export interface FaqsNavigationProps {
+  faqs: Array<{
+    title: string;
+  }>;
+  activeTitle: string;
+  onTitleClick: (title: string) => void;
 }

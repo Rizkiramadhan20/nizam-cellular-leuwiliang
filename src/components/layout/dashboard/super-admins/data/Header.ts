@@ -96,7 +96,7 @@ export const menuItems = [
 
   {
     icon: TbReportAnalytics,
-    label: "Rekaps",
+    label: "Rekap",
     href: "/dashboard/super-admins/rekap",
     subItems: [
       {
@@ -182,7 +182,7 @@ export const menuItems = [
         href: "/dashboard/super-admins/accounts/super-admins",
       },
       { label: "Karyawan", href: "/dashboard/super-admins/accounts/karyawan" },
-      { label: "User", href: "/dashboard/super-admins/accounts/user" },
+      { label: "Users", href: "/dashboard/super-admins/accounts/users" },
     ],
   },
 

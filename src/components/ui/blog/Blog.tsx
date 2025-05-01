@@ -48,7 +48,7 @@ export default function Blog() {
     const otherBlog = filteredBlog.filter(item => item !== topBlog);
 
     return (
-        <section className='min-h-screen py-16 bg-[#0A0A0A] text-white relative overflow-hidden'>
+        <section className='min-h-full py-16 bg-[#0A0A0A] text-white relative overflow-hidden'>
             <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
                 <BlogHeader />
 
