@@ -83,7 +83,6 @@ export const metadata = {
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_ID,
-    googleTagManager: process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
     yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
     bing: process.env.NEXT_PUBLIC_BING_VERIFICATION,
   },
