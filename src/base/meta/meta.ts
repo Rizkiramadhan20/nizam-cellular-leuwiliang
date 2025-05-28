@@ -83,8 +83,8 @@ export const metadata = {
   },
   verification: {
     google: `meta name="google-site-verification" content="${process.env.NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE}"`,
-    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
-    bing: process.env.NEXT_PUBLIC_BING_VERIFICATION,
+    yandex: `meta name="yandex-verification" content="${process.env.NEXT_PUBLIC_YANDEX_VERIFICATION}"`,
+    bing: `meta name="msvalidate.01" content="${process.env.NEXT_PUBLIC_BING_VERIFICATION}"`,
   },
   robots: {
     index: true,

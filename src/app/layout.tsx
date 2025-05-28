@@ -23,6 +23,7 @@ export default function RootLayout({
     <html lang="id">
       <head>
         <GoogleTagManager />
+        <meta name="google-site-verification" content={metadata.verification.google} />
       </head>
       <body
         className={`${openSans.variable} antialiased`}
